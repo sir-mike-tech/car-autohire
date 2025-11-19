@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Book a Car — Sir Mike AutoHire</title>
+  <meta name="description" content="Reserve your vehicle with Sir Mike AutoHire — quick booking, secure payment options and confirmation." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --accent: #0b7dfa;
+      --accent-600: #0767c9;
+      --bg: #f6f9ff;
+      --card: #ffffff;
+      --muted: #6b7280;
+      --dark: #0f1724;
+      --success: #0b7a3a;
+      --danger: #b00020;
+      --glass: rgba(255,255,255,0.7);
+      --radius: 14px;
+      --shadow-sm: 0 6px 18px rgba(12,18,30,0.06);
+      --shadow-lg: 0 30px 60px rgba(12,18,30,0.08);
+      --maxw: 1100px;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color-scheme: light;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,var(--bg),#fff 60%);
+      color:var(--dark);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      font-size:16px;
+      line-height:1.45;
+    }
+    .container{max-width:var(--maxw);margin:0 auto;padding:28px}
+
+    /* Header */
+    header{
+      background:linear-gradient(90deg, rgba(11,125,250,0.06), rgba(11,125,250,0.02));
+      position:sticky; top:12px; z-index:80;
+      margin-bottom:12px;
+      border-radius:12px;
+      padding:10px 20px;
+      box-shadow:var(--shadow-sm);
+      backdrop-filter: blur(6px);
+    }
+    .nav{display:flex;align-items:center;gap:12px;justify-content:space-between}
+    .brand{display:flex;gap:12px;align-items:center;font-weight:800}
+    .brand img{height:44px;border-radius:10px;display:block}
+    nav a{color:var(--dark);text-decoration:none;margin:0 8px;padding:8px;border-radius:8px;font-weight:600}
+    nav a[aria-current="page"]{background:rgba(11,125,250,0.12);color:var(--accent-600)}
+    .actions{display:flex;gap:10px;align-items:center}
+
+    /* Layout */
+    main{display:grid;grid-template-columns:1fr 380px;gap:24px;align-items:start}
+    @media(max-width:980px){ main{grid-template-columns:1fr} header{position:static;margin-bottom:18px} }
+
+    /* Card */
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow:var(--shadow-lg);
+      transition:transform .12s ease, box-shadow .12s ease;
+    }
+    .card:hover{ transform:translateY(-4px) }
+
+    h1{margin:0 0 8px;font-size:20px;letter-spacing:-0.4px}
+    .lead{margin:0 0 12px;color:var(--muted)}
+
+    /* Progress */
+    .steps{display:flex;gap:8px;margin:14px 0 18px;align-items:center}
+    .step{flex:1;background:linear-gradient(180deg,#fff,#fbfdff);padding:8px;border-radius:10px;border:1px solid rgba(11,125,250,0.06);font-weight:600;text-align:center;color:var(--muted);font-size:13px}
+    .step.active{background:linear-gradient(90deg,var(--accent),var(--accent-600));color:#fff;box-shadow:0 8px 28px rgba(11,125,250,0.12)}
+
+    /* Form */
+    form{display:block}
+    fieldset{border:0;margin:0;padding:0}
+    .group{display:flex;gap:12px;align-items:flex-start}
+    .field{display:flex;flex-direction:column;margin-bottom:12px}
+    label{font-size:13px;color:var(--muted);margin-bottom:6px}
+    input[type="text"], input[type="email"], input[type="tel"], input[type="datetime-local"], select, textarea{
+      padding:12px;border-radius:10px;border:1px solid #e7eefb;background:linear-gradient(180deg,#fff,#fbfdff);font-size:14px;
+      transition:box-shadow .12s, border-color .12s, transform .12s;
+    }
+    /* Focus highlight: subtle left accent + glow for better affordance */
+    .field:focus-within{transform:translateY(-2px)}
+    input:focus, select:focus, textarea:focus{outline:none;border-color:var(--accent-600);box-shadow:0 12px 30px rgba(11,125,250,0.10);position:relative}
+
+    /* Add a left accent bar when an input is focused */
+    .field:focus-within::before{
+      content:'';position:absolute;left:0;top:8px;bottom:8px;width:4px;background:linear-gradient(180deg,var(--accent),var(--accent-600));border-radius:4px;box-shadow:0 6px 18px rgba(11,125,250,0.08);
+      transform:translateX(-6px);opacity:1;transition:transform .18s,opacity .12s;
+    }
+    /* Ensure the .field has relative positioning so the accent positions correctly */
+    .field{position:relative}
+
+    /* Respect users who prefer reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .field:focus-within{transform:none}
+      input[type="text"], input[type="email"], input[type="tel"], input[type="datetime-local"], select, textarea{transition:none}
+      .field:focus-within::before{transition:none}
+    }
+
+    .inline{display:flex;gap:10px}
+    .inline .field{flex:1}
+
+    .muted{color:var(--muted);font-size:13px}
+    .small{font-size:13px;color:var(--muted)}
+
+    .actions-row{display:flex;gap:10px;align-items:center;margin-top:8px}
+
+    .btn{
+      background:linear-gradient(180deg,var(--accent),var(--accent-600));
+      color:#fff;border:0;padding:11px 16px;border-radius:10px;font-weight:700;cursor:pointer;box-shadow:0 12px 30px rgba(11,125,250,0.16)
+    }
+    .btn.secondary{background:transparent;color:var(--dark);border:1px solid rgba(11,125,250,0.12)}
+    .ghost{background:transparent;border:1px solid rgba(11,125,250,0.08);padding:9px 12px;border-radius:10px}
+
+    .note{background:#f3f8ff;border-left:4px solid rgba(11,125,250,0.18);padding:10px;border-radius:8px;color:var(--muted);font-size:14px;margin-top:12px}
+
+    .error{color:var(--danger);font-size:13px;display:none;margin-top:6px}
+
+    /* Summary */
+    aside.summary{position:sticky;top:86px}
+    .media{height:190px;border-radius:10px;overflow:hidden;background:linear-gradient(180deg,#eef6ff,#ffffff);display:flex;align-items:center;justify-content:center}
+    .media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .18s}
+    .summary .meta{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+    .price{font-weight:800;color:var(--accent)}
+    .breakdown{margin-top:12px;border-radius:10px;padding:12px;background:linear-gradient(180deg,#fff,#fbfdff);border:1px solid rgba(11,125,250,0.04)}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;font-weight:700;background:#eefdf3;color:var(--success);font-size:13px}
+
+    /* modal */
+    .modal{position:fixed;inset:0;background:rgba(2,6,23,.48);display:none;align-items:center;justify-content:center;padding:24px;z-index:120}
+    .sheet{background:#fff;padding:20px;border-radius:12px;max-width:680px;width:100%;box-shadow:0 30px 80px rgba(2,6,23,.4)}
+    .sheet h3{margin:0 0 8px}
+    .sheet p{margin:0;color:var(--muted)}
+
+    footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
+
+    /* responsive tweaks */
+    @media(max-width:640px){
+      .group{flex-direction:column}
+      main{grid-template-columns:1fr}
+      header{padding:14px}
+      .media{height:160px}
+      .summary{position:static}
+    }
+
+    /* focus visible */
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible{outline:3px solid rgba(11,125,250,0.12);outline-offset:3px;border-radius:8px}
+
+  /* While auth-overlay is visible: block interactions on main content and prevent scrolling */
+  body.blocked{overflow:hidden}
+  main[aria-hidden="true"], aside[aria-hidden="true"]{pointer-events:none;user-select:none;filter:brightness(.995)}
+  /* Ensure the auth overlay remains interactive even when main is aria-hidden */
+  .auth-overlay, .auth-overlay *{pointer-events:auto}
+
+
+    /* Account-required overlay */
+    .auth-overlay{
+      position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(180deg,rgba(10,15,25,0.35),rgba(10,15,25,0.28));
+      z-index:9999;padding:20px;border-radius:12px;pointer-events:auto
+    }
+    .auth-panel{position:relative;z-index:10000}
+    .auth-panel{background:linear-gradient(180deg,#fff,#fbfdff);padding:18px;border-radius:12px;max-width:520px;width:100%;text-align:center;box-shadow:0 18px 50px rgba(2,6,23,0.18);border:1px solid rgba(11,125,250,0.06)}
+    .auth-panel h3{margin:0 0 8px;font-size:18px}
+    .auth-panel p{margin:0;color:var(--muted)}
+    .auth-panel .btn{min-width:150px}
+    @media(max-width:980px){ .auth-panel{padding:14px} }
+  </style>
+</head>
+<body>
+  <header class="container" role="banner" aria-label="Top header">
+    <div class="nav">
+      <div class="brand">
+        <img src="assets/logo.png" alt="Sir Mike AutoHire" onerror="this.style.display='none'">
+        <div>
+          <div style="font-weight:800">Sir Mike AutoHire</div>
+          <div class="small muted">Drive Your Dream Today</div>
+        </div>
+      </div>
+
+      <nav aria-label="Primary">
+        <a href="home.html">Home</a>
+        <a href="cars.html">Our Cars</a>
+        <a href="booking.html" aria-current="page">Book Now</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="actions">
+        <!-- header login link made dynamic so we can adapt if files were renamed -->
+        <a id="headerLogin" class="ghost" href="#">Login</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" role="main" aria-labelledby="page-title">
+    <section class="card" aria-labelledby="page-title">
+  <h1 id="page-title">Complete your booking</h1>
+  <p class="lead">Quick, secure reservation — get confirmation by SMS & email. You must be signed in to confirm a booking.</p>
+      <!-- auth overlay will display when user is not logged in -->
+      <div id="authOverlay" class="auth-overlay" style="display:none" aria-hidden="true">
+        <div class="auth-panel" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+          <h3 id="authTitle">Account required to book</h3>
+          <p class="muted">You must create an account or sign in before confirming a booking. This helps us send confirmations, manage your bookings and protect payments.</p>
+          <div style="margin-top:14px;display:flex;gap:10px;justify-content:center">
+            <a id="goRegister" class="btn" href="index.php">Create account</a>
+            <a id="goLogin" class="ghost" href="login.php">Sign in</a>
+            
+          </div>
+          <div style="margin-top:10px;color:var(--muted);font-size:13px">After signing in you will be returned to this booking.</div>
+        </div>
+      </div>
+
+      <div class="steps" aria-hidden="false">
+        <div class="step active">1. Details</div>
+        <div class="step">2. Payment</div>
+        <div class="step">3. Confirmation</div>
+      </div>
+
+      <form id="bookingForm" novalidate>
+        <fieldset>
+          <legend class="small" style="position:absolute;left:-9999px">Booking details</legend>
+
+          <!-- selected car -->
+          <div class="group selected-vehicle" style="align-items:center;gap:12px">
+            <div style="display:flex;align-items:center;gap:12px;flex:1;min-width:0">
+              <div style="width:120px;flex:0 0 120px">
+                <div style="position:relative;border-radius:10px;overflow:hidden;background:linear-gradient(180deg,#eef6ff,#fff);height:84px;display:flex;align-items:center;justify-content:center">
+                  <img id="carThumb" src="assets/car-1.jpg" alt="Selected car" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.src='https://via.placeholder.com/320x180?text=Car'">
+                  <div id="availabilityBadge" style="position:absolute;left:8px;bottom:8px;background:rgba(255,255,255,0.92);padding:6px 8px;border-radius:8px;font-weight:700;font-size:12px;color:#0b7a3a">Available</div>
+                </div>
+              </div>
+
+              <div style="flex:1;min-width:0">
+                <label class="muted">Selected vehicle</label>
+                <div id="carNameLabel" style="font-weight:800;font-size:16px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">—</div>
+                <div class="small muted" id="carMeta" style="margin-top:6px">—</div>
+                <div id="carFeatures" style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap"></div>
+              </div>
+            </div>
+
+            <div style="width:170px;text-align:right;flex-shrink:0">
+              <label class="muted">Rate</label>
+              <div id="carRate" class="price" style="font-weight:800;font-size:18px">—</div>
+              <div class="small muted">per day</div>
+              <div style="margin-top:10px;display:flex;gap:8px;justify-content:flex-end">
+                <a class="ghost" href="cars.html">Change</a>
+                <button type="button" class="btn" id="viewDetailsBtn" style="padding:8px 12px">Details</button>
+              </div>
+            </div>
+
+            <!-- keep hidden input for form submission -->
+            <input id="carName" name="carName" type="hidden" readonly aria-readonly="true" />
+          </div>
+
+          <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(11,125,250,0.06),transparent);margin:14px 0;border-radius:2px"></div>
+
+          <!-- dates & locations -->
+          <div class="group" aria-labelledby="dates-label">
+            <div class="inline" style="flex:1">
+              <div class="field">
+                <label id="dates-label" for="pickup">Pickup date & time</label>
+                <input id="pickup" name="pickup" type="datetime-local" required />
+              </div>
+              <div class="field">
+                <label for="return">Return date & time</label>
+                <input id="return" name="return" type="datetime-local" required />
+              </div>
+            </div>
+
+            <div style="width:280px">
+              <div class="field">
+                <label for="pickupLoc">Pickup location</label>
+                <input id="pickupLoc" name="pickupLoc" type="text" placeholder="City, Airport, Branch" required />
+              </div>
+              <div class="field">
+                <label for="dropLoc">Drop-off location</label>
+                <input id="dropLoc" name="dropLoc" type="text" placeholder="Same as pickup or specify" />
+              </div>
+            </div>
+          </div>
+
+          <div class="error" id="dateError">Return date/time must be after pickup.</div>
+
+          <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(11,125,250,0.04),transparent);margin:14px 0;border-radius:2px"></div>
+
+          <!-- customer -->
+          <h3 style="margin:0 0 10px">Customer details</h3>
+          <div class="group">
+            <div style="flex:1">
+              <div class="field">
+                <label for="fullName">Full name</label>
+                <input id="fullName" name="fullName" type="text" placeholder="e.g. sir mike" required />
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="name@example.com" required />
+              </div>
+            </div>
+
+            <div style="width:260px">
+              <div class="field">
+                <label for="phone">Phone (WhatsApp preferred)</label>
+                <input id="phone" name="phone" type="tel" placeholder="+2547xxxxxxxx" required />
+              </div>
+              <div class="field">
+                <label for="idNo">ID / Passport no.</label>
+                <input id="idNo" name="idNo" type="text" placeholder="Optional but recommended" />
+              </div>
+            </div>
+          </div>
+
+          <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(11,125,250,0.04),transparent);margin:14px 0;border-radius:2px"></div>
+
+          <!-- payment -->
+          <h3 style="margin:0 0 10px">Payment</h3>
+          <div class="field">
+            <label class="muted">Choose method</label>
+            <div style="display:flex;gap:12px;flex-wrap:wrap">
+              <label style="display:inline-flex;align-items:center;gap:8px"><input type="radio" name="pay" value="Card" checked /> Card</label>
+              <label style="display:inline-flex;align-items:center;gap:8px"><input type="radio" name="pay" value="Mpesa" /> M-Pesa</label>
+              <label style="display:inline-flex;align-items:center;gap:8px"><input type="radio" name="pay" value="Cash" /> Cash on pickup</label>
+            </div>
+          </div>
+
+          <div class="terms" style="margin-top:12px;gap:12px;align-items:flex-start">
+            <input id="terms" type="checkbox" required />
+            <label for="terms" style="font-size:13px;color:var(--muted)">I accept the <a href="terms.html">terms & conditions</a> and confirm information is accurate.</label>
+          </div>
+
+          <div class="error" id="formError">Please complete required fields and accept terms.</div>
+
+          <div class="actions-row" style="margin-top:18px">
+            <button class="btn" type="submit">Confirm Booking</button>
+            <a class="btn secondary" id="payLater" href="#" onclick="document.getElementById('payInfo').scrollIntoView({behavior:'smooth'});return false">Pay later</a>
+            <a class="ghost" id="cancelBtn" href="cars.html">Choose another car</a>
+            <div style="margin-left:auto;text-align:right">
+              <div class="small muted">Need help? <a href="contact.html">Contact us</a></div>
+            </div>
+          </div>
+
+          <div id="payInfo" class="note" style="display:none">
+            Quick payment options: Card (Stripe/PayPal), M-Pesa (till number), Cash on pickup. Integrate with your gateway before accepting live payments.
+          </div>
+        </fieldset>
+      </form>
+    </section>
+
+    <aside class="summary card" aria-label="Booking summary">
+      <div class="media" aria-hidden="false">
+        <img id="carImg" src="assets/car-1.jpg" alt="Selected car" onerror="this.src='https://via.placeholder.com/640x360?text=Car'">
+      </div>
+
+      <div class="meta">
+        <div>
+          <div class="small muted">Vehicle</div>
+          <div id="sumName" style="font-weight:700">—</div>
+        </div>
+        <div style="text-align:right">
+          <div class="small muted">Rate</div>
+          <div id="sumRate" class="price">—</div>
+        </div>
+      </div>
+
+      <div class="breakdown" aria-live="polite">
+        <div style="display:flex;justify-content:space-between"><div class="small muted">Estimated days</div><div id="sumDays">—</div></div>
+        <div style="display:flex;justify-content:space-between;margin-top:6px"><div class="small muted">Subtotal</div><div id="sumSubtotal">—</div></div>
+        <div style="display:flex;justify-content:space-between;margin-top:6px"><div class="small muted">Insurance / fees</div><div id="sumFees">KES 1,200</div></div>
+        <div style="display:flex;justify-content:space-between;margin-top:10px;font-weight:800;font-size:18px"><div>Total</div><div id="sumTotal">—</div></div>
+      </div>
+
+      <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+        <div class="pill" id="availabilityPill">Available</div>
+        <div class="small muted" style="margin-left:auto">Free cancellation up to 24 hrs</div>
+      </div>
+
+      <div style="margin-top:12px" class="small muted">Pickup & drop details will appear on your confirmation email/SMS.</div>
+    </aside>
+  </main>
+
+  <footer class="container">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 0">
+      <div class="small muted">&copy; Sir Mike AutoHire 2025</div>
+      <div class="small muted">Phone: 0707480602 • Email: sirmike6072@gmail.com</div>
+    </div>
+  </footer>
+
+  <!-- confirmation modal -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="sheet" role="document">
+      <h3 id="modalTitle">Booking confirmed</h3>
+      <p id="modalBody" class="muted">We sent a confirmation to your email and phone. Reference:</p>
+      <div style="margin-top:12px;display:flex;justify-content:flex-end;gap:8px">
+        <button class="ghost" id="modalClose">Close</button>
+        <a class="btn" id="modalView" href="#">View details</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // --- auth helpers: require account before booking ---
+    function getCurrentUser(){
+      try{
+        const ls = localStorage.getItem('sirmike_user');
+        const ss = sessionStorage.getItem('sirmike_user');
+        return ls ? JSON.parse(ls) : (ss ? JSON.parse(ss) : null);
+      }catch(e){ return null; }
+    }
+
+    const authOverlayEl = document.getElementById('authOverlay');
+    const goRegister = document.getElementById('goRegister');
+    const goLogin = document.getElementById('goLogin');
+
+    function showAuthOverlay(){
+      // Prepare overlay
+      const next = encodeURIComponent(location.href);
+      goRegister.href = `index.php?next=${next}`;
+      goLogin.href = `login.php?next=${next}`;
+
+      // Show overlay and block background
+      authOverlayEl.style.display = 'flex';
+      authOverlayEl.setAttribute('aria-hidden','false');
+      document.body.classList.add('blocked');
+      // mark main content as hidden for assistive tech
+      const mainEl = document.querySelector('main');
+  if(mainEl) mainEl.setAttribute('aria-hidden','true');
+  const summary = document.querySelector('aside.summary');
+  if(summary) summary.setAttribute('aria-hidden','true');
+
+  // Focus management: remember last focused element before moving focus
+  showAuthOverlay._lastFocus = document.activeElement && document.activeElement !== document.body ? document.activeElement : null;
+  const focusable = authOverlayEl.querySelectorAll('a[href], button, [tabindex]:not([tabindex="-1"]), input, select, textarea');
+  const firstFocusable = focusable && focusable.length ? focusable[0] : null;
+  if(firstFocusable) firstFocusable.focus();
+
+      // trap focus inside overlay
+      function trap(e){
+        if(!authOverlayEl.contains(e.target)){
+          e.stopPropagation();
+          if(firstFocusable) firstFocusable.focus();
+        }
+      }
+      document.addEventListener('focus', trap, true);
+      // store trap remover
+      showAuthOverlay._trapRemover = ()=> document.removeEventListener('focus', trap, true);
+      // scroll overlay into view
+      authOverlayEl.scrollIntoView({behavior:'smooth',block:'center'});
+    }
+
+    function hideAuthOverlay(){
+      authOverlayEl.style.display = 'none';
+      authOverlayEl.setAttribute('aria-hidden','true');
+      document.body.classList.remove('blocked');
+  const mainEl = document.querySelector('main');
+  const summary = document.querySelector('aside.summary');
+  if(mainEl) mainEl.setAttribute('aria-hidden','false');
+  if(summary) summary.setAttribute('aria-hidden','false');
+      // remove focus trap
+      if(typeof showAuthOverlay._trapRemover === 'function') showAuthOverlay._trapRemover();
+      // restore focus to previous element if available
+      try{ if(showAuthOverlay._lastFocus && showAuthOverlay._lastFocus.focus) showAuthOverlay._lastFocus.focus(); }catch(e){}
+    }
+
+    // On load: do not auto-block the page for anonymous users.
+    // Only hide overlay automatically if user is already signed in.
+    // Always ensure the auth overlay is hidden on load (no forced sign-in)
+    window.addEventListener('load', ()=>{ hideAuthOverlay(); });
+
+    // Data (keep synced with cars page)
+    const fleet = [
+      { id:1, name:"Toyota Axio 2020", type:"Sedan", trans:"Auto", fuel:"Petrol", price:3500, img:"images/axio.jpeg", status:"Available" },
+      { id:2, name:"Nissan Kicks 2019", type:"SUV", trans:"Auto", fuel:"Petrol", price:4200, img:"images/nissan.jpeg", status:"Limited" },
+      { id:3, name:"Isuzu D-Max 2018", type:"Pickup", trans:"Manual", fuel:"Diesel", price:5000, img:"images/m2.jpeg", status:"Available" },
+      { id:4, name:"Toyota Hiace 2017", type:"Van", trans:"Manual", fuel:"Diesel", price:6000, img:"images/hiace.jpeg", status:"Available" },
+      { id:5, name:"Honda Fit 2021", type:"Sedan", trans:"Auto", fuel:"Hybrid", price:3200, img:"images/fit.jpeg", status:"Booked" },
+      { id:6, name:"Mitsubishi Outlander 2020", type:"SUV", trans:"Auto", fuel:"Petrol", price:4800, img:"images/outlander.jpeg", status:"Available" }
+    ];
+
+    // Elements
+    const params = new URLSearchParams(location.search);
+    const carParam = params.get('car'); // optional car name or id
+    const carNameEl = document.getElementById('carName');
+    const carMeta = document.getElementById('carMeta');
+    const carRate = document.getElementById('carRate');
+    const carImg = document.getElementById('carImg');
+    const sumName = document.getElementById('sumName');
+    const sumRate = document.getElementById('sumRate');
+    const sumDays = document.getElementById('sumDays');
+    const sumSubtotal = document.getElementById('sumSubtotal');
+    const sumFees = document.getElementById('sumFees');
+    const sumTotal = document.getElementById('sumTotal');
+    const pickupEl = document.getElementById('pickup');
+    const returnEl = document.getElementById('return');
+    const dateError = document.getElementById('dateError');
+    const formError = document.getElementById('formError');
+    const bookingForm = document.getElementById('bookingForm');
+    const payInfo = document.getElementById('payInfo');
+    const availabilityPill = document.getElementById('availabilityPill');
+
+    // Try to find by name or id
+    function findCar(param){
+      if(!param) return fleet[0];
+      const byId = fleet.find(f => String(f.id) === param);
+      if(byId) return byId;
+      return fleet.find(f => f.name.toLowerCase() === decodeURIComponent(param).toLowerCase()) || fleet[0];
+    }
+
+    const selected = findCar(carParam);
+    const car = selected || fleet[0];
+
+    // basic constants for fees / insurance (adjust as needed)
+    const STANDARD_FEES = 1200;
+
+    function setCarInfo(c){
+      // form-hidden input (used by submit)
+      carNameEl.value = c.name;
+      // visible label
+      const label = document.getElementById('carNameLabel');
+      if(label) label.textContent = c.name;
+      // meta & rate
+      carMeta.textContent = `${c.type} • ${c.trans} • ${c.fuel}`;
+      carRate.textContent = `KES ${c.price.toLocaleString()}`;
+      // thumbnail (top of page) and summary aside
+      if(document.getElementById('carThumb')) document.getElementById('carThumb').src = c.img;
+      carImg.src = c.img;
+      sumName.textContent = c.name;
+      sumRate.textContent = `KES ${c.price.toLocaleString()}/day`;
+
+      // availability badge styling
+      const avail = document.getElementById('availabilityBadge');
+      if(avail){
+        avail.textContent = c.status;
+        if(c.status === 'Available'){ avail.style.background = 'rgba(238,253,243,0.96)'; avail.style.color = '#0b6b2b'; }
+        else if(c.status === 'Limited'){ avail.style.background = '#fff7e6'; avail.style.color = '#a65a00'; }
+        else { avail.style.background = '#fff1f0'; avail.style.color = '#8a1d1d'; }
+      }
+
+      // features chips (seats, doors, AC, fuel)
+      const feat = document.getElementById('carFeatures');
+      if(feat){
+        const seats = c.seats || '4';
+        const doors = c.doors || '4';
+        const ac = c.ac ? 'A/C' : 'No A/C';
+        const fuel = c.fuel || '';
+        feat.innerHTML = `
+          <span style="background:#f3f8ff;padding:6px 8px;border-radius:999px;font-weight:700;font-size:13px">${seats} seats</span>
+          <span style="background:#f3f8ff;padding:6px 8px;border-radius:999px;font-weight:700;font-size:13px">${doors} doors</span>
+          <span style="background:#f3f8ff;padding:6px 8px;border-radius:999px;font-weight:700;font-size:13px">${ac}</span>
+          <span style="background:#f3f8ff;padding:6px 8px;border-radius:999px;font-weight:700;font-size:13px">${fuel}</span>
+        `;
+      }
+
+      // update availability pill in summary and estimate
+      availabilityPill.textContent = c.status;
+      availabilityPill.style.background = c.status === 'Available' ? '#eefdf3' : (c.status==='Limited' ? '#fff7e6' : '#fff1f0');
+      availabilityPill.style.color = c.status === 'Available' ? '#0b6b2b' : (c.status==='Limited' ? '#a65a00' : '#8a1d1d');
+
+      updateEstimate();
+      // wire details button to open modal if present
+      const detailsBtn = document.getElementById('viewDetailsBtn');
+      if(detailsBtn){
+        detailsBtn.onclick = ()=> {
+          try{ openDetails(null, c.id); }catch(e){}
+        }
+      }
+    }
+
+    function parseDate(v){ return v ? new Date(v) : null; }
+    function msPerDay(){ return 1000*60*60*24; }
+
+    function daysBetween(a,b){
+      if(!a||!b) return 0;
+      const diff = b - a;
+      if(diff <= 0) return 0;
+      // Consider partial days as full day
+      return Math.ceil(diff / msPerDay());
+    }
+
+    function currency(v){ return 'KES ' + Number(v || 0).toLocaleString(); }
+
+    function updateEstimate(){
+      const p = parseDate(pickupEl.value);
+      const r = parseDate(returnEl.value);
+      const d = Math.max(daysBetween(p,r), 1);
+      const subtotal = d * (car.price || 0);
+      const fees = STANDARD_FEES;
+      sumDays.textContent = d + (d===1 ? ' day' : ' days');
+      sumSubtotal.textContent = currency(subtotal);
+      sumFees.textContent = currency(fees);
+      sumTotal.textContent = currency(subtotal + fees);
+    }
+
+    // Wire events
+    pickupEl.addEventListener('change', ()=>{ dateError.style.display='none'; updateEstimate(); });
+    returnEl.addEventListener('change', ()=>{ dateError.style.display='none'; updateEstimate(); });
+
+    document.getElementById('payLater').addEventListener('click', ()=>{
+      payInfo.style.display = payInfo.style.display === 'none' ? 'block' : 'none';
+    });
+
+    // Basic validation + submission (client-side only)
+    bookingForm.addEventListener('submit', async (e)=>{
+      // Allow booking without requiring an account
+      e.preventDefault();
+      formError.style.display = 'none';
+      dateError.style.display = 'none';
+
+      const pickup = parseDate(pickupEl.value);
+      const ret = parseDate(returnEl.value);
+      if(!pickup || !ret || ret <= pickup){
+        dateError.style.display = 'block';
+        return;
+      }
+
+      // Required fields
+      const required = ['fullName','email','phone','pickupLoc'];
+      let ok = true;
+      required.forEach(id => {
+        const el = document.getElementById(id);
+        if(!el || !el.value.trim()) ok = false;
+      });
+      const terms = document.getElementById('terms');
+      if(!ok || !terms.checked){
+        formError.style.display = 'block';
+        return;
+      }
+
+      const payload = {
+        reference: 'SM' + Date.now().toString().slice(-8),
+        car: car.name,
+        pickup: pickupEl.value,
+        return: returnEl.value,
+        pickupLoc: document.getElementById('pickupLoc').value,
+        dropLoc: document.getElementById('dropLoc').value || document.getElementById('pickupLoc').value,
+        customer: {
+          name: document.getElementById('fullName').value,
+          email: document.getElementById('email').value,
+          phone: document.getElementById('phone').value,
+          idNo: document.getElementById('idNo').value
+        },
+        paymentMethod: (document.querySelector('input[name="pay"]:checked') || {}).value || 'Card',
+        estimateDays: daysBetween(pickup,ret) || 1,
+        subtotal: (daysBetween(pickup,ret) || 1) * (car.price || 0),
+        fees: STANDARD_FEES,
+        total: ((daysBetween(pickup,ret) || 1) * (car.price || 0)) + STANDARD_FEES
+      };
+
+      // Save local copy
+      try { localStorage.setItem('lastBooking', JSON.stringify(payload)); } catch(e){}
+
+      // Submit to Formspree (replace with your endpoint)
+      const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xgvrekyn'; // <-- replace YOUR_FORM_ID
+      try{
+        await fetch(FORMSPREE_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            _subject: `New booking ${payload.reference}`,
+            reference: payload.reference,
+            car: payload.car,
+            pickup: payload.pickup,
+            return: payload.return,
+            pickupLoc: payload.pickupLoc,
+            dropLoc: payload.dropLoc,
+            total: payload.total,
+            name: payload.customer.name,
+            email: payload.customer.email,
+            phone: payload.customer.phone,
+            idNo: payload.customer.idNo,
+            paymentMethod: payload.paymentMethod
+          })
+        });
+      }catch(err){
+        // network error — proceed locally and log error
+        console.warn('Formspree submit failed', err);
+      }
+
+      // show confirmation (UI) regardless of Formspree outcome
+      showConfirmation(payload);
+    });
+
+    // Modal handling
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalBody = document.getElementById('modalBody');
+    const modalClose = document.getElementById('modalClose');
+    const modalView = document.getElementById('modalView');
+
+    function showConfirmation(data){
+      modalTitle.textContent = 'Booking confirmed';
+      modalBody.innerHTML = `
+        <div style="font-weight:700;margin-bottom:8px">${data.reference}</div>
+        <div style="margin-bottom:6px"><strong>Vehicle:</strong> ${data.car}</div>
+        <div style="margin-bottom:6px"><strong>Period:</strong> ${data.pickup} → ${data.return}</div>
+        <div style="margin-bottom:6px"><strong>Total:</strong> ${currency(data.total)}</div>
+        <div style="margin-top:8px;color:var(--muted)">A confirmation has been sent to ${data.customer.email} and ${data.customer.phone}. Keep your reference for collection.</div>
+      `;
+      modalView.href = 'confirmation.html?ref=' + encodeURIComponent(data.reference);
+      modal.style.display = 'flex';
+      modal.setAttribute('aria-hidden','false');
+      try { localStorage.setItem('lastBooking', JSON.stringify(data)); } catch(e){}
+    }
+
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e)=> { if(e.target === modal) closeModal(); });
+    function closeModal(){ modal.style.display = 'none'; modal.setAttribute('aria-hidden','true'); }
+
+    // Init
+    setCarInfo(car);
+    // if user returned from login/register, re-show the auth overlay if no user
+    // Ensure overlay remains hidden after init (no account restriction)
+    window.addEventListener('load', ()=>{ hideAuthOverlay(); });
+  </script>
+</body>
+</html>

@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Popular Routes — Sir Mike AutoHire</title>
+  <meta name="description" content="Popular routes, transfer info and starting prices for Sir Mike AutoHire — airport transfers, weekend escapes and long-distance trips." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    :root{
+      --accent:#0b7dfa; --accent-600:#0767c9; --accent-700:#054ea8; --dark:#0f1724; --muted:#6b7280;
+      --card:#ffffff; --bg:#f6f8fb; --shadow-sm:0 8px 28px rgba(15,23,36,0.06); --maxw:1200px;
+      --radius:12px; --glass: rgba(255,255,255,0.6);
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,var(--bg),#fff);
+      color:var(--dark);
+      line-height:1.45;
+      font-size:15px;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    a{color:inherit}
+
+    .container{max-width:var(--maxw);margin:0 auto;padding:22px 18px}
+    header{
+      background:#fff;padding:10px 18px;border-bottom:1px solid rgba(15,23,36,0.03);
+      box-shadow:var(--shadow-sm);position:sticky;top:0;z-index:70;border-radius:0 0 12px 12px;
+      backdrop-filter: blur(6px);
+    }
+    .nav{display:flex;align-items:center;gap:12px;justify-content:space-between;max-width:var(--maxw);margin:0 auto}
+    .brand{font-weight:800;display:flex;gap:12px;align-items:center}
+    .brand img{height:44px;border-radius:8px;object-fit:cover}
+    nav.desktop{display:flex;gap:10px;align-items:center}
+    nav.desktop a{
+      color:var(--dark);text-decoration:none;padding:8px 12px;border-radius:10px;font-weight:600;
+      transition:background .15s, color .15s, transform .12s;
+    }
+    nav.desktop a:hover, nav.desktop a:focus{background:rgba(11,125,250,0.06);transform:translateY(-1px);outline:none}
+    .actions{display:flex;gap:8px;align-items:center}
+
+    /* mobile nav */
+    .menu-toggle{
+      display:none;background:transparent;border:0;padding:8px;border-radius:8px;cursor:pointer;color:var(--dark)
+    }
+    .mobile-nav{
+      display:none;position:fixed;inset:64px 18px auto 18px;background:linear-gradient(180deg,#fff,#fbfdff);
+      border-radius:12px;padding:12px;box-shadow:0 30px 80px rgba(11,125,250,0.08);z-index:80;
+    }
+    .mobile-nav a{display:block;padding:10px;border-radius:8px;color:var(--dark);text-decoration:none;font-weight:700}
+    .mobile-nav a + a{margin-top:6px}
+
+    .hero{display:flex;gap:20px;align-items:flex-start;margin:18px 0;padding:6px 0}
+    .hero-left{flex:1;min-width:0}
+    h1{margin:0;font-size:28px;letter-spacing:-0.3px}
+    .muted{color:var(--muted)}
+    .search-row{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+    .search-row input, .search-row select{
+      padding:12px 14px;border-radius:10px;border:1px solid #e8f0fb;background:var(--card);flex:1;
+      box-shadow:0 6px 20px rgba(11,125,250,0.03);font-size:14px;min-width:140px;
+    }
+    .search-row button{
+      background:linear-gradient(90deg,var(--accent),var(--accent-600));
+      color:#fff;border:0;padding:12px 16px;border-radius:10px;cursor:pointer;font-weight:800;
+      box-shadow:0 12px 30px rgba(11,125,250,0.12);
+    }
+
+    /* routes grid - responsive */
+    .routes{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap:16px;
+      margin-top:18px;
+      align-items:start;
+    }
+    .route{
+      background:linear-gradient(180deg,var(--card),#fbfdff);
+      padding:14px;border-radius:var(--radius);box-shadow:var(--shadow-sm);
+      display:flex;gap:14px;align-items:center;border:1px solid rgba(11,125,250,0.04);
+      transition:transform .16s cubic-bezier(.2,.9,.2,1),box-shadow .16s;
+      min-height:110px;
+    }
+    .route:hover{transform:translateY(-8px);box-shadow:0 30px 80px rgba(11,125,250,0.08)}
+    .thumb{width:140px;height:88px;border-radius:10px;overflow:hidden;background:#eef6ff;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+    .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .r-body{flex:1;min-width:0}
+    .r-title{font-weight:800;margin:0 0 6px;font-size:16px;color:#07243e}
+    .r-desc{margin:0;color:var(--muted);font-size:14px}
+    .r-meta{display:flex;gap:8px;margin-top:10px;align-items:center;flex-wrap:wrap}
+    .pill{background:#eef8ff;padding:7px 12px;border-radius:999px;color:var(--accent-600);font-weight:700;font-size:13px}
+    .r-actions{margin-left:auto;display:flex;gap:8px;align-items:center}
+    .btn{background:linear-gradient(90deg,var(--accent),var(--accent-600));color:#fff;padding:10px 14px;border-radius:10px;border:0;font-weight:800;cursor:pointer;box-shadow:0 12px 30px rgba(11,125,250,0.12)}
+    .ghost{background:transparent;border:1px solid rgba(11,125,250,0.10);padding:10px 14px;border-radius:10px;color:var(--dark);text-decoration:none;display:inline-flex;align-items:center}
+
+    /* compact meta on small thumbs */
+    .route .meta-compact{display:flex;flex-direction:column;gap:6px}
+    .muted-small{color:var(--muted);font-size:13px}
+
+    /* accessibility focus */
+    a:focus, button:focus { outline:3px solid rgba(11,125,250,0.12); outline-offset:3px; border-radius:8px; }
+
+    /* small screens adjustments */
+    @media (max-width:980px){
+      .hero{flex-direction:column;gap:12px}
+      .thumb{width:120px;height:76px}
+      .r-actions{margin-left:0}
+      nav.desktop{display:none}
+      .menu-toggle{display:inline-flex}
+    }
+    @media (max-width:640px){
+      header{padding:8px 12px}
+      .container{padding:14px}
+      .thumb{width:96px;height:64px}
+      .route{padding:12px;gap:10px}
+      .brand img{height:36px}
+      .r-title{font-size:15px}
+      .search-row input{min-width:120px}
+      .r-meta{font-size:13px}
+      .r-actions{flex-direction:column;gap:8px}
+      .mobile-nav{left:12px;right:12px}
+    }
+
+    /* subtle reveal */
+    .reveal{opacity:0;transform:translateY(8px);transition:opacity .5s ease, transform .6s cubic-bezier(.2,.9,.2,1)}
+    .reveal.visible{opacity:1;transform:none}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#routes-list" style="position:absolute;left:-9999px;top:auto;overflow:hidden">Skip to content</a>
+
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileNav" title="Open menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+
+        <img src="assets/logo.png" alt="Sir Mike AutoHire" onerror="this.style.display='none'">
+        <div>
+          <div style="font-weight:800">Sir Mike AutoHire</div>
+          <div style="font-size:12px;color:var(--muted)">Drive Your Dream Today</div>
+        </div>
+      </div>
+
+      <nav class="desktop" aria-label="Primary">
+        <a href="home.html">Home</a>
+        <a href="cars.html">Cars</a>
+        <a href="booking.html">Book</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="actions">
+        <a class="ghost" href="login.php">Login</a>
+        <a class="btn" href="booking.html">Book Now</a>
+      </div>
+    </div>
+
+    <div id="mobileNav" class="mobile-nav" role="dialog" aria-modal="false" aria-hidden="true">
+      <a href="home.html">Home</a>
+      <a href="cars.html">Cars</a>
+      <a href="booking.html">Book</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.php">Login</a>
+    </div>
+  </header>
+
+  <main class="container" id="main">
+    <section class="hero reveal" data-reveal>
+      <div class="hero-left">
+        <h1>Popular routes & transfers</h1>
+        <div class="muted">Curated routes with estimated time, starting price and recommended vehicle types. Book transfers or plan a road trip with confidence.</div>
+
+        <div class="search-row" aria-label="Filter routes">
+          <input id="q" placeholder="Search destination or route (e.g. Mombasa, Naivasha, Airport)" />
+          <select id="type" aria-label="Service type">
+            <option value="">All services</option>
+            <option value="transfer">Airport transfer</option>
+            <option value="weekend">Weekend trip</option>
+            <option value="long">Long-distance</option>
+          </select>
+          <button id="searchBtn" class="btn">Search</button>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="routes-list" class="reveal" data-reveal>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <h2 id="routes-list" style="margin:0">Available routes</h2>
+        <div class="muted">Showing routes curated by Sir Mike AutoHire</div>
+      </div>
+
+      <div id="routesGrid" class="routes" role="list" aria-live="polite" style="margin-top:12px">
+        <!-- routes injected by JS -->
+      </div>
+
+      <div style="margin-top:14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+        <a class="btn" href="booking.html">Plan a trip</a>
+        <a class="ghost" href="contact.html">Request a custom route</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function(){
+      const routes = [
+        {id:'naivasha', title:'Nairobi → Naivasha', desc:'Perfect weekend escape — scenic route and lakeside attractions.', type:'weekend', eta:'1.5 hrs', price:'KES 3,200/day', dist:'~90 km', img:'images/axio.jpeg'},
+        {id:'mombasa', title:'Nairobi → Mombasa', desc:'Coastal trip — plan fuel stops and overnight overlays.', type:'long', eta:'8–9 hrs', price:'KES 4,000/day', dist:'~480 km', img:'images/isuzu.jpeg'},
+        {id:'airport', title:'Airport transfers (JKIA & Wilson)', desc:'Flight-aware meet & greet with optional baggage assistance.', type:'transfer', eta:'30–60 mins', price:'From KES 1,200', dist:'Airport delivery', img:'images/hiace.jpeg'},
+        {id:'nakuru', title:'Nairobi → Nakuru', desc:'National park access and family weekend trips.', type:'weekend', eta:'2.5 hrs', price:'KES 3,800/day', dist:'~160 km', img:'images/m1.jpeg'},
+        {id:'kisumu', title:'Nairobi → Kisumu', desc:'Lakeside city — good for multi-day travel and events.', type:'long', eta:'8–10 hrs', price:'KES 4,200/day', dist:'~350 km', img:'images/subaru.jpeg'},
+      ];
+
+      const grid = document.getElementById('routesGrid');
+      function render(list){
+        if(!grid) return;
+        grid.innerHTML = list.map(r=>`
+          <article class="route" role="listitem" aria-labelledby="t-${r.id}">
+            <div class="thumb" aria-hidden="true"><img src="${r.img}" alt="${r.title}" onerror="this.src='https://via.placeholder.com/420x240?text=${encodeURIComponent(r.title)}'"></div>
+            <div class="r-body">
+              <div id="t-${r.id}" class="r-title">${r.title}</div>
+              <div class="r-desc">${r.desc}</div>
+              <div class="r-meta">
+                <div class="pill" aria-hidden="true">${r.eta}</div>
+                <div class="pill" aria-hidden="true">${r.price}</div>
+                <div class="muted-small" aria-hidden="true">${r.dist}</div>
+              </div>
+            </div>
+            <div class="r-actions" role="group" aria-label="Actions for ${r.title}">
+              <a class="ghost" href="routes/${r.id}.html">Learn more</a>
+              <a class="btn" href="booking.html?dest=${encodeURIComponent(r.title)}">Book route</a>
+            </div>
+          </article>`).join('');
+      }
+
+      render(routes);
+
+      document.getElementById('searchBtn').addEventListener('click', ()=>{
+        const q = document.getElementById('q').value.trim().toLowerCase();
+        const type = document.getElementById('type').value;
+        const filtered = routes.filter(r=>{
+          if(type && r.type !== type) return false;
+          if(!q) return true;
+          return r.title.toLowerCase().includes(q) || r.desc.toLowerCase().includes(q);
+        });
+        render(filtered);
+        // announce results
+        const count = filtered.length;
+        const msg = count === 0 ? 'No routes found' : `${count} routes found`;
+        if('ariaLive' in window) return;
+        const live = document.createElement('div');
+        live.setAttribute('aria-live','polite');
+        live.style.position='absolute';live.style.left='-9999px';
+        live.textContent = msg;
+        document.body.appendChild(live);
+        setTimeout(()=> live.remove(), 1600);
+      });
+
+      // accessible keyboard search (Enter)
+      document.getElementById('q').addEventListener('keydown', (e)=> { if(e.key==='Enter') document.getElementById('searchBtn').click(); });
+
+      // mobile nav toggle
+      const menuToggle = document.getElementById('menuToggle');
+      const mobileNav = document.getElementById('mobileNav');
+      menuToggle.addEventListener('click', ()=>{
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', String(!expanded));
+        if(!expanded){
+          mobileNav.style.display = 'block';
+          mobileNav.setAttribute('aria-hidden','false');
+        } else {
+          mobileNav.style.display = 'none';
+          mobileNav.setAttribute('aria-hidden','true');
+        }
+      });
+
+      // close mobile nav when clicking outside or pressing Escape
+      document.addEventListener('click', (e)=>{
+        if(!mobileNav) return;
+        if(mobileNav.style.display === 'block' && !mobileNav.contains(e.target) && !menuToggle.contains(e.target)){
+          mobileNav.style.display = 'none'; mobileNav.setAttribute('aria-hidden','true'); menuToggle.setAttribute('aria-expanded','false');
+        }
+      });
+      document.addEventListener('keydown', (e)=> { if(e.key === 'Escape'){ mobileNav.style.display = 'none'; mobileNav.setAttribute('aria-hidden','true'); menuToggle.setAttribute('aria-expanded','false'); } });
+
+      // simple reveal on load for better perceived performance
+      document.addEventListener('DOMContentLoaded', ()=>{
+        document.querySelectorAll('.reveal').forEach((el,i)=> setTimeout(()=> el.classList.add('visible'), 90 * i));
+      });
+    })();
+  </script>
+</body>
+</html>

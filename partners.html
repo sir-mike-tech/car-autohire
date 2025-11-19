@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Partners — Sir Mike AutoHire</title>
+  <meta name="description" content="Partnerships & suppliers — Sir Mike AutoHire works with trusted providers for insurance, maintenance, payments and logistics." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --accent:#0b7dfa; --accent-600:#0767c9; --bg:#f6f8fb; --card:#ffffff; --muted:#6b7280; --dark:#0f1724;
+      --radius:12px; --shadow: 0 18px 50px rgba(11,125,250,0.06); --maxw:1100px;
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#fff);color:var(--dark);-webkit-font-smoothing:antialiased}
+    .container{max-width:var(--maxw);margin:28px auto;padding:0 18px}
+    header{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+    header .brand{display:flex;gap:12px;align-items:center;font-weight:700}
+    header .brand img{height:44px;border-radius:8px}
+    .hero{
+      display:grid;grid-template-columns:1fr 420px;gap:22px;align-items:center;padding:22px;border-radius:14px;background:linear-gradient(180deg,#ffffff,#fbfdff);
+      box-shadow:var(--shadow);border:1px solid rgba(11,125,250,0.04);
+    }
+    .hero-left h1{margin:0 0 8px;font-size:24px}
+    .hero-left p{margin:0;color:var(--muted)}
+    .hero-cta{margin-top:12px;display:flex;gap:10px}
+    .btn{background:linear-gradient(90deg,var(--accent),var(--accent-600));color:#fff;padding:10px 14px;border-radius:10px;border:0;font-weight:700;cursor:pointer;text-decoration:none}
+    .ghost{background:transparent;border:1px solid rgba(11,125,250,0.10);padding:9px 12px;border-radius:10px;color:var(--accent-600);text-decoration:none}
+    .hero-right{position:relative;height:220px;border-radius:12px;overflow:hidden}
+    .hero-right img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.04);transition:transform .9s ease}
+    .hero-right:hover img{transform:scale(1.0)}
+
+    .partners-section{margin-top:22px;display:grid;grid-template-columns:2fr 1fr;gap:18px;align-items:start}
+    @media(max-width:920px){ .hero{grid-template-columns:1fr} .partners-section{grid-template-columns:1fr} }
+
+    .partners-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .partner-card{
+      background:var(--card);padding:14px;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+      box-shadow:0 8px 30px rgba(12,18,30,0.04);transition:transform .18s ease,box-shadow .18s ease,filter .18s ease;
+      border:1px solid rgba(11,125,250,0.03);
+    }
+    .partner-card img{height:48px;object-fit:contain;filter:grayscale(100%) contrast(.9);opacity:.85;transition:filter .18s ease,opacity .18s ease,transform .18s ease}
+    .partner-card h4{margin:10px 0 6px;font-size:15px}
+    .partner-card p{margin:0;color:var(--muted);font-size:13px}
+    .partner-card:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(11,125,250,0.08)}
+    .partner-card:hover img{filter:none;opacity:1;transform:translateY(-4px)}
+
+    .partners-right{background:linear-gradient(180deg,#fff,#fbfdff);padding:14px;border-radius:12px;box-shadow:var(--shadow);border:1px solid rgba(11,125,250,0.04)}
+    .partners-right h3{margin:0 0 8px}
+    .benefits{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+    .benefit{display:flex;gap:12px;align-items:flex-start}
+    .icon{width:44px;height:44px;border-radius:10px;background:linear-gradient(180deg,#eef6ff,#fff);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--accent-600);box-shadow:0 8px 20px rgba(11,125,250,0.04)}
+    .tiers{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+    .tier{background:#fff;padding:12px;border-radius:10px;border:1px solid rgba(12,18,30,0.03);box-shadow:0 8px 26px rgba(12,18,30,0.04)}
+    .tier h4{margin:0 0 6px}
+
+    /* CTA form */
+    .partner-form{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+    .partner-form input,.partner-form textarea{padding:10px;border-radius:8px;border:1px solid #e6eef9}
+    .partner-form button{align-self:flex-start}
+
+    /* small animations */
+    .fade-in-up{opacity:0;transform:translateY(8px);transition:opacity .6s ease,transform .6s ease}
+    .in-view{opacity:1;transform:none}
+    .logo-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center;margin-top:12px}
+    .logo-row img{height:36px;filter:grayscale(100%);opacity:.9;border-radius:6px;padding:6px;background:#fff;border:1px solid rgba(11,125,250,0.03)}
+
+    footer{margin-top:28px;padding:24px 0;color:var(--muted);text-align:center}
+
+    /* partner impact, FAQ & carousel styles */
+    /* Impact & success styles (enhanced) */
+    .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px;align-items:stretch}
+    .metric{
+      position:relative;overflow:hidden;padding:18px;border-radius:12px;
+      background:linear-gradient(180deg,#ffffff,#f8fbff);
+      border:1px solid rgba(11,125,250,0.04);
+      box-shadow:0 14px 40px rgba(12,18,30,0.05);text-align:left;display:flex;flex-direction:column;gap:8px;
+    }
+    .metric .meta{display:flex;align-items:center;gap:12px}
+    .metric .num{font-size:28px;font-weight:900;color:var(--accent);margin:0}
+    .metric .label{color:var(--muted);font-size:13px}
+    .metric .spark{height:8px;background:linear-gradient(90deg,var(--accent),var(--accent-600));border-radius:999px;width:0%;transition:width .9s cubic-bezier(.2,.9,.2,1)}
+    .metric .icon-wrap{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,rgba(11,125,250,0.08),#fff);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .metric .icon-wrap svg{width:26px;height:26px;opacity:.95}
+    @media(max-width:920px){ .metrics{grid-template-columns:repeat(2,1fr)} }
+    @media(max-width:560px){ .metrics{grid-template-columns:1fr} }
+
+    .case-studies{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px;align-items:stretch}
+    .case{background:linear-gradient(180deg,#fff,#fbfdff);border-radius:12px;padding:14px;border:1px solid rgba(11,125,250,0.04);box-shadow:0 14px 40px rgba(12,18,30,0.04);display:flex;flex-direction:column;gap:12px}
+    .case .media{height:120px;border-radius:10px;overflow:hidden;background:#eef6ff;display:flex;align-items:center;justify-content:center}
+    .case .media img{width:100%;height:100%;object-fit:cover;display:block}
+    .case strong{display:block;font-size:15px;color:#07243e}
+    .case .muted{font-size:13px;color:var(--muted)}
+    .case .cta-row{display:flex;gap:8px;margin-top:auto;align-items:center}
+    .case .badge{padding:6px 8px;border-radius:999px;background:#eef8ff;color:var(--accent-600);font-weight:700;font-size:13px}
+    @media(max-width:920px){ .case-studies{grid-template-columns:repeat(2,1fr)} }
+    @media(max-width:560px){ .case-studies{grid-template-columns:1fr} }
+
+    /* Enhanced footer styles */
+    .site-footer{
+      margin-top:36px;
+      padding:28px;
+      border-radius:14px;
+      background:linear-gradient(180deg,#ffffff,#fbfdff);
+      box-shadow:0 18px 48px rgba(11,125,250,0.06);
+      display:grid;
+      grid-template-columns:1fr 1fr 320px;
+      gap:20px;
+      align-items:start;
+      border:1px solid rgba(11,125,250,0.04);
+    }
+    @media(max-width:880px){ .site-footer{grid-template-columns:1fr;text-align:center} .site-footer .col-left,.site-footer .col-mid,.site-footer .col-right{justify-content:center} }
+    .site-footer .brand-sm{display:flex;gap:12px;align-items:center}
+    .site-footer .brand-sm img{height:48px;border-radius:8px;display:block}
+    .site-footer .brand-title{font-weight:900;color:var(--dark);font-size:16px}
+    .site-footer .brand-tag{color:var(--muted);font-size:13px}
+    .site-footer nav.footer-links{display:flex;flex-direction:column;gap:8px}
+    .site-footer nav.footer-links a{color:var(--dark);text-decoration:none;font-weight:600;padding:6px;border-radius:8px}
+    .site-footer nav.footer-links a:hover{color:var(--accent-600)}
+    .social-links{display:flex;gap:8px;align-items:center}
+    .social-links a{display:inline-flex;width:44px;height:44px;align-items:center;justify-content:center;border-radius:10px;color:#fff;text-decoration:none;transition:transform .14s,box-shadow .14s;box-shadow:0 6px 20px rgba(12,18,30,0.06)}
+    .social-links a.facebook{background:#1877F2}
+    .social-links a.x{background:#0EA5E9}
+    .social-links a.instagram{background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af)}
+    .social-links a.linkedin{background:#0A66C2}
+    .social-links a.youtube{background:#FF0000}
+    .social-links a.whatsapp{background:#25D366}
+    .social-links a:hover{transform:translateY(-4px)}
+    .footer-subscribe{background:linear-gradient(180deg,#fff,#fbfdff);padding:12px;border-radius:10px;border:1px solid rgba(11,125,250,0.04);display:flex;flex-direction:column;gap:8px}
+    .footer-subscribe input{padding:10px;border-radius:8px;border:1px solid #e6eef9}
+    .footer-subscribe button{padding:10px;border-radius:8px;background:linear-gradient(90deg,var(--accent),var(--accent-600));color:#fff;border:0;cursor:pointer}
+    .footer-legal{color:var(--muted);font-size:13px;margin-top:8px}
+  </style>
+</head>
+<body>
+  <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/68ef972a1eb897194e018d9b/1j7jucvvs';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+  <div class="container">
+    <header>
+      <div class="brand">
+        <img src="images/m1.jpeg" alt="Sir Mike logo" onerror="this.style.display='none'">
+        <div>
+          <div>Sir Mike AutoHire</div>
+          <small style="color:var(--muted)">Drive Your Dream Today</small>
+        </div>
+      </div>
+      <nav aria-label="Primary">
+        <a href="home.html" class="ghost">Home</a>
+        <a href="cars.html" class="ghost">Cars</a>
+        <a href="booking.html" class="btn">Book Now</a>
+      </nav>
+    </header>
+
+    <section class="hero fade-in-up" id="hero">
+      <div class="hero-left">
+        <h1>Partnerships that deliver reliability</h1>
+        <p>We partner with trusted insurance, maintenance, payment and logistics providers to keep our fleet road-ready and your experience seamless.</p>
+        <div class="hero-cta">
+          <a class="btn" href="contact.html">Contact partnerships</a>
+          <a class="ghost" href="mailto:sirmike6072@gmail.com">Email us</a>
+        </div>
+
+        <div class="logo-row" aria-hidden="false" style="margin-top:14px">
+          <img src="images/partner-insurance.svg" alt="Insurance partner" loading="lazy" onerror="this.src='https://via.placeholder.com/160x36?text=Insurance'">
+          <img src="images/partner-maintenance.svg" alt="Maintenance partner" loading="lazy" onerror="this.src='https://via.placeholder.com/160x36?text=Maintenance'">
+          <img src="images/partner-payments.svg" alt="Payments partner" loading="lazy" onerror="this.src='https://via.placeholder.com/160x36?text=Payments'">
+          <img src="images/partner-logistics.svg" alt="Logistics partner" loading="lazy" onerror="this.src='https://via.placeholder.com/160x36?text=Logistics'">
+        </div>
+      </div>
+
+      <div class="hero-right" aria-hidden="true">
+        <img src="images/partner-cleaning.svg" alt="Partners collage" loading="lazy" onerror="this.src='https://via.placeholder.com/420x220?text=Partners'">
+      </div>
+    </section>
+
+    <section class="partners-section" aria-labelledby="partnersHeading">
+      <div>
+        <h2 id="partnersHeading" style="margin:0 0 8px">Our core partners</h2>
+        <p style="margin:0 0 12px;color:var(--muted)">Selected partners we rely on to offer coverage, maintenance, payments and logistics.</p>
+
+        <div class="partners-grid" id="partnersGrid">
+          <div class="partner-card fade-in-up">
+            <img src="images/partner-insurance.svg" alt="Insurance partner" loading="lazy" onerror="this.src='https://via.placeholder.com/160x36?text=Insurance'">
+            <h4>CoverSure Insurance</h4>
+            <p>Comprehensive motor cover and fast claims handling for our fleet.</p>
+          </div>
+
+          <div class="partner-card fade-in-up">
+            <img src="images/partner-cleaning.svg" alt="Maintenance partner" loading="lazy" onerror="this.src='https://via.placeholder.com/160x36?text=Maintenance'">
+            <h4>AutoCare Garage</h4>
+            <p>Certified servicing, pre-trip checks and priority repairs.</p>
+          </div>
+
+          <div class="partner-card fade-in-up">
+            <img src="images/partner-logistics.svg" alt="Payments partner" loading="lazy" onerror="this.src='https://via.placeholder.com/160x36?text=Payments'">
+            <h4>SwiftPay</h4>
+            <p>Secure card & mobile payment processing with timely payouts.</p>
+          </div>
+
+          <div class="partner-card fade-in-up">
+            <img src="images/partner-logistics.svg" alt="Logistics partner" loading="lazy" onerror="this.src='https://via.placeholder.com/160x36?text=Logistics'">
+            <h4>FleetMove Logistics</h4>
+            <p>Vehicle transport, delivery and airport handovers across Kenya.</p>
+          </div>
+
+          <div class="partner-card fade-in-up">
+            <img src="images/partner-cleaning.svg" alt="Cleaning partner" loading="lazy" onerror="this.src='https://via.placeholder.com/160x36?text=Cleaning'">
+            <h4>EcoWash Services</h4>
+            <p>Eco-friendly deep cleaning and sanitisation between rentals.</p>
+          </div>
+
+          <div class="partner-card fade-in-up">
+            <img src="images/partner-tech.svg" alt="Technology partner" loading="lazy" onerror="this.src='https://via.placeholder.com/160x36?text=Tech'">
+            <h4>DriveTech</h4>
+            <p>Telematics, booking integrations and performance analytics.</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="partners-right fade-in-up" aria-labelledby="benefitsHeading">
+        <h3 id="benefitsHeading">Partner benefits</h3>
+        <div class="benefits">
+          <div class="benefit"><div class="icon">✓</div><div><strong>Reliable operations</strong><div class="muted">Fewer downtimes with scheduled maintenance.</div></div></div>
+          <div class="benefit"><div class="icon">⚑</div><div><strong>Expanded reach</strong><div class="muted">Airport delivery & wider service coverage.</div></div></div>
+          <div class="benefit"><div class="icon">⚡</div><div><strong>Fast payments</strong><div class="muted">Efficient settlement through our payments partner.</div></div></div>
+        </div>
+
+        <div class="tiers" role="list" aria-label="Partnership tiers">
+          <div class="tier" role="listitem">
+            <h4>Service Partner</h4>
+            <div class="muted">Preferred rates for maintenance & cleaning.</div>
+          </div>
+          <div class="tier" role="listitem">
+            <h4>Strategic Partner</h4>
+            <div class="muted">Co-marketing and shared logistics support.</div>
+          </div>
+        </div>
+
+        <form class="partner-form" id="partnerForm" aria-label="Partnership enquiry">
+          <input id="pname" type="text" placeholder="Your name" required>
+          <input id="porg" type="text" placeholder="Organization" required>
+          <input id="pemail" type="email" placeholder="Email" required>
+          <textarea id="pmsg" rows="4" placeholder="Brief message / proposal"></textarea>
+          <button type="submit" class="btn">Send enquiry</button>
+          <a class="ghost" href="mailto:sirmike6072@gmail.com" style="display:inline-block;margin-top:6px">Or email us directly</a>
+        </form>
+      </aside>
+    </section>
+
+    <!-- PARTNER IMPACT & CASE STUDIES -->
+    <section aria-labelledby="impactHeading" style="margin-top:22px" class="container">
+      <h2 id="impactHeading" style="margin:0 0 8px">Partner impact & success stories</h2>
+      <p style="margin:0 0 12px;color:var(--muted)">How our partnerships translate into better service for customers and partners alike.</p>
+
+      <div class="metrics" role="list" aria-label="Partner metrics">
+        <div class="metric" role="listitem" aria-labelledby="m1">
+          <div class="meta">
+            <div class="icon-wrap" aria-hidden="true">
+              <!-- bookings icon -->
+              <svg viewBox="0 0 24 24" fill="none"><path d="M3 8h18" stroke="#0b7dfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="8" width="18" height="13" rx="2" stroke="#0b7dfa" stroke-width="1.6"/></svg>
+            </div>
+            <div>
+              <div id="m1" class="num" data-target="12540">0</div>
+              <div class="label">Bookings supported</div>
+            </div>
+          </div>
+          <div class="spark" aria-hidden="true" data-fill="92"></div>
+        </div>
+
+        <div class="metric" role="listitem" aria-labelledby="m2">
+          <div class="meta">
+            <div class="icon-wrap" aria-hidden="true">
+              <!-- uptime icon -->
+              <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#0b7dfa" stroke-width="1.6"/><path d="M12 7v6l4 2" stroke="#0b7dfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <div id="m2" class="num" data-target="98">0</div>
+              <div class="label">Fleet uptime (%)</div>
+            </div>
+          </div>
+          <div class="spark" aria-hidden="true" data-fill="98"></div>
+        </div>
+
+        <div class="metric" role="listitem" aria-labelledby="m3">
+          <div class="meta">
+            <div class="icon-wrap" aria-hidden="true">
+              <!-- locations icon -->
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-4.5 7-10a7 7 0 0 0-14 0c0 5.5 7 10 7 10z" stroke="#0b7dfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <div id="m3" class="num" data-target="78">0</div>
+              <div class="label">Partner locations</div>
+            </div>
+          </div>
+          <div class="spark" aria-hidden="true" data-fill="78"></div>
+        </div>
+      </div>
+
+      <div class="case-studies" aria-label="Case studies">
+        <article class="case fade-in-up" aria-labelledby="c1">
+          <div class="media"><img src="images/hiace.jpeg" alt="Airport handover" loading="lazy" onerror="this.src='https://via.placeholder.com/420x220?text=Airport'"></div>
+          <div>
+            <strong id="c1">Airport handover pilot</strong>
+            <div class="muted">Improved pickup turnaround by 28% through coordinated logistics between FleetMove and our operations team.</div>
+            <div class="cta-row">
+              <span class="badge">Logistics</span>
+              <a class="ghost" href="case-study-airport.html">Read case study</a>
+              <a class="btn" href="contact.html?topic=logistics">Partner with us</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="case fade-in-up" aria-labelledby="c2">
+          <div class="media"><img src="images/partner-cleaning.svg" alt="Maintenance" loading="lazy" onerror="this.src='https://via.placeholder.com/420x220?text=Maintenance'"></div>
+          <div>
+            <strong id="c2">Priority maintenance program</strong>
+            <div class="muted">Reduced average repair time from 48h to 12h with AutoCare Garage — higher fleet availability and happier customers.</div>
+            <div class="cta-row">
+              <span class="badge">Maintenance</span>
+              <a class="ghost" href="case-study-maintenance.html">Read case study</a>
+              <a class="btn" href="contact.html?topic=maintenance">Join program</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="case fade-in-up" aria-labelledby="c3">
+          <div class="media"><img src="images/partner-payments.svg" alt="Payments" loading="lazy" onerror="this.src='https://via.placeholder.com/420x220?text=Payments'"></div>
+          <div>
+            <strong id="c3">Seamless payments & reconciliation</strong>
+            <div class="muted">SwiftPay integration reduced reconciliation time and improved cashflow predictability for fleet operations.</div>
+            <div class="cta-row">
+              <span class="badge">Payments</span>
+              <a class="ghost" href="case-study-payments.html">Read case study</a>
+              <a class="btn" href="contact.html?topic=payments">Integrate now</a>
+            </div>
+          </div>
+        </article>
+      </div>
+      
+      <!-- Partner quotes -->
+      <div style="margin-top:18px;display:flex;gap:12px;align-items:stretch;flex-wrap:wrap">
+        <blockquote style="flex:1 1 320px;padding:14px;border-radius:12px;background:#fff;border:1px solid rgba(12,18,30,0.04);box-shadow:0 12px 30px rgba(12,18,30,0.04)">
+          <strong>“Working with Sir Mike improved our turnaround and reduced no-shows — a reliable partner.”</strong>
+          <div class="muted" style="margin-top:8px">— FleetMove Logistics</div>
+        </blockquote>
+        <blockquote style="flex:1 1 320px;padding:14px;border-radius:12px;background:#fff;border:1px solid rgba(12,18,30,0.04);box-shadow:0 12px 30px rgba(12,18,30,0.04)">
+          <strong>“Their priority maintenance queue cut repair time dramatically — great collaboration.”</strong>
+          <div class="muted" style="margin-top:8px">— AutoCare Garage</div>
+        </blockquote>
+      </div>
+    </section>
+
+    <footer class="site-footer" role="contentinfo" aria-label="Site footer">
+      <div class="col-left">
+        <div class="brand-sm">
+          <img src="images/m1.jpeg" alt="Sir Mike AutoHire" onerror="this.style.display='none'">
+          <div>
+            <div class="brand-title">Sir Mike AutoHire</div>
+            <div class="brand-tag">Drive Your Dream — Nairobi, Kenya</div>
+          </div>
+        </div>
+        <div class="footer-legal">Phone: <a href="tel:+254707480602" style="color:var(--accent)">+254 707 480 602</a> · <a href="mailto:sirmike6072@gmail.com" style="color:var(--accent)">sirmike6072@gmail.com</a></div>
+        <div class="footer-legal">Office: Nairobi • Mon–Sun 08:00–20:00</div>
+      </div>
+
+      <div class="col-mid" aria-hidden="false">
+        <nav class="footer-links" aria-label="Footer quick links">
+          <a href="home.html">Home</a>
+          <a href="cars.html">Our Cars</a>
+          <a href="booking.html">Book a car</a>
+          <a href="contact.html">Contact</a>
+          <a href="terms.html">Terms &amp; Privacy</a>
+        </nav>
+
+        <div style="margin-top:12px">
+          <div style="font-weight:800;margin-bottom:8px">Follow us</div>
+          <div class="social-links" aria-label="Social links">
+            <a class="facebook" href="https://www.facebook.com/SirMikeAutoHire" target="_blank" rel="noopener" title="Facebook" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M22 12a10 10 0 10-11.5 9.9v-7H8.1v-2.9h2.4V9.2c0-2.4 1.4-3.8 3.6-3.8 1 0 2 .08 2 .08v2.2h-1.1c-1.1 0-1.5.7-1.5 1.4v1.7h2.6l-.4 2.9h-2.2V22A10 10 0 0022 12z"/></svg>
+            </a>
+            <a class="x" href="https://x.com/SirMikeAutoHire" target="_blank" rel="noopener" title="X" aria-label="X">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M22 5.8c-.6.3-1.2.5-1.9.6.7-.4 1.2-1.1 1.4-1.9-.6.4-1.3.7-2.1.9C18.7 4.5 17.9 4 17 4c-1.7 0-3 1.4-3 3 0 .2 0 .5.1.7-2.6-.1-4.9-1.4-6.4-3.4-.3.6-.4 1.3-.4 2 0 1.4.7 2.6 1.9 3.3-.5 0-1-.2-1.4-.4v.1c0 1.9 1.3 3.5 3 3.8-.3.1-.6.2-1 .2-.2 0-.4 0-.6-.1.4 1.2 1.6 2.1 3 2.1-1.1.9-2.5 1.5-4 1.5H7c1.5.9 3.2 1.4 5.1 1.4 6 0 9.3-5 9.3-9.3v-.4c.7-.5 1.3-1.1 1.8-1.8-.6.3-1.2.6-1.9.7z"/></svg>
+            </a>
+            <a class="instagram" href="https://www.instagram.com/SirMikeAutoHire" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 6.2A3.8 3.8 0 1015.8 12 3.8 3.8 0 0012 8.2zm5.2-.9a1.1 1.1 0 11-1.1-1.1 1.1 1.1 0 011.1 1.1zM12 15.6A3.6 3.6 0 1115.6 12 3.6 3.6 0 0112 15.6z"/></svg>
+            </a>
+            <a class="linkedin" href="https://www.linkedin.com/company/sirmike-autohire" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5A2.5 2.5 0 102.5 6a2.5 2.5 0 002.48-2.5zM3 8.9h3.96V21H3V8.9zM9.5 8.9h3.8v1.6h.1c.5-.9 1.8-1.9 3.7-1.9 4 0 4.8 2.6 4.8 6V21h-3.96v-5.2c0-1.2 0-2.7-1.7-2.7-1.7 0-2 1.4-2 2.6V21H9.5V8.9z"/></svg>
+            </a>
+            <a class="youtube" href="https://www.youtube.com/@SirMikeAutoHire" target="_blank" rel="noopener" title="YouTube" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M23.5 7.2s-.2-1.6-.8-2.2c-.7-.9-1.5-.9-1.9-1-2.6-.2-6.5-.2-6.5-.2h-.1s-3.9 0-6.5.2c-.4 0-1.2.1-1.9 1C.7 5.6.5 7.2.5 7.2S.2 9 .2 10.8v2.4c0 1.8.3 3.6.3 3.6s.2 1.6.8 2.2c.7.9 1.6.9 2 1 1.5.1 6.5.2 6.5.2h.1s3.9 0 6.5-.2c.4 0 1.2-.1 1.9-1 .6-.6.8-2.2.8-2.2s.3-1.8.3-3.6v-2.4c0-1.8-.3-3.6-.3-3.6zM9.7 14.6V9.2l5 2.7-5 2.7z"/></svg>
+            </a>
+            <a class="whatsapp" href="https://wa.me/254707480602?text=Hello%20Sir%20Mike" target="_blank" rel="noopener" title="WhatsApp" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M17.5 6.5a7.5 7.5 0 10-4.1 10.9L18 20l-2.6-4.5a7.5 7.5 0 001.1-9zM12 8.5a.75.75 0 11.001 1.501A.75.75 0 0112 8.5z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-right">
+        <div class="footer-subscribe" aria-label="Subscribe to offers">
+          <div style="font-weight:800">Subscribe for offers</div>
+          <div style="color:var(--muted);font-size:13px">Exclusive deals, fleet updates and corporate offers.</div>
+          <form id="footerSubscribe" action="https://formspree.io/f/xqawbagq" method="POST" style="display:flex;gap:8px;margin-top:6px">
+            <input type="email" name="email" placeholder="you@example.com" required aria-label="Email address">
+            <button type="submit" class="btn">Join</button>
+          </form>
+          <div class="footer-legal">© <span id="footerYear"></span> Sir Mike AutoHire — All rights reserved</div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // reveal on scroll for animated entrance
+      (function(){
+        const items = document.querySelectorAll('.fade-in-up');
+        const io = new IntersectionObserver((entries, obs)=>{
+          entries.forEach(en=>{
+            if(en.isIntersecting){
+              en.target.classList.add('in-view');
+              obs.unobserve(en.target);
+            }
+          });
+        }, {threshold:0.12});
+        items.forEach(i=> io.observe(i));
+      })();
+
+      // animate metrics counters
+      (function(){
+        const nums = document.querySelectorAll('.metric .num');
+        const sparks = document.querySelectorAll('.metric .spark');
+        if(!nums) return;
+        const io = new IntersectionObserver((entries, obs)=>{
+          entries.forEach(en=>{
+            if(en.isIntersecting){
+              const el = en.target;
+              const target = Number(el.dataset.target || 0);
+              const dur = 1200;
+              const start = 0;
+              const t0 = performance.now();
+              function step(t){
+                const p = Math.min(1, (t - t0) / dur);
+                el.textContent = Math.floor(p * target + (1 - p) * start);
+                if(p < 1) requestAnimationFrame(step);
+              }
+              requestAnimationFrame(step);
+              // animate associated spark bar (if present)
+              try{
+                const parent = el.closest('.metric');
+                const spark = parent && parent.querySelector('.spark');
+                if(spark){
+                  const fill = Number(spark.getAttribute('data-fill') || 80);
+                  setTimeout(()=> spark.style.width = String(fill) + '%', 120);
+                }
+              }catch(e){}
+              obs.unobserve(el);
+            }
+          });
+        }, {threshold:0.3});
+        nums.forEach(n=> io.observe(n));
+      })();
+
+      // accordion FAQ
+      (function(){
+        const acc = document.getElementById('faqAcc');
+        if(!acc) return;
+        acc.querySelectorAll('button').forEach(btn=>{
+          btn.addEventListener('click', ()=> {
+            const next = btn.nextElementSibling;
+            const expanded = btn.getAttribute('aria-expanded') === 'true';
+            btn.setAttribute('aria-expanded', String(!expanded));
+            if(!expanded){ next.style.display = 'block'; } else { next.style.display = 'none'; }
+          });
+        });
+      })();
+
+      // pause logo track on hover
+      (function(){
+        const track = document.getElementById('logoTrack');
+        if(!track) return;
+        const parent = track.parentElement;
+        parent.addEventListener('mouseenter', ()=> track.style.animationPlayState = 'paused');
+        parent.addEventListener('mouseleave', ()=> track.style.animationPlayState = 'running');
+      })();
+
+      // partner enquiry demo handler
+      (function(){
+        const form = document.getElementById('partnerForm');
+        if(!form) return;
+        form.addEventListener('submit', (e)=>{
+          e.preventDefault();
+          const name = document.getElementById('pname').value.trim();
+          const org = document.getElementById('porg').value.trim();
+          const email = document.getElementById('pemail').value.trim();
+          if(!name || !org || !email){ alert('Please complete required fields'); return; }
+          // store demo enquiry locally and show a confirmation animation
+          try{
+            const key = 'sirmike_partnerships';
+            const all = JSON.parse(localStorage.getItem(key) || '[]');
+            all.unshift({ name, org, email, msg: document.getElementById('pmsg').value || '', created: new Date().toISOString() });
+            localStorage.setItem(key, JSON.stringify(all));
+          }catch(e){}
+          const btn = form.querySelector('button');
+          btn.textContent = 'Sent ✓';
+          btn.disabled = true;
+          setTimeout(()=> { btn.textContent = 'Send enquiry'; btn.disabled = false; form.reset(); }, 1700);
+          alert('Thanks — we will review your enquiry and contact you.');
+        });
+      })();
+
+      (function(){
+        const y = new Date().getFullYear();
+        const el = document.getElementById('footerYear');
+        if(el) el.textContent = y;
+
+        const form = document.getElementById('footerSubscribe');
+        if(form){
+          form.addEventListener('submit', async (e)=>{
+            e.preventDefault();
+            const btn = form.querySelector('button');
+            btn.disabled = true; btn.textContent = 'Sending...';
+            try{
+              await fetch(form.action, { method:'POST', body:new FormData(form), headers:{ 'Accept':'application/json' } });
+              btn.textContent = 'Joined';
+              form.reset();
+            }catch(_){
+              alert('Subscription failed — try again later.');
+              btn.textContent = 'Join';
+            }finally{ setTimeout(()=> btn.disabled = false, 1700); }
+          });
+        }
+      })();
+    </script>
+</body>
+</html>
+
+

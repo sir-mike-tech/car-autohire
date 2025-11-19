@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Privacy Policy — Sir Mike AutoHire</title>
+  <meta name="description" content="Privacy policy for Sir Mike AutoHire — how we collect, use and protect personal data." />
+  <style>
+    :root{
+      --accent:#0b7dfa;
+      --muted:#6b7280;
+      --dark:#0f1724;
+      --card:#fff;
+      --bg:#f6f8fb;
+      --glass: rgba(255,255,255,0.8);
+      --radius:12px;
+      --shadow: 0 10px 30px rgba(12,18,30,0.06);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
+    html,body{height:100%;margin:0;color:var(--dark);background:linear-gradient(180deg,var(--bg),#fff);-webkit-font-smoothing:antialiased}
+    .container{
+      max-width:980px;margin:28px auto;padding:26px;background:linear-gradient(180deg,#fff, #fbfdff);
+      border-radius:var(--radius);box-shadow:var(--shadow);position:relative;overflow:hidden;
+    }
+
+    /* header */
+    .top{
+      display:flex;align-items:center;gap:12px;margin-bottom:16px;
+    }
+    .logo{
+      width:54px;height:54px;border-radius:10px;overflow:hidden;flex:0 0 54px;border:1px solid rgba(11,125,250,0.04);
+      background:linear-gradient(180deg,rgba(11,125,250,0.06),rgba(11,125,250,0.02));
+      display:flex;align-items:center;justify-content:center;
+    }
+    .site-title{font-size:20px;font-weight:800}
+    .site-sub{color:var(--muted);font-size:13px}
+
+    /* icon headings */
+    h1,h2{display:flex;align-items:center;gap:12px;margin:0}
+    h1 svg.icon, h2 svg.icon{width:34px;height:34px;flex:0 0 34px;opacity:0.98}
+    h1{font-size:22px}
+    h2{margin-top:18px;font-size:16px}
+
+    p, ul{color:var(--muted);margin:8px 0}
+    ul{margin-left:18px;padding-left:8px}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* content layout */
+    .lead{display:flex;gap:12px;align-items:flex-start;margin-top:8px}
+    .lead p{margin:0}
+
+    /* list with icons */
+    .list-icon li{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px}
+    .list-icon svg{flex:0 0 20px;margin-top:3px;color:var(--accent)}
+
+    /* decorative block */
+    .note{
+      margin-top:18px;padding:12px;border-radius:10px;background:linear-gradient(180deg,#fbfeff,#fff);
+      border:1px solid rgba(11,125,250,0.04);color:var(--muted);
+    }
+
+    /* footer contact */
+    .contact{
+      margin-top:20px;padding-top:14px;border-top:1px dashed rgba(11,125,250,0.04);display:flex;gap:16px;align-items:center;flex-wrap:wrap;
+    }
+    .contact a{font-weight:700;color:var(--accent)}
+
+    /* subtle reveal animations */
+    .reveal{opacity:0;transform:translateY(10px) scale(0.995);transition:opacity .6s cubic-bezier(.2,.9,.2,1), transform .6s cubic-bezier(.2,.9,.2,1)}
+    .reveal.visible{opacity:1;transform:none}
+
+    /* small utility */
+    small{color:var(--muted);display:block;margin-top:18px}
+    @media (prefers-reduced-motion: reduce){
+      .reveal{transition:none!important;transform:none!important;opacity:1!important}
+    }
+  </style>
+</head>
+<body>
+  <main class="container" role="main" aria-labelledby="pp-title">
+    <div class="top reveal" data-reveal>
+      <div class="logo" aria-hidden="true">
+        <!-- simple car icon -->
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M3 12l1.8-4.5A3 3 0 0 1 7.5 6h9a3 3 0 0 1 2.7 1.5L21 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+          <circle cx="7" cy="17" r="1.6" fill="currentColor"/>
+          <circle cx="17" cy="17" r="1.6" fill="currentColor"/>
+        </svg>
+      </div>
+      <div>
+        <div class="site-title">Privacy Policy</div>
+        <div class="site-sub">How Sir Mike AutoHire collects and protects your data</div>
+      </div>
+    </div>
+
+    <header class="reveal" data-reveal>
+      <h1 id="pp-title">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2.5" y="6" width="19" height="13" rx="2" stroke="currentColor" stroke-width="1.2" />
+          <path d="M7 6V4a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Privacy Policy
+      </h1>
+    </header>
+
+    <section class="lead reveal" data-reveal>
+      <svg width="40" height="40" viewBox="0 0 24 24" class="icon" aria-hidden="true"><path d="M12 1.5L3 5v6c0 5 3.5 9.8 9 11 5.5-1.2 9-6 9-11V5l-9-3.5z" fill="currentColor"/></svg>
+      <p>This Privacy Policy explains how Sir Mike AutoHire ("we", "us", "our") collects, uses, shares and protects personal information when you use our website and services.</p>
+    </section>
+
+    <article class="reveal" data-reveal>
+      <h2>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 12v8H4v-8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Effective date
+      </h2>
+      <p>Effective: 2025-01-01. We may update this policy; changes will be posted with a revised effective date.</p>
+
+      <h2 class="reveal" data-reveal>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6 6 .5-4.5 3.8L19 20l-7-4-7 4 1.5-7.7L2 8.5 8 8z" fill="currentColor"/></svg>
+        Information we collect
+      </h2>
+      <p>We collect information you provide directly and information collected automatically:</p>
+      <ul class="list-icon">
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.2" fill="none"/></svg><div><strong>Account & profile data:</strong> name, email, phone, password and other details you submit when creating an account or booking.</div></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/></svg><div><strong>Transaction data:</strong> booking details, payment references and related communications.</div></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg><div><strong>Device & usage data:</strong> IP address, browser type, pages viewed, timestamps and analytics collected via cookies and similar technologies.</div></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10z" stroke="currentColor" stroke-width="1.2" fill="none"/></svg><div><strong>Support & communications:</strong> messages, inquiries and feedback you send us.</div></li>
+      </ul>
+
+      <h2 class="reveal" data-reveal>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1v4" stroke="currentColor" stroke-width="1.2"/><rect x="4" y="5" width="16" height="14" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+        How we use your information
+      </h2>
+      <ul>
+        <li>To provide, operate and improve our services and website.</li>
+        <li>To process bookings, payments and related communications.</li>
+        <li>To respond to requests, provide customer support and resolve disputes.</li>
+        <li>To send transactional messages, service announcements and promotional offers (you can opt out of marketing emails).</li>
+        <li>To detect and prevent fraud, abuse and security incidents.</li>
+      </ul>
+
+      <h2 class="reveal" data-reveal>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h18" stroke="currentColor" stroke-width="1.4"/><path d="M8 7l4-4 4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Cookies and tracking
+      </h2>
+      <p>We use cookies and similar technologies for essential site functionality, analytics and to personalise your experience. You can manage cookie preferences via your browser settings. Disabling certain cookies may affect site functionality.</p>
+
+      <h2 class="reveal" data-reveal>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="1.2"/></svg>
+        Sharing and disclosure
+      </h2>
+      <p>We do not sell personal data. We may share information with:</p>
+      <ul>
+        <li>Service providers who perform functions on our behalf (payment processors, hosting, analytics).</li>
+        <li>Legal or regulatory authorities when required by law or to protect our rights and safety.</li>
+        <li>Third parties in connection with a merger, acquisition or sale of assets (users will be notified if ownership changes).</li>
+      </ul>
+
+      <h2 class="reveal" data-reveal>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6 6 .5-4.5 3.8L19 20l-7-4-7 4 1.5-7.7L2 8.5 8 8z" fill="currentColor"/></svg>
+        Third-party services
+      </h2>
+      <p>We use third-party services (e.g., payment processors, analytics and chat providers). Those services have their own privacy policies and may collect data independently. Links to third-party policies are available where applicable.</p>
+
+      <h2 class="reveal" data-reveal>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7v10l8 4 8-4V7" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+        Data retention
+      </h2>
+      <p>We retain personal information as long as necessary to provide services, comply with legal obligations, resolve disputes and enforce agreements. Retention periods vary by data type and purpose.</p>
+
+      <h2 class="reveal" data-reveal>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1a4 4 0 0 0-4 4v3H6l6 7 6-7h-2V5a4 4 0 0 0-4-4z" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+        Security
+      </h2>
+      <p>We implement reasonable technical and organisational measures to protect personal data. No system is completely secure; if a breach affecting your data occurs we will follow applicable notification requirements.</p>
+
+      <h2 class="reveal" data-reveal>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+        Your rights
+      </h2>
+      <p>Depending on your jurisdiction, you may have rights including access, correction, deletion, portability and objection to certain processing. To exercise rights or ask questions, contact us using the details below. We will respond in accordance with applicable law.</p>
+
+      <h2 class="reveal" data-reveal>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+        Children
+      </h2>
+      <p>Our services are not directed to children under 13. We do not knowingly collect personal information from children. If you believe we have collected such information, contact us and we will remove it.</p>
+
+      <h2 class="reveal" data-reveal>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18" stroke="currentColor" stroke-width="1.2"/></svg>
+        International transfers
+      </h2>
+      <p>Data may be stored and processed in countries where our service providers operate. We take steps to ensure appropriate safeguards for international transfers as required by law.</p>
+
+      <h2 class="reveal" data-reveal>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 7h20v10H2z" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+        How to contact us
+      </h2>
+      <p>For questions, requests or concerns about this policy or your data, contact:</p>
+      <p class="contact">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+        Sir Mike AutoHire — Email: <a href="mailto:sirmike6072@gmail.com">sirmike6072@gmail.com</a> · Phone/WhatsApp: <a href="tel:+254707480602">+254 707 480602</a>
+      </p>
+
+      <div class="note reveal" data-reveal>
+        <strong>Changes to this policy</strong>
+        <p style="margin:8px 0 0">We may update this policy from time to time. Material changes will be communicated via the website or email. Continued use after updates means you accept the revised policy.</p>
+      </div>
+
+      <small class="reveal" data-reveal>For the full terms governing use of our services, see <a href="terms.html">Terms & Conditions</a>.</small>
+    </article>
+  </main>
+
+  <script>
+    // Reveal on scroll (prefers-reduced-motion respected)
+    (function(){
+      if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+        document.querySelectorAll('.reveal').forEach(el=> el.classList.add('visible'));
+        return;
+      }
+      const obs = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('[data-reveal]').forEach(el=> obs.observe(el));
+    })();
+  </script>
+</body>
+</html>

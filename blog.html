@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Insights • Sir Mike AutoHire</title>
+  <meta name="description" content="Expert advice, vehicle guides and safety resources from Sir Mike AutoHire — practical tips for renters, insurance guidance and fleet highlights.">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --accent:#0b7dfa;
+      --accent-600:#0966c9;
+      --muted:#6b7280;
+      --bg:#f4f7fb;
+      --card:#ffffff;
+      --radius:12px;
+      --container:1100px;
+      --shadow-sm: 0 6px 18px rgba(16,36,58,0.06);
+      --shadow-lg: 0 18px 40px rgba(16,36,58,0.10);
+      --maxw:var(--container);
+      --glass: rgba(255,255,255,0.65);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color-scheme: light;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:
+        linear-gradient(180deg, rgba(11,125,250,0.02), transparent 40%),
+        var(--bg);
+      color:#0f1724;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      font-size:16px;
+    }
+
+    .container{
+      max-width:var(--maxw);
+      margin:28px auto;
+      padding:22px;
+    }
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:18px;
+      padding-bottom:8px;
+      border-bottom:1px solid rgba(15,23,36,0.06);
+      background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4));
+      backdrop-filter: blur(6px);
+      border-radius:10px;
+      padding:18px;
+    }
+    header h1{font-size:20px;margin:0;color:#06233f;letter-spacing:-0.2px}
+    header .lead{font-size:13px;color:var(--muted);margin-top:4px}
+    header nav{display:flex;gap:12px;align-items:center}
+    header nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:8px;transition:all .18s ease}
+    header nav a:hover{background:rgba(11,125,250,0.06);color:var(--accent-600);transform:translateY(-2px)}
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 340px;
+      gap:22px;
+      margin-top:20px;
+      align-items:start;
+    }
+
+    .posts{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:18px;
+    }
+
+    .card{
+      background:linear-gradient(180deg,var(--card),var(--glass));
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow:var(--shadow-sm);
+      display:flex;
+      flex-direction:column;
+      transition:transform .22s ease, box-shadow .22s ease;
+      border:1px solid rgba(15,23,36,0.04);
+    }
+    .card:hover{ transform:translateY(-8px); box-shadow:var(--shadow-lg) }
+
+    .card img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+      display:block;
+      transition:transform .5s ease;
+    }
+    .card:hover img{ transform:scale(1.03) }
+
+    .card .body{padding:16px 18px 20px}
+    .meta{color:var(--muted);font-size:13px;margin-bottom:8px;display:flex;gap:8px;align-items:center}
+    .card h3{margin:0 0 8px;font-size:18px;color:#07243e}
+    .excerpt{color:#475569;font-size:14px;margin:0 0 12px}
+    .tag{
+      background:rgba(11,125,250,0.08);
+      color:var(--accent-600);
+      padding:6px 10px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:12px;
+      display:inline-block;
+    }
+
+    aside.sidebar{
+      background:var(--card);
+      border-radius:12px;
+      padding:18px;
+      box-shadow:var(--shadow-sm);
+      border:1px solid rgba(15,23,36,0.04);
+      position:sticky;
+      top:28px;
+      height:max-content;
+    }
+
+    .author{display:flex;gap:12px;align-items:center}
+    .author img{width:56px;height:56px;border-radius:999px;object-fit:cover;border:2px solid rgba(11,125,250,0.08)}
+    .subscribe input{width:100%;padding:10px;border-radius:8px;border:1px solid #e6eef9;margin-bottom:8px;outline:none}
+    .subscribe input:focus{box-shadow:0 8px 24px rgba(11,125,250,0.08);border-color:var(--accent-600)}
+
+    .btn{
+      display:inline-block;
+      background:linear-gradient(180deg,var(--accent),var(--accent-600));
+      color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:700;
+      box-shadow:0 8px 22px rgba(11,125,250,0.14);
+      transition:transform .12s ease, box-shadow .12s ease;
+    }
+    .btn:hover{ transform:translateY(-3px); box-shadow:0 18px 40px rgba(11,125,250,0.18) }
+
+    /* Controls */
+    .posts + div{margin-top:10px}
+    #posts-controls{display:flex;gap:10px;align-items:center;margin-bottom:12px}
+    #postSearch{flex:1;padding:10px;border-radius:10px;border:1px solid #e6eef9;outline:none}
+    #postSearch:focus{box-shadow:0 10px 30px rgba(11,125,250,0.06)}
+    #postTag{padding:10px;border-radius:10px;border:1px solid #e6eef9;outline:none}
+    #loadMore{padding:10px 14px;border-radius:10px}
+
+    footer{margin-top:28px;color:var(--muted);font-size:13px;text-align:center;padding-bottom:24px}
+
+    @media(max-width:1100px){
+      .grid{grid-template-columns:1fr 320px}
+      .posts{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:880px){
+      header{flex-direction:column;align-items:flex-start;gap:8px}
+      .grid{grid-template-columns:1fr;gap:16px}
+      .posts{grid-template-columns:1fr}
+      aside.sidebar{position:relative;top:0}
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Blog",
+    "name":"Sir Mike AutoHire Insights",
+    "url":"https://example.test/dealer/blog.html",
+    "description":"Expert advice, guides and news for renters and fleet customers.",
+    "publisher":{"@type":"Organization","name":"Sir Mike AutoHire"}
+  }
+  </script>
+</head>
+<body>
+  <div class="container" role="main">
+    <header>
+      <div>
+        <h1 style="margin:0">Insights</h1>
+        <div class="lead">Practical guides, safety advice and fleet highlights from the Sir Mike AutoHire team.</div>
+      </div>
+      <nav aria-label="Primary">
+        <a href="home.html">Home</a> · <a href="booking.html">Book a Car</a> · <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <div class="grid" role="region" aria-labelledby="latest-heading">
+      <section>
+        <h2 id="latest-heading" style="margin:18px 0 8px">Latest articles</h2>
+
+        <div class="posts" id="posts">
+          <!-- populated by script -->
+        </div>
+
+        <div style="margin-top:18px;text-align:center">
+          <a class="btn" href="home.html">Explore Fleet & Offers</a>
+        </div>
+      </section>
+
+      <aside class="sidebar" aria-labelledby="about-heading">
+        <h3 id="about-heading" style="margin-top:0">About this blog</h3>
+        <p class="lead" style="margin-bottom:12px">Actionable tips for planning trips, choosing the right vehicle, and staying safe on the road.</p>
+
+        <div style="margin-top:12px">
+          <h4 style="margin:0 0 8px">Featured author</h4>
+          <div class="author" style="margin-bottom:12px">
+            <!-- selected author image for SirMike; fallback to placeholder if file not found -->
+            <img src="images/ceo.jpeg" alt="Michael - Founder" onerror="this.src='https://via.placeholder.com/128?text=SirMike'">
+            <div>
+              <strong>SirMike</strong><br>
+              <span style="color:var(--muted);font-size:13px">Founder & Head of Operations</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:12px">
+          <h4 style="margin:0 0 8px">Subscribe</h4>
+          <p style="color:var(--muted);font-size:13px;margin:0 0 8px">Receive new guides and offers by email.</p>
+          <form class="subscribe" action="#" method="post" onsubmit="alert('Subscribed (demo)');return false;">
+            <input aria-label="Email address" type="email" placeholder="you@example.com" required>
+            <button class="btn" type="submit">Subscribe</button>
+          </form>
+        </div>
+
+        <div style="margin-top:16px;color:var(--muted);font-size:13px">
+          <strong>Categories</strong>
+          <ul style="padding-left:18px;margin:8px 0 0">
+            <li>Travel & Planning</li>
+            <li>Vehicle Guides</li>
+            <li>Safety & Insurance</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      © Sir Mike AutoHire — Practical advice & trusted rentals
+    </footer>
+  </div>
+
+  <script>
+    // professional curated posts (replace with server data in production)
+    const posts = [
+      { id: 1, title: "Road-Trip Planning: The Complete Checklist", author: "SirMike", date: "2025-03-08", tag: "Travel", img: "images/axio.jpeg", excerpt: "A concise checklist to prepare your route, safety kit and documentation so your journey stays smooth and stress-free.", content: "Full checklist: route plan, documents, safety kit, roadside assistance contacts..." },
+      { id: 2, title: "Choosing the Right SUV: Practical Considerations", author: "Grace N.", date: "2025-02-15", tag: "Guides", img: "images/nissan.jpeg", excerpt: "How to match vehicle size, fuel efficiency and cargo capacity to your itinerary and passenger needs.", content: "Compare passenger needs, luggage, fuel economy and handling. Consider AWD for mountain routes." },
+      { id: 3, title: "Insurance & Excess: What Renters Should Know", author: "Sam O.", date: "2025-01-20", tag: "Safety", img: "images/m2.jpeg", excerpt: "Understand cover types, optional protections and how to minimise your financial exposure if an incident occurs.", content: "Breakdown of CDW, TP, third-party cover, and tips for reducing excess." },
+      { id: 4, title: "Efficient City Driving Tips to Save Fuel", author: "Aisha K.", date: "2025-04-02", tag: "Efficiency", img: "images/city.jpeg", excerpt: "Smart driving habits and simple maintenance checks that reduce fuel consumption and extend vehicle life.", content: "Keep tyres inflated, avoid aggressive acceleration, use higher gears when possible." },
+      { id: 5, title: "Preparing Your Vehicle for Long Rentals", author: "SirMike", date: "2025-04-10", tag: "Maintenance", img: "images/maintenance.jpeg", excerpt: "A short guide on checks our team performs and what you can do before you pick up the car.", content: "Checklist: fluids, tyre condition, lights, spare tyre, first-aid kit." },
+      { id: 6, title: "Airport Pickups: Timing & Best Practices", author: "Grace N.", date: "2025-03-22", tag: "Travel", img: "images/airport.jpeg", excerpt: "Tips to make airport pick-ups stress-free — timing your arrival, luggage handling and meeting points.", content: "Allow buffer time, share flight number, confirm parking/pickup zone." },
+      { id: 7, title: "Top 10 Safety Features to Look for in a Rental", author: "Sam O.", date: "2025-02-05", tag: "Safety", img: "images/safety.jpeg", excerpt: "From ABS to advanced driver assistance — what features increase safety and reduce the chance of incidents.", content: "Prioritise ABS, airbags, stability control, tyre pressure monitoring, and reversing cameras." },
+      { id: 8, title: "Smart Packing: Making the Most of Your Trunk Space", author: "Aisha K.", date: "2025-01-30", tag: "Guides", img: "images/packing.jpeg", excerpt: "Practical packing strategies for families and long trips to keep luggage secure and accessible.", content: "Use soft bags, pack heavy items low, keep essentials reachable, and use roof racks when needed." }
+    ];
+
+    const postsEl = document.getElementById('posts');
+    // create small controls: search + tag filter + load more
+    const controls = document.createElement('div');
+    controls.style.display = 'flex';
+    controls.style.gap = '8px';
+    controls.style.marginBottom = '12px';
+    controls.innerHTML = `
+      <input id="postSearch" type="search" placeholder="Search articles..." aria-label="Search articles" style="flex:1;padding:8px;border-radius:8px;border:1px solid #e6eef9" />
+      <select id="postTag" aria-label="Filter by tag" style="padding:8px;border-radius:8px;border:1px solid #e6eef9">
+        <option value="">All categories</option>
+      </select>
+      <button id="loadMore" class="btn" style="white-space:nowrap">Load more</button>
+    `;
+    // insert controls before the posts grid
+    postsEl.parentNode.insertBefore(controls, postsEl);
+
+    const searchEl = document.getElementById('postSearch');
+    const tagEl = document.getElementById('postTag');
+    const loadMoreBtn = document.getElementById('loadMore');
+
+    // populate tag options
+    const tags = Array.from(new Set(posts.map(p=>p.tag))).sort();
+    tags.forEach(t=>{
+      const opt = document.createElement('option'); opt.value = t; opt.textContent = t; tagEl.appendChild(opt);
+    });
+
+    let visible = 4;
+    function render() {
+      const q = searchEl.value.trim().toLowerCase();
+      const tag = tagEl.value;
+      const filtered = posts.filter(p=>{
+        const matchesQ = !q || (p.title + ' ' + p.excerpt + ' ' + p.content).toLowerCase().includes(q);
+        const matchesTag = !tag || p.tag === tag;
+        return matchesQ && matchesTag;
+      });
+      const show = filtered.slice(0, visible);
+      postsEl.innerHTML = show.map(p=>`
+        <article class="card" aria-labelledby="post-${p.id}-title">
+          <img src="${p.img}" alt="${p.title}" onerror="this.src='https://via.placeholder.com/640x360?text=Article'"/>
+          <div class="body">
+            <div class="meta">${new Date(p.date).toLocaleDateString()} • ${p.author} • <span class="tag">${p.tag}</span></div>
+            <h3 id="post-${p.id}-title">${p.title}</h3>
+            <p class="excerpt">${p.excerpt}</p>
+            <a href="post-${p.id}.html" class="btn" aria-label="Read full article: ${p.title}">Read full article →</a>
+          </div>
+        </article>
+      `).join('');
+
+      loadMoreBtn.style.display = filtered.length > visible ? 'inline-block' : 'none';
+    }
+
+    // events
+    searchEl.addEventListener('input', ()=>{ visible = 8; render(); });
+    tagEl.addEventListener('change', ()=>{ visible = 8; render(); });
+    loadMoreBtn.addEventListener('click', ()=>{ visible += 4; render(); });
+
+    // initial render
+    render();
+  </script>
+</body>
+</html>

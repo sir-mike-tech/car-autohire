@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Booking Confirmed — Sir Mike AutoHire</title>
+  <meta name="description" content="Booking confirmation for Sir Mike AutoHire — view your reservation details and next steps." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    :root{
+      --accent:#0b7dfa; --accent-600:#0767c9; --muted:#6b7280;
+      --bg1:#f4fbff; --card:#ffffff; --dark:#0f1724;
+      --glass: rgba(255,255,255,0.6);
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;-webkit-font-smoothing:antialiased}
+    body{
+      background: linear-gradient(180deg,#f7fbff 0%, #ffffff 60%);
+      color:var(--dark);
+      min-height:100vh;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      padding:36px 18px;
+      position:relative;
+      overflow:auto;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:auto 0 0 -6%;
+      width:720px;height:420px;
+      background: url('images/car-hero.jpg') center/cover no-repeat;
+      filter: blur(36px) saturate(110%) brightness(.95);
+      opacity:.16;
+      transform:translateZ(0);
+      pointer-events:none;
+      border-radius:20px;
+    }
+
+    .wrap{width:100%;max-width:1020px;margin:8px auto}
+
+    .hero{
+      display:flex;gap:18px;align-items:center;padding:18px;border-radius:14px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.82));
+      border:1px solid rgba(11,125,250,0.06);
+      box-shadow:0 18px 50px rgba(11,125,250,0.06);
+    }
+    .tick{
+      width:84px;height:84px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent-600));
+      display:flex;align-items:center;justify-content:center;color:#fff;font-size:36px;font-weight:800;
+      box-shadow:0 12px 36px rgba(11,125,250,0.18);
+      transform:scale(.96);
+      animation:pop .6s ease forwards;
+    }
+    @keyframes pop{ to { transform: scale(1); } }
+
+    .hero h1{margin:0;font-size:20px}
+    .hero p{margin:6px 0 0;color:var(--muted);font-size:14px}
+    .pill{display:inline-block;padding:6px 12px;border-radius:999px;background:#f3f8ff;color:var(--accent-600);font-weight:700;font-size:13px;margin-top:8px}
+
+    .grid{display:grid;grid-template-columns:2fr 1fr;gap:18px;margin-top:18px}
+    @media(max-width:880px){ .grid{grid-template-columns:1fr} .hero{flex-direction:column;align-items:flex-start} }
+
+    .card{
+      background:var(--card);padding:18px;border-radius:12px;
+      box-shadow:0 18px 44px rgba(10,18,28,0.06);border:1px solid rgba(12,18,30,0.03);
+      overflow:hidden;
+    }
+
+    .summary{display:flex;gap:14px;align-items:center}
+    .thumb{width:140px;height:92px;border-radius:10px;overflow:hidden;flex-shrink:0;background:linear-gradient(180deg,#eef6ff,#fff);display:flex;align-items:center;justify-content:center;border:1px solid rgba(11,125,250,0.04)}
+    .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .meta{flex:1;min-width:0}
+    .meta h2{margin:0;font-size:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .meta .info{color:var(--muted);font-size:13px;margin-top:6px}
+
+    .details{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+    .row{display:flex;justify-content:space-between;gap:12px;align-items:center}
+    .label{color:var(--muted);font-size:13px}
+    .value{font-weight:800;color:var(--dark)}
+
+    .features{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .chip{background:#f3f8ff;padding:6px 10px;border-radius:999px;color:var(--accent-600);font-weight:700;font-size:13px}
+
+    .right .invoice{display:flex;flex-direction:column;gap:12px;align-items:center}
+    .big{font-size:28px;font-weight:800;color:var(--accent)}
+    .qr{width:190px;height:190px;border-radius:12px;background:linear-gradient(180deg,#ffffff,#fbfdff);display:flex;align-items:center;justify-content:center;border:1px solid rgba(11,125,250,0.06)}
+    .qr canvas{border-radius:8px}
+
+    .actions{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+    .btn{background:linear-gradient(90deg,var(--accent),var(--accent-600));color:#fff;padding:10px 14px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
+    .ghost{background:transparent;border:1px solid rgba(11,125,250,0.10);padding:9px 12px;border-radius:10px;cursor:pointer;color:var(--accent-600);font-weight:700}
+    .muted{color:var(--muted)}
+    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
+
+    .small{font-size:13px;color:var(--muted);line-height:1.4}
+
+    /* subtle entrance */
+    .card{opacity:0;transform:translateY(8px);animation:enter .45s ease forwards}
+    .card:nth-child(1){animation-delay:.08s}
+    .card:nth-child(2){animation-delay:.14s}
+    @keyframes enter{ to { opacity:1; transform:none } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <div class="tick">✓</div>
+      <div>
+        <h1>Booking confirmed</h1>
+        <p class="small">Reservation received — confirmation sent to your email and phone (if provided).</p>
+        <div><span class="pill" id="confRef">REF-000000</span></div>
+      </div>
+    </div>
+
+    <div class="grid" role="region" aria-labelledby="bookingSummary">
+      <section class="card" id="leftCard" aria-labelledby="bookingSummary">
+        <h2 id="bookingSummary" style="margin:0 0 8px">Your reservation</h2>
+
+        <div class="summary">
+          <div class="thumb" aria-hidden="true"><img id="carImg" src="images/placeholder-car.jpg" alt="Selected vehicle"></div>
+          <div class="meta">
+            <h2 id="carName">—</h2>
+            <div class="info" id="carMeta">—</div>
+            <div class="features" id="carFeatures"></div>
+            <div style="margin-top:8px" id="pickupInfo" class="small">Pickup: <span class="muted">—</span></div>
+            <div style="margin-top:6px" id="pickupLocationRow" class="small muted" aria-hidden="false">Pickup location: <span id="pickupLocation">—</span></div>
+          </div>
+          <div style="text-align:right">
+            <div class="small muted">Rate</div>
+            <div class="value" id="carRate">KES —</div>
+            <div class="small muted">per day</div>
+          </div>
+        </div>
+
+        <div class="details" aria-live="polite">
+          <div class="row"><div class="label">Renter</div><div class="value" id="renterName">—</div></div>
+          <div class="row"><div class="label">Email</div><div class="value" id="renterEmail">—</div></div>
+          <div class="row"><div class="label">Phone</div><div class="value" id="renterPhone">—</div></div>
+
+          <div class="row"><div class="label">From → To</div><div class="value" id="dates">—</div></div>
+          <div class="row"><div class="label">Pickup time</div><div class="value" id="pickupTime">—</div></div>
+          <div class="row"><div class="label">Days</div><div class="value" id="days">—</div></div>
+
+          <div class="row"><div class="label">Subtotal</div><div class="value" id="subtotal">KES —</div></div>
+          <div class="row"><div class="label">VAT / Tax</div><div class="value" id="tax">KES —</div></div>
+          <div class="row"><div class="label">Discount</div><div class="value" id="discount">KES 0</div></div>
+          <div class="row"><div class="label">Total</div><div class="value" id="total">KES —</div></div>
+
+          <div class="row"><div class="label">Amount paid</div><div class="value" id="paidAmountRow">KES —</div></div>
+          <div class="row"><div class="label">Payment status</div><div class="value" id="paymentStatus">—</div></div>
+          <div class="row"><div class="label">Promo code</div><div class="value" id="promoCode">—</div></div>
+          <div class="row"><div class="label">Extras</div><div class="value" id="extrasList">—</div></div>
+
+          <div style="margin-top:8px" id="notes" class="small muted"></div>
+
+          <div class="actions" role="group" aria-label="Next actions">
+            <button class="btn" id="printBtn">Print / Save</button>
+            <a class="ghost" id="toBookings" href="bookings.html">View all bookings</a>
+            <a class="ghost" href="home.html">Back to home</a>
+            <button class="ghost" id="logoutBtn" type="button">Log out</button>
+          </div>
+        </div>
+      </section>
+
+      <aside class="card right" id="rightCard">
+        <div class="invoice">
+          <div style="text-align:center">
+            <div class="small muted">Amount paid</div>
+            <div class="big" id="paidAmount">KES —</div>
+            <div class="small muted">Payment method: <span id="payMethod">—</span></div>
+          </div>
+
+          <div style="width:100%;margin-top:6px">
+            <div class="small muted" style="margin-bottom:6px">Reservation QR</div>
+            <div class="qr" id="qrArea">
+              <canvas id="qrCanvas" width="168" height="168" aria-hidden="true"></canvas>
+            </div>
+          </div>
+
+          <div style="margin-top:12px;width:100%;text-align:center">
+            <div class="small muted">Need help?</div>
+            <a class="ghost" href="contact.html" style="display:inline-block;margin-top:8px">Contact support</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      <div class="small muted">Keep this confirmation for pickup. Terms & conditions apply.</div>
+    </footer>
+  </div>
+
+  <script>
+    (function(){
+      function qs(name){ const u = new URLSearchParams(location.search); return u.get(name); }
+      function fmtCurrency(v){ try{ return 'KES ' + Number(v).toLocaleString(); }catch(e){ return 'KES ' + v; } }
+
+      // collect known params (accept both simple keys and JSON via 'data' param)
+      const rawParams = {};
+      ['car','from','to','days','total','name','email','phone','pickup','pay','ref','img','seats','doors','ac','fuel',
+       'pickupLoc','pickupTime','rate','subtotal','tax','vat','discount','promo','paid','payment_status','extras','currency'
+      ].forEach(k=>{
+        const v = qs(k);
+        if(v !== null) rawParams[k] = v;
+      });
+
+      // support a JSON blob param 'data' (encoded)
+      try{
+        const data = qs('data');
+        if(data){
+          const parsed = JSON.parse(decodeURIComponent(data));
+          Object.assign(rawParams, parsed);
+        }
+      }catch(e){ /* ignore malformed */ }
+
+      // sessionStorage fallback (booking flow may POST and set sessionStorage)
+      try{
+        const sess = sessionStorage.getItem('sirmike_last_booking');
+        if(sess){
+          const parsed = JSON.parse(sess);
+          Object.assign(rawParams, parsed);
+        }
+      }catch(e){}
+
+      // localStorage fallback (last booking saved by site)
+      try{
+        const last = JSON.parse(localStorage.getItem('last_booking') || 'null');
+        if(last) Object.keys(last).forEach(k => { if(!(k in rawParams)) rawParams[k] = last[k]; });
+      }catch(e){}
+
+      // create canonical booking object
+      const booking = {
+        id: rawParams.ref || ('BK' + Date.now().toString().slice(-8)),
+        car: rawParams.car || 'Toyota Axio 2020',
+        from: rawParams.from || new Date().toLocaleDateString(),
+        to: rawParams.to || new Date(Date.now()+86400000).toLocaleDateString(),
+        days: Number(rawParams.days) || 1,
+        rate: rawParams.rate ? Number(rawParams.rate) : null,
+        subtotal: rawParams.subtotal ? Number(rawParams.subtotal) : null,
+        tax: rawParams.tax ? Number(rawParams.tax) : (rawParams.vat ? Number(rawParams.vat) : 0),
+        discount: rawParams.discount ? Number(rawParams.discount) : 0,
+        total: rawParams.total ? Number(rawParams.total) : null,
+        paid: rawParams.paid ? Number(rawParams.paid) : 0,
+        payment_status: rawParams.payment_status || null,
+        pay: rawParams.pay || (rawParams.payment_method || 'On pickup'),
+        name: rawParams.name || 'Guest',
+        email: rawParams.email || '',
+        phone: rawParams.phone || '',
+        pickup: rawParams.pickup || 'Office - Thika',
+        pickupLoc: rawParams.pickupLoc || '',
+        pickupTime: rawParams.pickupTime || '',
+        img: rawParams.img || 'images/placeholder-car.jpg',
+        seats: rawParams.seats || '',
+        doors: rawParams.doors || '',
+        ac: rawParams.ac || '',
+        fuel: rawParams.fuel || '',
+        extras: [],
+        promo: rawParams.promo || '',
+        currency: rawParams.currency || 'KES'
+      };
+
+      // extras parsing: accept JSON array or comma-separated list
+      try{
+        if(rawParams.extras){
+          if(rawParams.extras.trim().startsWith('[')){
+            booking.extras = JSON.parse(rawParams.extras);
+          } else {
+            booking.extras = rawParams.extras.split(',').map(s=>s.trim()).filter(Boolean);
+          }
+        }
+      }catch(e){ booking.extras = []; }
+
+      // if subtotal missing, try to compute from rate * days or total - tax + discount
+      if(!booking.subtotal){
+        if(booking.rate) booking.subtotal = booking.rate * booking.days;
+        else if(booking.total != null) booking.subtotal = Math.max(0, booking.total - (booking.tax||0) + (booking.discount||0));
+        else booking.subtotal = 0;
+      }
+      // if total missing, compute
+      if(booking.total == null){
+        booking.total = Math.max(0, booking.subtotal + (booking.tax||0) - (booking.discount||0));
+      }
+      // determine payment status if not provided
+      if(!booking.payment_status){
+        booking.payment_status = (booking.paid >= booking.total && booking.total > 0) ? 'Paid' : (booking.paid > 0 ? 'Partially paid' : 'Pending');
+      }
+
+      // save canonical booking to localStorage list (avoid duplicates)
+      try{
+        const key = 'sirmike_bookings_v1';
+        const all = JSON.parse(localStorage.getItem(key) || '[]');
+        if(!all.find(b => b.id === booking.id)){
+          all.unshift(Object.assign({}, booking, { created: new Date().toISOString() }));
+          localStorage.setItem(key, JSON.stringify(all));
+        } else {
+          // update existing entry
+          const idx = all.findIndex(b=>b.id===booking.id);
+          all[idx] = Object.assign({}, all[idx], booking);
+          localStorage.setItem(key, JSON.stringify(all));
+        }
+        localStorage.setItem('last_booking', JSON.stringify(booking));
+        sessionStorage.setItem('sirmike_last_booking', JSON.stringify(booking));
+      }catch(e){ /* ignore storage write errors */ }
+
+      // populate UI
+      document.getElementById('confRef').textContent = booking.id;
+      const carNameEl = document.getElementById('carName');
+      carNameEl.textContent = booking.car;
+      document.getElementById('carMeta').textContent = [booking.seats ? booking.seats + ' seats' : null, booking.doors ? booking.doors + ' doors' : null, booking.fuel ? booking.fuel : null, booking.ac ? 'A/C' : null].filter(Boolean).join(' • ');
+      const carImgEl = document.getElementById('carImg');
+      carImgEl.src = booking.img;
+      carImgEl.alt = booking.car;
+      // fallback if image fails
+      carImgEl.onerror = function(){ this.src = 'images/placeholder-car.jpg'; this.onerror = null; };
+
+      document.getElementById('pickupInfo').innerHTML = 'Pickup: <span class="muted">' + booking.pickup + '</span>';
+      document.getElementById('pickupLocation').textContent = booking.pickupLoc || '—';
+      document.getElementById('pickupTime').textContent = booking.pickupTime || '—';
+
+      // rate per day
+      const ratePerDay = booking.rate || (booking.subtotal && booking.days ? Math.round(booking.subtotal / booking.days) : null);
+      document.getElementById('carRate').textContent = ratePerDay ? fmtCurrency(ratePerDay) : 'KES —';
+
+      document.getElementById('renterName').textContent = booking.name;
+      document.getElementById('renterEmail').textContent = booking.email || '—';
+      document.getElementById('renterPhone').textContent = booking.phone || '—';
+      document.getElementById('dates').textContent = booking.from + ' → ' + booking.to;
+      document.getElementById('days').textContent = booking.days;
+
+      document.getElementById('subtotal').textContent = fmtCurrency(booking.subtotal || 0);
+      document.getElementById('tax').textContent = fmtCurrency(booking.tax || 0);
+      document.getElementById('discount').textContent = booking.discount ? fmtCurrency(booking.discount) : 'KES 0';
+      document.getElementById('total').textContent = fmtCurrency(booking.total || 0);
+      document.getElementById('paidAmount').textContent = fmtCurrency(booking.paid || 0);
+      document.getElementById('paidAmountRow').textContent = fmtCurrency(booking.paid || 0);
+      document.getElementById('payMethod').textContent = booking.pay;
+      document.getElementById('paymentStatus').textContent = booking.payment_status;
+      document.getElementById('promoCode').textContent = booking.promo || '—';
+
+      const featEl = document.getElementById('carFeatures');
+      const features = [];
+      if(booking.seats) features.push(booking.seats + ' seats');
+      if(booking.doors) features.push(booking.doors + ' doors');
+      if(booking.ac) features.push('A/C');
+      if(booking.fuel) features.push(booking.fuel);
+      featEl.innerHTML = features.map(f=>`<span class="chip">${f}</span>`).join('') || '';
+
+      const extrasEl = document.getElementById('extrasList');
+      extrasEl.textContent = booking.extras.length ? booking.extras.join(', ') : '—';
+
+      document.getElementById('notes').textContent = 'Bring your driver’s licence and a printed or digital copy of this confirmation.';
+
+      // QR placeholder: draw nicer pattern with booking URL (preserve previous simple renderer)
+      try{
+        const canvas = document.getElementById('qrCanvas');
+        const ctx = canvas.getContext('2d');
+        const text = location.origin + '/confirmation.html?ref=' + booking.id;
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        ctx.fillStyle = '#fff'; ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.fillStyle = '#0b7dfa';
+        // corner squares
+        ctx.fillRect(6,6,34,34);
+        ctx.fillRect(canvas.width-40,6,34,34);
+        ctx.fillRect(6,canvas.height-40,34,34);
+        // pattern derived from id
+        const seed = Array.from(booking.id).reduce((s,ch)=> s + ch.charCodeAt(0), 0);
+        for(let i=0;i<7;i++){
+          for(let j=0;j<7;j++){
+            const v = (i*j + seed) % 3;
+            if(v === 0) ctx.fillRect(48 + i*16, 48 + j*16, 12,12);
+            else if(v === 1){ ctx.fillStyle = '#79b8ff'; ctx.fillRect(48 + i*16, 48 + j*16, 6,6); ctx.fillStyle='#0b7dfa'; }
+          }
+        }
+      }catch(e){ /* ignore */ }
+
+      // === Car photo upload / capture support ===
+      const photoInput = document.getElementById('carPhotoInput');
+      const photoPreview = document.getElementById('carPhotoPreview');
+      const clearPhotoBtn = document.getElementById('clearPhoto');
+      const downloadBookingBtn = document.getElementById('downloadBooking');
+      const downloadReceipt = document.getElementById('downloadReceipt');
+
+      // if booking.img is a data URL (uploaded previously) use it; otherwise keep external URL
+      if(booking.img && booking.img.startsWith('data:')){
+        photoPreview.src = booking.img;
+      } else if(booking.img){
+        // keep the main car image also shown in preview (makes it explicit)
+        photoPreview.src = booking.img;
+      }
+
+      // helper to persist booking with image into localStorage
+      function persistBookingWithImage(dataUrl){
+        try{
+          booking.img = dataUrl;
+          // update storage entries we use across site
+          localStorage.setItem('last_booking', JSON.stringify(booking));
+          const key = 'sirmike_bookings_v1';
+          const all = JSON.parse(localStorage.getItem(key) || '[]');
+          const idx = all.findIndex(b => b.id === booking.id);
+          const copy = Object.assign({}, booking, { updatedAt: new Date().toISOString() });
+          if(idx >= 0){ all[idx] = copy; } else { all.unshift(copy); }
+          localStorage.setItem(key, JSON.stringify(all.slice(0,50)));
+        }catch(e){ console.warn('Could not persist booking image', e); }
+      }
+
+      photoInput.addEventListener('change', async (ev) => {
+        const f = ev.target.files && ev.target.files[0];
+        if(!f) return;
+        // limit size: if >2.5MB, resize client-side
+        const toDataURL = (file) => new Promise((res, rej) => {
+          const fr = new FileReader();
+          fr.onload = ()=> res(fr.result);
+          fr.onerror = rej;
+          fr.readAsDataURL(file);
+        });
+        try{
+          let dataUrl = await toDataURL(f);
+          // if large, attempt to downscale using canvas
+          if(dataUrl.length > 2.8e6){ // ~2.8MB
+            const img = new Image();
+            img.src = dataUrl;
+            await new Promise(r=> img.onload = r);
+            const maxW = 1200;
+            const scale = Math.min(1, maxW / img.width);
+            const c = document.createElement('canvas');
+            c.width = Math.round(img.width * scale);
+            c.height = Math.round(img.height * scale);
+            const cx = c.getContext('2d');
+            cx.drawImage(img,0,0,c.width,c.height);
+            dataUrl = c.toDataURL('image/jpeg', 0.78);
+          }
+          photoPreview.src = dataUrl;
+          persistBookingWithImage(dataUrl);
+        }catch(err){
+          console.warn('Image read failed', err);
+          alert('Unable to read the selected image.');
+        }
+      });
+
+      clearPhotoBtn.addEventListener('click', ()=>{
+        // reset to original booking image or placeholder
+        photoPreview.src = booking.img && !booking.img.startsWith('data:') ? booking.img : 'images/placeholder-car.jpg';
+        // remove data URL if it was stored
+        try{
+          const last = JSON.parse(localStorage.getItem('last_booking') || '{}');
+          if(last && last.id === booking.id && last.img && last.img.startsWith('data:')){
+            delete last.img;
+            localStorage.setItem('last_booking', JSON.stringify(last));
+          }
+          // update bookings list
+          const key = 'sirmike_bookings_v1';
+          const all = JSON.parse(localStorage.getItem(key) || '[]');
+          const idx = all.findIndex(b=>b.id===booking.id);
+          if(idx >= 0 && all[idx].img && all[idx].img.startsWith('data:')){ delete all[idx].img; localStorage.setItem(key, JSON.stringify(all)); }
+        }catch(e){}
+      });
+
+      // Download booking JSON (include dataURL image if present)
+      downloadBookingBtn.addEventListener('click', ()=>{
+        try{
+          const blob = new Blob([JSON.stringify(booking, null, 2)], { type: 'application/json' });
+          const url = URL.createObjectURL(blob);
+          downloadReceipt.href = url;
+          downloadReceipt.download = `${booking.id}.json`;
+          // trigger click for immediate download
+          downloadReceipt.click();
+          setTimeout(()=> URL.revokeObjectURL(url), 3000);
+        }catch(e){ console.warn(e); alert('Unable to prepare download'); }
+      });
+
+      // end of car photo support
+
+      // actions
+      document.getElementById('printBtn').addEventListener('click', ()=> window.print());
+
+      const logoutBtn = document.getElementById('logoutBtn');
+      if(logoutBtn){
+        logoutBtn.addEventListener('click', ()=> {
+          try{ localStorage.removeItem('sirmike_user'); sessionStorage.removeItem('sirmike_user'); }catch(e){}
+          logoutBtn.textContent = 'Logged out';
+          logoutBtn.disabled = true;
+          setTimeout(()=> location.href = 'home.html', 700);
+        });
+      }
+
+      // copy reference quick action
+      const refEl = document.getElementById('confRef');
+      refEl.style.cursor = 'pointer';
+      refEl.title = 'Click to copy booking reference';
+      refEl.addEventListener('click', ()=> {
+        try{ navigator.clipboard.writeText(booking.id); refEl.textContent = booking.id + ' ✓'; setTimeout(()=> refEl.textContent = booking.id, 1400); }catch(e){}
+      });
+    })();
+  </script>
+</body>
+</html>

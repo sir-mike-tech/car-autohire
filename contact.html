@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact — Sir Mike AutoHire</title>
+  <meta name="description" content="Contact Sir Mike AutoHire — 24/7 support, bookings, partnerships and general enquiries." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --accent:#0b7dfa;
+      --accent-600:#0767c9;
+      --bg:#f4f8ff;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --dark:#0f1724;
+      --success:#0b7a3a;
+      --danger:#b00020;
+      --radius:14px;
+      --shadow-sm:0 10px 30px rgba(12,18,30,0.06);
+      --shadow-md:0 22px 48px rgba(12,18,30,0.08);
+      --glass: rgba(255,255,255,0.6);
+      --maxw:1100px;
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    }
+
+    /* Reset + base */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      min-height:100%;
+      background:linear-gradient(180deg,var(--bg),#ffffff 70%);
+      color:var(--dark);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      font-size:16px;
+      line-height:1.45;
+      position:relative;
+      isolation:isolate;
+    }
+
+    /* Decorative background shapes (subtle, non-distracting) */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:-20% -10% auto -10%;
+      height:60vh;
+      background:
+        radial-gradient(600px 420px at 10% 20%, rgba(11,125,250,0.12), transparent 20%),
+        radial-gradient(520px 380px at 90% 80%, rgba(3,185,150,0.06), transparent 18%);
+      filter: blur(48px) saturate(1.02);
+      z-index:-2;
+      pointer-events:none;
+    }
+    body::after{
+      content:"";
+      position:fixed;
+      inset:auto -10% -20% -10%;
+      height:50vh;
+      background: radial-gradient(circle at 70% 20%, rgba(11,125,250,0.04), transparent 20%);
+      filter: blur(38px);
+      z-index:-3;
+      pointer-events:none;
+      animation: floatBg 20s ease-in-out infinite;
+    }
+    @keyframes floatBg { 0%{transform:translateY(0)} 50%{transform:translateY(-18px)} 100%{transform:translateY(0)} }
+
+    .container{max-width:var(--maxw);margin:0 auto;padding:28px;position:relative;z-index:1}
+
+    /* Header */
+    header{display:flex;align-items:center;justify-content:space-between;padding:8px 0;margin-bottom:8px}
+    .brand{display:flex;gap:12px;align-items:center;font-weight:800}
+    .brand img{height:44px;border-radius:10px;display:block}
+    nav a{margin-left:12px;text-decoration:none;color:var(--dark);font-weight:600;padding:8px;border-radius:10px;transition:all .12s}
+    nav a:hover{background:rgba(11,125,250,0.06);color:var(--accent-600)}
+    nav a[aria-current="page"]{background:linear-gradient(90deg, rgba(11,125,250,0.08), rgba(11,125,250,0.02));}
+
+    /* Layout */
+    main{display:grid;grid-template-columns:1fr 380px;gap:24px;align-items:start}
+    @media(max-width:980px){ main{grid-template-columns:1fr} .aside{order:2} }
+
+    /* Hero / intro */
+    .hero{
+      background:linear-gradient(180deg,#fff,#fbfdff);
+      padding:20px;border-radius:16px;box-shadow:var(--shadow-md);
+      display:flex;gap:16px;align-items:center;
+    }
+    .hero img{width:120px;height:88px;object-fit:cover;border-radius:10px;flex-shrink:0}
+    .hero h1{margin:0;font-size:20px}
+    .hero p{margin:6px 0 0;color:var(--muted)}
+
+    /* Cards & form */
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:var(--shadow-sm);transition:transform .15s ease,box-shadow .15s ease}
+    .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+    .field{display:flex;flex-direction:column;margin-bottom:12px}
+    label{font-size:13px;color:var(--muted);margin-bottom:6px}
+    input[type="text"], input[type="email"], input[type="tel"], textarea, select{
+      padding:12px;border-radius:10px;border:1px solid #e7eefb;background:linear-gradient(180deg,#fff,#fbfdff);font-size:14px;transition:box-shadow .12s, border-color .12s;
+    }
+    input:focus, textarea:focus, select:focus{outline:none;border-color:var(--accent-600);box-shadow:0 8px 24px rgba(11,125,250,0.08)}
+    textarea{min-height:120px;resize:vertical}
+
+    .row{display:flex;gap:12px}
+    .row .field{flex:1}
+
+    .btn{
+      background:linear-gradient(90deg,var(--accent),var(--accent-600));
+      color:#fff;padding:10px 14px;border-radius:10px;border:0;font-weight:700;cursor:pointer;
+      box-shadow:0 12px 30px rgba(11,125,250,0.12);transition:transform .12s, box-shadow .12s;
+    }
+    .btn:hover{transform:translateY(-3px)}
+    .ghost{background:transparent;border:1px solid rgba(11,125,250,0.08);padding:9px 12px;border-radius:10px;cursor:pointer}
+
+    .muted{color:var(--muted)}
+    .help{font-size:13px;color:var(--muted);margin-top:8px}
+
+    .aside{display:flex;flex-direction:column;gap:12px;position:sticky;top:86px}
+
+    .contact-info .row{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+    .icon{width:44px;height:44px;border-radius:10px;background:linear-gradient(180deg,var(--accent),var(--accent-600));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800}
+
+    .map{height:220px;border-radius:10px;overflow:hidden;border:1px solid #eef6ff}
+    .faq details{background:linear-gradient(180deg,#fff,#fbfdff);padding:10px;border-radius:10px;margin-bottom:8px;border:1px solid rgba(11,125,250,0.04)}
+
+    .notice{background:#fff7e6;border-left:4px solid #ffd28a;padding:10px;border-radius:8px;color:#8a5b00}
+
+    /* success notice / animation */
+    .success{
+      display:none;
+      align-items:flex-start;
+      gap:12px;
+      padding:12px;
+      border-radius:10px;
+      background:linear-gradient(180deg,#eefdf3,#f7fff6);
+      border-left:4px solid var(--success);
+      color:var(--success);
+      box-shadow:0 10px 30px rgba(11,125,250,0.06);
+      font-weight:700;
+    }
+    .success.show{display:flex;animation:noticeIn .36s ease both}
+    @keyframes noticeIn{ from{transform:translateY(-8px);opacity:0} to{transform:none;opacity:1} }
+
+    /* Micro-interactions and reveal animations */
+    :root{ --ease: cubic-bezier(.2,.9,.2,1); }
+    .reveal{opacity:0;transform:translateY(10px);transition:opacity .62s var(--ease),transform .62s var(--ease);will-change:opacity,transform}
+    .reveal.in{opacity:1;transform:none}
+
+    /* Hero subtle hover lift */
+    .hero{transition:transform .28s var(--ease),box-shadow .28s var(--ease)}
+    .hero:hover{transform:translateY(-6px);box-shadow:0 30px 60px rgba(12,18,30,0.08)}
+    .hero img{transition:transform .5s var(--ease),filter .3s}
+    .hero:hover img{transform:translateY(-8px) scale(1.02);filter:brightness(.98)}
+
+    /* Card polish */
+    .card{transition:transform .18s var(--ease),box-shadow .18s var(--ease),border-color .18s}
+    .card:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(12,18,30,0.08)}
+    .card::after{content:'';position:absolute;inset:auto 12px 12px auto;width:72px;height:6px;border-radius:6px;background:linear-gradient(90deg,var(--accent),var(--accent-600));opacity:0;transform:translateY(6px);transition:opacity .22s,transform .22s}
+    .card:hover::after{opacity:1;transform:none}
+    .card{position:relative;overflow:visible}
+
+    /* Icon interactions */
+    .icon{transition:transform .32s var(--ease),box-shadow .32s}
+    .icon:hover{transform:scale(1.06) rotate(-6deg);box-shadow:0 8px 22px rgba(11,125,250,0.08)}
+
+    /* Button micro-interactions */
+    .btn{position:relative;overflow:visible}
+    .btn::after{content:'';position:absolute;inset:auto 8px 8px auto;width:10px;height:10px;border-radius:3px;background:rgba(255,255,255,0.12);transform:translateY(4px);opacity:0;transition:opacity .18s,transform .28s}
+    .btn:hover::after{opacity:1;transform:translateY(0)}
+
+    /* Map hover */
+    .map{transition:transform .28s var(--ease),box-shadow .28s}
+    .map:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(12,18,30,0.06)}
+
+    @media (prefers-reduced-motion: reduce){
+      .reveal, .hero, .card, .icon, .map, .btn{transition:none!important;transform:none!important;opacity:1!important}
+    }
+
+    /* small screens */
+    @media(max-width:640px){
+      .hero img{display:none}
+      .aside{position:static}
+      .row{flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="container">
+    <header>
+      <div class="brand">
+        <img src="assets/logo.png" alt="Sir Mike AutoHire" onerror="this.style.display='none'">
+        <div>
+          <div style="font-weight:800">Sir Mike AutoHire</div>
+          <div style="font-size:13px;color:var(--muted)">Drive Your Dream Today</div>
+        </div>
+      </div>
+
+      <nav aria-label="Primary">
+        <a href="home.html">Home</a>
+        <a href="cars.html">Our Cars</a>
+        <a href="booking.html">Book Now</a>
+        <a href="about.html">About</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="contact.html" aria-current="page">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section>
+  <div class="hero card reveal" aria-labelledby="contact-title">
+          <div style="flex:1">
+            <h1 id="contact-title">Get in touch</h1>
+            <p>Questions about bookings, partnerships or support? Send us a message or reach us by phone / email. We reply quickly.</p>
+            <div style="margin-top:10px" class="help">Office: Nairobi • Mon–Sun 08:00–20:00</div>
+          </div>
+          <img src="assets/contact-hero.jpg" alt="Contact Sir Mike AutoHire" onerror="this.src='https://via.placeholder.com/360x220?text=Contact'">
+        </div>
+
+  <div class="card reveal" style="margin-top:16px" aria-labelledby="form-title">
+          <h2 id="form-title" style="margin:0 0 8px">Send us a message</h2>
+
+          <div id="sentNotice" class="success" role="status" aria-live="polite">
+            <svg width="20" height="20" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:2px"><path fill="currentColor" d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
+            <div id="sentText" style="font-weight:700">Message sent — reference CT00000001. We will contact you shortly.</div>
+          </div>
+
+          <form id="contactForm" action="https://formspree.io/f/xgvrekyn" method="POST" novalidate>
+            <input type="hidden" name="_subject" value="Website contact message">
+            <input type="hidden" name="_captcha" value="false">
+            <div class="row">
+              <div class="field">
+                <label for="name">Full name</label>
+                <input id="name" name="name" type="text" placeholder="e.g. sir mike" required>
+              </div>
+              <div class="field">
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" type="tel" placeholder="+2547xxxxxxxx" required>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="name@example.com" required>
+            </div>
+
+            <div class="field">
+              <label for="topic">Topic</label>
+              <select id="topic" name="topic">
+                <option>General enquiry</option>
+                <option>Booking support</option>
+                <option>Fleet & partnerships</option>
+                <option>Feedback / complaint</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="How can we help?" required></textarea>
+            </div>
+
+            <div style="display:flex;gap:10px;align-items:center;margin-top:8px">
+              <button class="btn" type="submit">Send message</button>
+              <button class="ghost" type="button" id="clearBtn">Clear</button>
+              <div style="margin-left:auto" class="muted">We aim to respond within 2 hours.</div>
+            </div>
+
+            <div id="formError" class="muted" style="color:var(--danger);display:none;margin-top:8px">Please complete required fields.</div>
+          </form>
+        </div>
+
+  <div class="card reveal" style="margin-top:14px">
+          <h3 style="margin:0 0 8px">Other ways to reach us</h3>
+          <div class="row contact-info">
+            <div class="row" style="align-items:center">
+              <div class="icon">☎</div>
+              <div>
+                <div style="font-weight:700">Call / WhatsApp</div>
+                <div class="muted">0707480602</div>
+              </div>
+            </div>
+
+            <div class="row" style="align-items:center">
+              <div class="icon">✉</div>
+              <div>
+                <div style="font-weight:700">Email</div>
+                <div class="muted">sirmike6072@gmail.com</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px" class="notice">
+            For urgent issues (roadside assistance) call the number above — we provide 24/7 support.
+          </div>
+        </div>
+      </section>
+
+      <aside class="aside">
+  <div class="card reveal">
+          <h3 style="margin:0 0 8px">Visit / Pickup</h3>
+          <div class="muted">Office & pickup location</div>
+          <div style="margin-top:8px;font-weight:700">NairobiCentral Branch</div>
+          <div class="muted" style="margin-top:6px">1234 Ring Road, Nairobi, Kenya</div>
+          <div style="margin-top:12px" class="muted">Parking & easy pickup available. Call before arrival to confirm vehicle readiness.</div>
+        </div>
+
+        <div class="card">
+          <h3 style="margin:0 0 8px">Map</h3>
+          <div class="map" id="mapContainer" role="region" aria-label="Map showing office">
+            <!-- Thika location: bbox around Thika town, marker placed at approx -1.0333, 37.0694 -->
+            <iframe
+              src="https://www.openstreetmap.org/export/embed.html?bbox=37.020%2C-1.100%2C37.120%2C-0.980&amp;layer=mapnik&amp;marker=-1.0333%2C37.0694"
+              style="width:100%;height:100%;border:0"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Map showing Thika office location"></iframe>
+          </div>
+        </div>
+
+  <div class="card faq reveal">
+          <h3 style="margin:0 0 8px">FAQ</h3>
+          <details><summary>How do I change or cancel a booking?</summary><div class="muted" style="margin-top:8px">Contact us with your booking reference — cancellations free up to 24 hours prior. Fees may apply for late changes.</div></details>
+          <details><summary>Do you provide insurance?</summary><div class="muted" style="margin-top:8px">Yes — all vehicles are insured. Additional insurance options are available at booking.</div></details>
+          <details><summary>Can I request airport delivery?</summary><div class="muted" style="margin-top:8px">Yes — select pickup location as 'Airport' and we'll arrange delivery (fees may apply).</div></details>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      <div class="muted" style="text-align:center">© Sir Mike AutoHire 2025 • Phone: 0707480602 • sirmike6072@gmail.com</div>
+    </footer>
+  </div>
+
+  <script>
+    (function(){
+      const form = document.getElementById('contactForm');
+      const clearBtn = document.getElementById('clearBtn');
+      const formError = document.getElementById('formError');
+      const sentNotice = document.getElementById('sentNotice');
+      const sentText = document.getElementById('sentText');
+
+      function validate(){
+        const name = document.getElementById('name').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+        if(!name || !phone || !email || !message) return false;
+        return true;
+      }
+
+      function showSuccess(reference){
+        sentText.textContent = 'Message sent — reference ' + reference + '. We will contact you shortly.';
+        sentNotice.classList.add('show');
+        // politely move focus for screen readers
+        sentNotice.setAttribute('tabindex','-1');
+        sentNotice.focus({preventScroll:true});
+        // auto-hide unless reduced motion preferred
+        if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+          setTimeout(()=> sentNotice.classList.remove('show'), 12000);
+        }
+      }
+
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+  formError.style.display = 'none';
+  sentNotice.classList.remove('show');
+
+        if(!validate()){
+          formError.style.display = 'block';
+          return;
+        }
+
+        // Show an immediate sending notice
+        sentText.textContent = 'Sending…';
+        sentNotice.classList.add('show');
+
+        const reference = 'CT' + Date.now().toString().slice(-8);
+
+        // Build a FormData object from the form so Formspree receives the fields
+        const formData = new FormData(form);
+        formData.append('reference', reference);
+
+        // Send to Formspree endpoint (replace YOUR_FORM_ID in form action with real ID)
+        fetch(form.action, {
+          method: form.method || 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        }).then(function(response){
+          if(response.ok){
+            // persist locally for demo/backup
+            try{
+              const payload = {
+                id: reference,
+                name: formData.get('name'),
+                phone: formData.get('phone'),
+                email: formData.get('email'),
+                topic: formData.get('topic'),
+                message: formData.get('message'),
+                date: new Date().toISOString()
+              };
+              const key = 'sirmike_contacts_v1';
+              const existing = JSON.parse(localStorage.getItem(key) || '[]');
+              existing.unshift(payload);
+              localStorage.setItem(key, JSON.stringify(existing));
+            }catch(e){}
+
+            // update notice with final reference
+            sentText.textContent = 'Message sent — reference ' + reference + '. We will contact you shortly.';
+            // keep visible then auto-hide as before
+            if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+              setTimeout(()=> sentNotice.classList.remove('show'), 12000);
+            }
+            form.reset();
+          } else {
+            return response.json().then(function(data){
+              throw data;
+            });
+          }
+        }).catch(function(err){
+          console.error('Formspree error', err);
+          // hide sending notice
+          sentNotice.classList.remove('show');
+          formError.textContent = 'Could not send message. Please try again later or email sirmike6072@gmail.com.';
+          formError.style.display = 'block';
+        });
+      });
+
+      clearBtn.addEventListener('click', ()=>{ form.reset(); formError.style.display='none'; sentNotice.classList.remove('show'); });
+
+      // Map fallback
+      const iframe = document.querySelector('#mapContainer iframe');
+      iframe.addEventListener('error', ()=> {
+        const c = document.getElementById('mapContainer');
+        c.innerHTML = '<div style="padding:18px;color:var(--muted)">Map unavailable. Our address: 1234 Ring Road, Nairobi.</div>';
+      });
+
+      // Image fallback
+      document.querySelectorAll('img').forEach(img=>{
+        img.addEventListener('error', ()=> {
+          if(!img.dataset.fallbackUsed){ img.dataset.fallbackUsed = '1'; img.src = 'https://via.placeholder.com/360x220?text=Sir+Mike+AutoHire'; }
+        }, {once:true});
+      });
+
+      // Respect reduced motion
+      if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+        document.documentElement.style.scrollBehavior = 'auto';
+      }
+
+      // Reveal on scroll for elements with .reveal
+      (function(){
+        if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        try{
+          const obs = new IntersectionObserver((entries)=>{
+            entries.forEach(en=>{
+              if(en.isIntersecting) en.target.classList.add('in');
+            });
+          },{threshold:0.12,rootMargin:'-6% 0px'});
+          document.querySelectorAll('.reveal').forEach(el=> obs.observe(el));
+        }catch(e){}
+      })();
+    })();
+  </script>
+
+  <!-- Start of Tawk.to Script -->
+  <script type="text/javascript">
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+    var s1=document.createElement("script"), s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/68ef972a1eb897194e018d9b/1j7jucvvs';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+  })();
+
+  (function ensureTawkVisible(){
+    function liftTawk(){
+      try{
+        const selectors = [
+          'iframe[src*="tawk.to"]',
+          'iframe[src*="tawk"]',
+          'div#tawkchat-minified',
+          '.tawk-min-container',
+          '.tawk-chat-iframe',
+          '.tawk-sidebar',
+          '.tawk-minified',
+          '.tawk-button',
+          '#tawk-chat'
+        ];
+        selectors.forEach(sel => {
+          document.querySelectorAll(sel).forEach(el => {
+            el.style.zIndex = '2147483647';
+            el.style.pointerEvents = 'auto';
+            el.style.visibility = 'visible';
+            el.style.display = 'block';
+            el.style.opacity = '1';
+            // ensure fixed placement if the widget missed positioning
+            if(getComputedStyle(el).position === 'static') el.style.position = 'fixed';
+            if(!el.style.right) el.style.right = '18px';
+            if(!el.style.bottom) el.style.bottom = '18px';
+          });
+        });
+
+        // raise parents of any tawk iframe found
+        document.querySelectorAll('iframe').forEach(f => {
+          try{
+            if(f.src && f.src.indexOf('tawk.to') !== -1){
+              let p = f.parentElement;
+              while(p && p !== document.body){
+                p.style.zIndex = '2147483647';
+                p = p.parentElement;
+              }
+            }
+          }catch(e){}
+        });
+      }catch(e){}
+    }
+
+    // run after load and shortly after insertion (widget may inject late)
+    window.addEventListener('load', ()=> setTimeout(liftTawk, 700));
+    setTimeout(liftTawk, 1400);
+
+    // watch DOM for late injections and raise widget when added
+    try{
+      const mo = new MutationObserver(liftTawk);
+      mo.observe(document.body, { childList: true, subtree: true });
+      // disconnect after 30s to avoid long running observer
+      setTimeout(()=> mo.disconnect(), 30000);
+    }catch(e){}
+  })();
+
+  /* Strong fallback: inject CSS rules to force widget visibility/placement.
+     This covers cases where the widget is added inside an unexpected container. */
+  (function injectTawkCSS(){
+    try{
+      const css = `
+iframe[src*="tawk.to"],
+iframe[src*="tawk"],
+.tawk-minified,
+.tawk-min-container,
+.tawk-chat-iframe,
+.tawk-sidebar,
+.tawk-button,
+#tawk-chat,
+#tawkchat-minified {
+  position: fixed !important;
+  right: 18px !important;
+  bottom: 18px !important;
+  z-index: 2147483647 !important;
+  visibility: visible !important;
+  display: block !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transform: none !important;
+}
+`;
+      const s = document.createElement('style');
+      s.type = 'text/css';
+      s.appendChild(document.createTextNode(css));
+      (document.head || document.documentElement).appendChild(s);
+      // final attempt to lift inline elements shortly after injection
+      setTimeout(function(){ try{ (function(){ const ev = new Event('load'); window.dispatchEvent(ev); } )(); }catch(e){} }, 900);
+    }catch(e){}
+  })();
+  </script>
+  <!-- End of Tawk.to Script -->
+</body>
+</html>

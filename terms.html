@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Terms & Conditions — Sir Mike AutoHire</title>
+  <meta name="description" content="Terms and conditions for renting vehicles from Sir Mike AutoHire. Please read carefully before booking." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    :root{
+      --accent:#0b7dfa; --accent-600:#0966c9; --muted:#6b7280; --dark:#0f1724;
+      --bg:#f6f8fb; --card:#fff; --radius:12px; --container:1100px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:linear-gradient(180deg,var(--bg),#fff);color:var(--dark);-webkit-font-smoothing:antialiased}
+    .container{max-width:var(--container);margin:28px auto;padding:20px}
+    header{display:flex;justify-content:space-between;align-items:center;padding:12px 0;gap:12px;flex-wrap:wrap}
+    .brand{font-weight:800;color:var(--dark);display:flex;gap:12px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;margin-left:12px;font-weight:600}
+    .card{background:var(--card);border-radius:12px;padding:20px;box-shadow:0 10px 30px rgba(12,18,30,0.04);border:1px solid rgba(11,125,250,0.04)}
+    h1{margin:0 0 8px;font-size:24px}
+    h2{margin-top:18px;font-size:18px}
+    p, li{color:#243746;font-size:15px;line-height:1.6}
+    ul{margin:8px 0 0 20px}
+    .muted{color:var(--muted)}
+    footer{margin-top:22px;color:var(--muted);font-size:14px;padding-top:12px;border-top:1px solid rgba(12,18,30,0.04)}
+    a.button{display:inline-block;background:var(--accent);color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:700}
+    .toc{background:linear-gradient(180deg,#fff,#fbfdff);padding:12px;border-radius:10px;border:1px solid rgba(11,125,250,0.04);box-shadow:0 8px 24px rgba(11,125,250,0.04)}
+    .toc a{display:block;padding:8px 6px;color:var(--accent-600);font-weight:600;text-decoration:none;border-radius:6px}
+    .meta-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:8px}
+    .controls{margin-left:auto;display:flex;gap:8px;align-items:center}
+    .agree-row{display:flex;gap:10px;align-items:center;margin-top:14px}
+    .agree-row input{width:18px;height:18px}
+    .print-btn{background:transparent;border:1px solid rgba(11,125,250,0.08);padding:8px 10px;border-radius:10px;cursor:pointer}
+    /* two-column layout */
+    .main-layout{display:grid;grid-template-columns:1fr 320px;gap:18px;margin-top:18px;align-items:start}
+    .summary{background:linear-gradient(180deg,#fff,#fbfdff);padding:14px;border-radius:10px;border:1px solid rgba(11,125,250,0.04)}
+    .summary strong{display:block;margin-bottom:6px}
+    .last-updated{font-size:13px;color:var(--muted)}
+    @media(max-width:980px){ .main-layout{grid-template-columns:1fr} .controls{margin-left:0} nav a{display:none} }
+
+    /* Animations */
+    @media (prefers-reduced-motion: no-preference) {
+      /* subtle heading shimmer */
+      .shimmer {
+        background: linear-gradient(90deg, rgba(11,125,250,0.06) 0%, rgba(11,125,250,0.18) 50%, rgba(11,125,250,0.06) 100%);
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: shimmer 2.6s linear infinite;
+      }
+      @keyframes shimmer {
+        0% { background-position: -120% 0; }
+        100% { background-position: 120% 0; }
+      }
+
+      /* fade-up reveal */
+      .animate-on-scroll { opacity: 0; transform: translateY(10px); transition: opacity .6s ease, transform .6s cubic-bezier(.2,.9,.2,1); will-change:transform,opacity; }
+      .animate-on-scroll.visible { opacity: 1; transform: none; }
+
+      /* gentle bounce for CTA */
+      .button{ transition: transform .18s ease, box-shadow .18s ease; }
+      .button:hover{ transform: translateY(-4px); box-shadow: 0 14px 36px rgba(11,125,250,0.12); }
+
+      /* toc highlight */
+      .toc a.active { background: linear-gradient(90deg, rgba(11,125,250,0.12), rgba(11,125,250,0.06)); color: var(--dark); transform: translateX(4px); transition: transform .2s ease; }
+
+      /* subtle pulse for the print button */
+      .print-btn { transition: box-shadow .24s ease, transform .18s ease; }
+      .print-btn:hover { box-shadow: 0 8px 30px rgba(11,125,250,0.06); transform: translateY(-3px); }
+
+      /* accordion-like list reveal for subsections */
+      .toc a { transition: background .18s ease, transform .18s ease; }
+    }
+
+    /* fallback for reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .animate-on-scroll, .shimmer, .button, .print-btn { animation: none !important; transition: none !important; transform: none !important; opacity: 1 !important; }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <img src="assets/logo.png" alt="Sir Mike AutoHire" style="height:44px;border-radius:8px" onerror="this.style.display='none'">
+        <div>
+          <div style="font-weight:900" class="shimmer">Sir Mike AutoHire</div>
+          <div class="muted small">Terms & Conditions</div>
+        </div>
+      </div>
+
+      <nav aria-label="Main navigation">
+        <a href="home.html">Home</a>
+        <a href="cars.html">Cars</a>
+        <a href="booking.html">Book</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="controls">
+        <button class="print-btn" id="printBtn" aria-label="Print terms">Print</button>
+        <a class="button" href="booking.html">Start booking</a>
+      </div>
+    </header>
+
+    <main class="card" role="main" aria-labelledby="terms-title">
+      <div style="display:flex;align-items:flex-start;gap:18px;flex-wrap:wrap">
+        <div style="flex:1;min-width:260px">
+          <h1 id="terms-title" class="shimmer">Terms & Conditions</h1>
+          <div class="meta-row">
+            <div class="last-updated animate-on-scroll" id="lastUpdated">Last updated: 15 November 2025</div>
+            <div class="muted small">Please read carefully before booking.</div>
+          </div>
+
+          <div class="main-layout">
+            <section>
+              <p class="animate-on-scroll">Please read these Terms & Conditions ("Terms") carefully before using Sir Mike AutoHire services. By booking or using our vehicles you agree to these Terms. If you do not agree, do not book or drive our vehicles.</p>
+
+              <h2 id="booking-terms" class="animate-on-scroll">1. Booking & Confirmation</h2>
+              <ul class="animate-on-scroll">
+                <li>All bookings are subject to availability and confirmation. A booking is confirmed only when you receive a booking confirmation from us.</li>
+                <li>Prices shown are indicative and may change until the booking is confirmed. Any quoted price includes applicable taxes unless stated otherwise.</li>
+              </ul>
+
+              <h2 id="driver-req" class="animate-on-scroll">2. Driver Requirements</h2>
+              <ul class="animate-on-scroll">
+                <li>Drivers must meet the minimum age requirement stated per vehicle class (typically 21–25 years) and hold a valid driving licence recognised in the country of hire.</li>
+                <li>Additional documentation (passport, ID, proof of address) may be required at pickup.</li>
+              </ul>
+
+              <h2 id="payments" class="animate-on-scroll">3. Payments, Deposits & Security</h2>
+              <ul class="animate-on-scroll">
+                <li>Payment methods and deposit requirements are shown at booking. A security deposit may be held on your card at pickup and released after the vehicle is returned subject to inspection.</li>
+                <li>Late or failed payments may result in booking cancellation and additional fees.</li>
+              </ul>
+
+              <h2 id="cancellations" class="animate-on-scroll">4. Cancellations & Amendments</h2>
+              <ul class="animate-on-scroll">
+                <li>Cancellation and amendment policies vary by rate and are displayed at booking. Refunds (if applicable) will be processed according to the selected rate rules.</li>
+                <li>Changes requested after pickup are subject to availability and additional charges may apply.</li>
+              </ul>
+
+              <h2 id="vehicle-use" class="animate-on-scroll">5. Vehicle Use & Restrictions</h2>
+              <ul class="animate-on-scroll">
+                <li>Vehicles must be used in accordance with local laws and the rental agreement. Off‑road use, racing, or use for illegal purposes is strictly prohibited.</li>
+                <li>The vehicle must be returned in the same condition as at pickup, reasonable wear excepted. You are responsible for any damage or loss not covered by insurance or waiver options.</li>
+              </ul>
+
+              <h2 id="insurance" class="animate-on-scroll">6. Insurance, Excess & Waivers</h2>
+              <ul class="animate-on-scroll">
+                <li>Standard insurance details (third‑party liability, theft, collision cover) are described in your rental agreement. Insurance may carry an excess which is your responsibility in case of a claim.</li>
+                <li>We may offer optional waivers (e.g., Collision Damage Waiver) to reduce or remove the excess for an additional fee. Waivers have terms and exclusions — read them carefully.</li>
+              </ul>
+
+              <h2 id="fuel" class="animate-on-scroll">7. Fuel Policy</h2>
+              <ul class="animate-on-scroll">
+                <li>Fuel policies (full‑to‑full, pre‑purchase) are specified at booking. Return the vehicle with the agreed fuel level or you may be charged a refuelling fee.</li>
+              </ul>
+
+              <h2 id="breakdown" class="animate-on-scroll">8. Breakdowns & Roadside Assistance</h2>
+              <ul class="animate-on-scroll">
+                <li>Report mechanical problems immediately to our support number. We provide roadside assistance where included or as an optional service. Do not attempt repairs without authorisation unless for safety.</li>
+              </ul>
+
+              <h2 id="damage" class="animate-on-scroll">9. Damage Reporting & Claims</h2>
+              <ul class="animate-on-scroll">
+                <li>In the event of damage, theft or an accident, stop safely, contact emergency services if needed and notify Sir Mike AutoHire promptly. Document the scene (photos, third‑party details) and follow the claims procedure provided in the rental pack.</li>
+              </ul>
+
+              <h2 id="privacy" class="animate-on-scroll">10. Privacy & Data</h2>
+              <p class="muted animate-on-scroll">Our use of personal data is governed by our <a href="privacy.html">Privacy Policy</a>. By using our services you consent to processing of personal data as described in that policy.</p>
+
+              <h2 id="complaints" class="animate-on-scroll">11. Complaints & Refunds</h2>
+              <ul class="animate-on-scroll">
+                <li>For service issues or complaints, please contact our support team at <a href="mailto:sirmike6072@gmail.com">sirmike6072@gmail.com</a> or call 0707 480 602. We aim to respond promptly and fairly.</li>
+              </ul>
+
+              <h2 id="liability" class="animate-on-scroll">12. Limitation of Liability</h2>
+              <p class="animate-on-scroll">To the extent permitted by law, Sir Mike AutoHire's liability for any loss or damage arising out of or in connection with the rental is limited to direct losses and excludes indirect or consequential losses. Nothing in these Terms excludes liability that cannot be excluded by law.</p>
+
+              <h2 id="law" class="animate-on-scroll">13. Governing Law & Jurisdiction</h2>
+              <p class="animate-on-scroll">These Terms are governed by the laws of Kenya. Any dispute arising from these Terms will be subject to the exclusive jurisdiction of the courts of Kenya, unless otherwise agreed in writing.</p>
+
+              <h2 id="changes" class="animate-on-scroll">14. Changes to Terms</h2>
+              <p class="animate-on-scroll">We may update these Terms from time to time. Material changes will be communicated on this page with an updated "Last updated" date. Your continued use of our services after changes indicates acceptance of the updated Terms.</p>
+
+              <h2 id="contact" class="animate-on-scroll">Contact</h2>
+              <p class="animate-on-scroll">If you have questions about these Terms, contact our support team: <strong>0707 480 602</strong> or <a href="mailto:sirmike6072@gmail.com">sirmike6072@gmail.com</a>.</p>
+
+              <div class="agree-row animate-on-scroll" aria-hidden="false">
+                <label style="display:flex;align-items:center;gap:8px">
+                  <input id="acceptTerms" type="checkbox" aria-label="I agree to terms">
+                  <span class="muted">I have read and agree to the Terms & Conditions.</span>
+                </label>
+                <button id="agreeBtn" class="button" disabled>Agree & Continue</button>
+              </div>
+            </section>
+
+            <aside>
+              <div class="toc animate-on-scroll" aria-label="Table of contents">
+                <strong>On this page</strong>
+                <a href="#booking-terms">Booking & Confirmation</a>
+                <a href="#driver-req">Driver Requirements</a>
+                <a href="#payments">Payments & Deposits</a>
+                <a href="#cancellations">Cancellations</a>
+                <a href="#vehicle-use">Vehicle Use</a>
+                <a href="#insurance">Insurance</a>
+                <a href="#fuel">Fuel Policy</a>
+                <a href="#breakdown">Breakdowns</a>
+                <a href="#damage">Damage Reporting</a>
+                <a href="#privacy">Privacy</a>
+                <a href="#contact">Contact</a>
+                <div style="margin-top:12px" class="summary">
+                  <strong>Quick summary</strong>
+                  <div class="muted-small">Keep ID, valid licence and a contact phone. Read fuel & insurance rules. Contact support for issues.</div>
+                  <div style="margin-top:10px;font-size:13px;color:var(--muted)">Need help? <a href="contact.html" style="color:var(--accent)">Contact support</a></div>
+                </div>
+              </div>
+            </aside>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+
+    <footer>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:18px">
+        <div><strong>Sir Mike AutoHire</strong><div class="muted" style="margin-top:6px">Nairobi, Kenya</div></div>
+        <div class="muted">© Sir Mike AutoHire — <span id="currentYear"></span></div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // small behaviours + animations: reveal on scroll, toc active, print, agree flow and last-updated/year
+    (function(){
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
+      // enable agree when checkbox checked
+      const checkbox = document.getElementById('acceptTerms');
+      const agreeBtn = document.getElementById('agreeBtn');
+      checkbox.addEventListener('change', ()=> { agreeBtn.disabled = !checkbox.checked; });
+      agreeBtn.addEventListener('click', ()=> {
+        localStorage.setItem('sm_terms_accepted', JSON.stringify({ accepted: true, at: Date.now() }));
+        window.location.href = 'booking.html';
+      });
+
+      // print button
+      document.getElementById('printBtn').addEventListener('click', ()=> window.print());
+
+      // update last-updated dynamically (keeps markup accessible)
+      const lu = document.getElementById('lastUpdated');
+      if(!lu.textContent || lu.textContent.trim() === ''){
+        const d = new Date();
+        lu.textContent = 'Last updated: ' + d.toLocaleDateString();
+      }
+
+      // smooth scroll for TOC links and close mobile nav behaviour
+      document.querySelectorAll('.toc a').forEach(a=>{
+        a.addEventListener('click', (e)=>{
+          e.preventDefault();
+          const t = document.querySelector(a.getAttribute('href'));
+          if(t) t.scrollIntoView({behavior:'smooth', block:'start'});
+        });
+      });
+
+      // IntersectionObserver to reveal elements and track active TOC
+      const observerOptions = { root: null, rootMargin: '0px 0px -18% 0px', threshold: 0.12 };
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(ent=>{
+          const el = ent.target;
+          if(ent.isIntersecting){
+            el.classList.add('visible');
+            // mark toc link active if this is a section heading
+            if(el.id){
+              document.querySelectorAll('.toc a').forEach(a=> a.classList.remove('active'));
+              const link = document.querySelector('.toc a[href="#' + el.id + '"]');
+              if(link) link.classList.add('active');
+            }
+          }
+        });
+      }, observerOptions);
+
+      // observe relevant elements
+      const targets = document.querySelectorAll('.animate-on-scroll, h2[id], p');
+      targets.forEach(t => io.observe(t));
+
+      // keyboard accessibility for toc: support arrow navigation
+      const tocLinks = Array.from(document.querySelectorAll('.toc a'));
+      tocLinks.forEach((lnk, i) => {
+        lnk.setAttribute('tabindex', '0');
+        lnk.addEventListener('keydown', (e) => {
+          if(e.key === 'ArrowDown') { e.preventDefault(); const next = tocLinks[i+1]; if(next) next.focus(); }
+          if(e.key === 'ArrowUp') { e.preventDefault(); const prev = tocLinks[i-1]; if(prev) prev.focus(); }
+        });
+      });
+
+      // small polyfill: if IntersectionObserver not supported, reveal all
+      if(!('IntersectionObserver' in window)){
+        document.querySelectorAll('.animate-on-scroll').forEach(el=> el.classList.add('visible'));
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Reviews — Sir Mike AutoHire</title>
+  <meta name="description" content="Customer reviews and ratings for Sir Mike AutoHire — read feedback, leave a review and see our average rating." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+  :root{
+    --accent:#0b7dfa;
+    --accent-600:#0966c9;
+    --accent-700:#054ea8;
+    --dark:#0f1724;
+    --muted:#6b7280;
+    --card:#ffffff;
+    --bg-start:#f8fbff;
+    --bg-end:#f6f9ff;
+    --shadow-sm:0 8px 24px rgba(12,18,30,0.06);
+    --shadow-md:0 18px 48px rgba(12,18,30,0.08);
+    --radius:12px;
+    --maxw:1120px;
+    --glass: rgba(255,255,255,0.6);
+    --border: rgba(11,125,250,0.06);
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color-scheme: light;
+  }
+
+  /* base */
+  html,body{height:100%;margin:0}
+  body{
+    color:var(--dark);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    font-size:16px;
+    line-height:1.5;
+    background: linear-gradient(180deg,var(--bg-start) 0%, var(--bg-end) 60%);
+    display:flex;
+    justify-content:center;
+    padding:28px 18px;
+  }
+
+  .container{
+    width:100%;
+    max-width:var(--maxw);
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.995));
+    border-radius:14px;
+    box-shadow: var(--shadow-md);
+    padding:28px;
+    box-sizing:border-box;
+    border: 1px solid rgba(11,125,250,0.02);
+  }
+
+  /* header */
+  header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+  .brand{display:flex;gap:12px;align-items:center;font-weight:800}
+  .brand img{height:44px;border-radius:8px;display:block}
+  nav a{margin-left:10px;color:var(--dark);text-decoration:none;font-weight:600;padding:8px;border-radius:8px;transition:background .18s, color .18s}
+  nav a:hover, nav a:focus{background:rgba(11,125,250,0.06);color:var(--accent-600);outline:none}
+
+  /* hero */
+  .hero{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap}
+  .hero-left{flex:1;min-width:240px}
+  .hero-right{width:240px;min-width:180px}
+  h1{margin:0;font-size:22px;letter-spacing:-0.2px}
+  p.lead{margin:6px 0 0;color:var(--muted);max-width:54ch}
+
+  /* controls */
+  .controls{display:flex;gap:12px;align-items:center;margin-top:16px;flex-wrap:wrap}
+  .select, .btn, .ghost{
+    border-radius:10px;padding:9px 12px;border:0;cursor:pointer;font-weight:700;font-size:14px;
+    box-shadow:none;transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+  }
+  .select{background:#fff;border:1px solid rgba(14,42,80,0.04);color:var(--dark)}
+  .select:focus{outline:3px solid rgba(11,125,250,0.08)}
+  .btn{background:linear-gradient(90deg,var(--accent),var(--accent-600));color:#fff;border:0;padding:10px 14px;border-radius:10px;box-shadow:0 10px 28px rgba(11,125,250,0.12)}
+  .btn:hover{transform:translateY(-3px);box-shadow:0 18px 44px rgba(11,125,250,0.14)}
+  .ghost{background:transparent;border:1px solid rgba(11,125,250,0.08);color:var(--dark);font-weight:600}
+  .ghost:hover{background:rgba(11,125,250,0.04)}
+
+  /* layout */
+  .layout{display:grid;grid-template-columns:1fr 320px;gap:18px;margin-top:18px}
+  @media(max-width:980px){ .layout{grid-template-columns:1fr} .hero-right{order:2} }
+
+  /* reviews grid */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  @media(max-width:980px){ .grid{grid-template-columns:1fr} }
+
+  .card{
+    background:var(--card);
+    padding:14px;
+    border-radius:12px;
+    box-shadow:var(--shadow-sm);
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    transition:transform .18s ease, box-shadow .18s ease, border-color .18s;
+    border: 1px solid rgba(11,125,250,0.02);
+  }
+  .card:hover{transform:translateY(-8px);box-shadow:0 28px 64px rgba(12,18,30,0.12);border-color: rgba(11,125,250,0.06)}
+
+  .avatar{
+    width:64px;height:64px;border-radius:12px;background:linear-gradient(180deg,#eef8ff,#ffffff);
+    display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--accent);font-size:18px;flex-shrink:0;
+    border:1px solid rgba(11,125,250,0.04);
+  }
+  .r-body{flex:1;min-width:0}
+  .r-head{display:flex;justify-content:space-between;gap:8px;align-items:start}
+  .name{font-weight:800;font-size:15px}
+  .meta{color:var(--muted);font-size:13px}
+  .stars{color:#f6b229;font-size:14px;line-height:1}
+  .text{margin-top:8px;color:var(--muted);font-size:14px}
+  .review-image{width:120px;height:78px;border-radius:8px;overflow:hidden;flex-shrink:0}
+  .review-image img{width:100%;height:100%;object-fit:cover;display:block}
+  .review-image img:hover{transform:scale(1.03);transition:transform .18s ease}
+
+  /* sidebar */
+  aside.card{background:linear-gradient(180deg,#fff,#fbfdff);padding:14px;border-radius:12px;box-shadow:var(--shadow-sm);border:1px solid var(--border)}
+  .dist{margin-top:12px}
+  .bar{height:10px;background:#eef6ff;border-radius:999px;overflow:hidden}
+  .bar > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-600));border-radius:999px}
+
+  /* write form modal */
+  .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(3,8,18,0.45);z-index:1200;padding:18px}
+  .modal.show{display:flex}
+  .modal-card{width:100%;max-width:720px;background:#fff;border-radius:12px;padding:18px;box-shadow:var(--shadow-md);border:1px solid rgba(11,125,250,0.04)}
+  .form-grid{display:grid;grid-template-columns:1fr 280px;gap:12px}
+  @media(max-width:880px){ .form-grid{grid-template-columns:1fr} }
+
+  textarea{width:100%;min-height:120px;padding:12px;border-radius:10px;border:1px solid #e9f2ff;font-size:14px;resize:vertical;background:#fbfdff}
+  input[type="text"], input[type="email"], input[type="file"]{padding:10px;border-radius:10px;border:1px solid #e9f2ff;font-size:14px;width:100%;background:#fff}
+  input[type="file"]{padding:6px}
+
+  .small{font-size:13px;color:var(--muted)}
+  .empty{padding:28px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.95),rgba(255,255,255,0.98));box-shadow:var(--shadow-sm);text-align:center;color:var(--muted)}
+
+  /* buttons and interactive elements */
+  button:focus, a:focus { outline: 3px solid rgba(11,125,250,0.08); outline-offset:2px; border-radius:8px; }
+  .ghost[aria-pressed="true"], .ghost.active { background: rgba(11,125,250,0.06); }
+
+  /* responsive tweaks */
+  @media(max-width:640px){
+    .brand img{height:38px}
+    .controls{gap:8px}
+    .avatar{width:56px;height:56px}
+    .review-image{width:100px;height:66px}
+  }
+
+  /* subtle reveal */
+  .fade-in{opacity:0;transform:translateY(8px);transition:opacity .5s ease,transform .5s cubic-bezier(.2,.9,.2,1)}
+  .fade-in.visible{opacity:1;transform:none}
+
+  /* pagination */
+  #pagination button{padding:8px 10px;border-radius:8px;border:0;cursor:pointer;background:#fff;border:1px solid rgba(11,125,250,0.04);margin:0 4px}
+  #pagination button:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(11,125,250,0.08)}
+  #pagination button.btn{background:linear-gradient(90deg,var(--accent),var(--accent-600));color:#fff;border:0}
+
+  /* small utility */
+  .muted { color: var(--muted); }
+  .small-muted { color: var(--muted); font-size:13px; }
+
+  /* print friendly */
+  @media print{
+    body{background:#fff;padding:0}
+    .container{box-shadow:none;border-radius:0;padding:12px}
+    nav, #openWrite, #openWrite2, .controls, .ghost, .btn { display:none !important; }
+  }
+
+  /* footer - refreshed, more professional layout */
+  .site-footer{
+    margin-top:28px;
+    padding:26px;
+    border-radius:14px;
+    background:linear-gradient(180deg,rgba(11,125,250,0.03),rgba(255,255,255,0.95));
+    box-shadow:0 20px 46px rgba(11,125,250,0.06);
+    display:grid;
+    grid-template-columns: 1fr 1fr 320px;
+    gap:20px;
+    align-items:start;
+    border:1px solid rgba(11,125,250,0.04);
+  }
+  @media(max-width:880px){ .site-footer{grid-template-columns:1fr; text-align:center} .site-footer .col-left, .site-footer .col-mid, .site-footer .col-right{justify-content:center} }
+
+  .site-footer .brand-sm{display:flex;gap:12px;align-items:center}
+  .site-footer .brand-sm img{height:44px;border-radius:10px;display:block}
+  .site-footer .brand-title{font-weight:900;color:var(--dark)}
+  .site-footer .brand-tag{color:var(--muted);font-size:13px}
+
+  .site-footer .col-left{display:flex;flex-direction:column;gap:8px}
+  .site-footer .col-mid{display:flex;gap:28px;align-items:flex-start}
+  .site-footer nav.quick-links{display:flex;flex-direction:column;gap:8px}
+  .site-footer nav.quick-links a{color:var(--dark);text-decoration:none;font-weight:600;padding:6px;border-radius:8px}
+  .site-footer nav.quick-links a:hover{color:var(--accent-700)}
+
+  .newsletter{background:linear-gradient(180deg,#fff,#fbfdff);padding:12px;border-radius:10px;border:1px solid rgba(11,125,250,0.04);display:flex;flex-direction:column;gap:8px}
+  .newsletter small{color:var(--muted);font-size:13px}
+  .newsletter form{display:flex;gap:8px}
+  .newsletter input[type="email"]{flex:1;padding:10px;border-radius:10px;border:1px solid #e9f2ff}
+  .newsletter button{padding:10px 12px;border-radius:10px;background:linear-gradient(90deg,var(--accent),var(--accent-600));color:#fff;border:0;cursor:pointer}
+
+  .social-links{display:flex;gap:8px;align-items:center}
+  .social-links a{
+    display:inline-flex;
+    width:44px;height:44px;
+    align-items:center;justify-content:center;
+    border-radius:10px;
+    color:#fff;
+    text-decoration:none;
+    transition:transform .14s ease,box-shadow .14s ease,opacity .12s;
+    box-shadow:0 6px 20px rgba(12,18,30,0.06);
+  }
+  .social-links a.facebook{background:#1877F2}
+  .social-links a.x{background:#0EA5E9}
+  .social-links a.instagram{background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af)}
+  .social-links a.linkedin{background:#0A66C2}
+  .social-links a.youtube{background:#FF0000}
+  .social-links a:hover{transform:translateY(-4px);opacity:0.95}
+  .site-footer .legal{color:var(--muted);font-size:13px;margin-top:8px}
+  </style>
+</head>
+<body>
+  <div class="container" role="main">
+    <header>
+      <div class="brand">
+        <img src="assets/logo.png" alt="Sir Mike AutoHire" onerror="this.style.display='none'">
+        <div>
+          <div>Sir Mike AutoHire</div>
+          <div class="small-muted">Trusted car hire in Kenya</div>
+        </div>
+      </div>
+      <nav aria-label="Primary">
+        <a href="home.html">Home</a>
+        <a href="cars.html">Our Cars</a>
+        <a href="booking.html">Book Now</a>
+        <a href="reviews.html" aria-current="page">Reviews</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-left">
+        <h1>What customers say</h1>
+        <p class="lead">Real feedback from drivers who rented with us. Honest ratings, verified experiences and photos.</p>
+
+        <div class="controls">
+          <select id="filterRating" class="select" aria-label="Filter by rating">
+            <option value="">All ratings</option>
+            <option value="5">5 stars</option>
+            <option value="4">4 stars & up</option>
+            <option value="3">3 stars & up</option>
+          </select>
+
+          <select id="sortBy" class="select" aria-label="Sort reviews">
+            <option value="newest">Newest</option>
+            <option value="highest">Highest rating</option>
+            <option value="lowest">Lowest rating</option>
+          </select>
+
+          <button id="openWrite" class="btn" aria-haspopup="dialog">Write a review</button>
+          <button id="clearBtn" class="ghost" title="Clear filters">Clear</button>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="big-rating" id="avgRating">0.0</div>
+        <div class="small-muted" id="totalCount">0 reviews</div>
+
+        <div class="dist" aria-hidden="false" style="margin-top:12px">
+          <div class="small">Rating distribution</div>
+          <div style="margin-top:8px">
+            <div class="small-muted" style="display:flex;justify-content:space-between"><span>5★</span><span id="d5">0</span></div>
+            <div class="bar" style="margin-top:6px"><i id="bar5" style="width:0%"></i></div>
+            <div class="small-muted" style="display:flex;justify-content:space-between;margin-top:8px"><span>4★</span><span id="d4">0</span></div>
+            <div class="bar" style="margin-top:6px"><i id="bar4" style="width:0%"></i></div>
+            <div class="small-muted" style="display:flex;justify-content:space-between;margin-top:8px"><span>3★</span><span id="d3">0</span></div>
+            <div class="bar" style="margin-top:6px"><i id="bar3" style="width:0%"></i></div>
+            <div class="small-muted" style="display:flex;justify-content:space-between;margin-top:8px"><span>2★</span><span id="d2">0</span></div>
+            <div class="bar" style="margin-top:6px"><i id="bar2" style="width:0%"></i></div>
+            <div class="small-muted" style="display:flex;justify-content:space-between;margin-top:8px"><span>1★</span><span id="d1">0</span></div>
+            <div class="bar" style="margin-top:6px"><i id="bar1" style="width:0%"></i></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="layout">
+      <section id="list" style="min-height:220px">
+        <div id="reviewGrid" class="grid" role="list" aria-live="polite"></div>
+        <div id="noReviews" class="empty" style="display:none;margin-top:16px">
+          No reviews yet. Be the first to share your experience.
+        </div>
+
+        <div id="pagination" style="display:flex;gap:8px;justify-content:center;margin-top:16px"></div>
+      </section>
+
+      <aside class="card" aria-labelledby="sidebarTitle">
+        <div id="sidebarTitle" style="font-weight:800">Leave honest feedback</div>
+        <p class="small">Your reviews help others and guide our service. We moderate for quality — contact support for urgent matters.</p>
+
+        <div style="margin-top:12px">
+          <a class="btn" id="openWrite2" href="#" role="button">Write a review</a>
+        </div>
+
+        <div style="margin-top:14px">
+          <div class="small-muted">Verified customers</div>
+          <div style="margin-top:8px;font-weight:800;font-size:18px;color:var(--accent)" id="verifiedCount">0</div>
+          <div class="small-muted">reviews from customers who provided email</div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Write review modal -->
+    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle">
+      <div class="modal-card" role="document">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <h3 id="modalTitle" style="margin:0">Leave a review</h3>
+          <button id="modalClose" class="ghost" aria-label="Close">✕</button>
+        </div>
+
+        <form id="reviewForm" class="fade-in" style="margin-top:12px" onsubmit="return false" novalidate>
+          <div class="form-grid">
+            <div>
+              <label class="small">Your name</label>
+              <input id="rName" type="text" placeholder="Full name" required>
+
+              <label class="small" style="margin-top:10px;display:block">Email (optional)</label>
+              <input id="rEmail" type="email" placeholder="you@example.com">
+
+              <label class="small" style="margin-top:10px;display:block">Your review</label>
+              <textarea id="rText" placeholder="Tell others about your experience..." required></textarea>
+            </div>
+
+            <div>
+              <label class="small">Rating</label>
+              <div id="starGroup" style="display:flex;gap:6px;margin-top:6px" role="radiogroup" aria-label="Rating">
+                <button type="button" class="ghost" data-value="1" aria-pressed="false">★</button>
+                <button type="button" class="ghost" data-value="2" aria-pressed="false">★</button>
+                <button type="button" class="ghost" data-value="3" aria-pressed="false">★</button>
+                <button type="button" class="ghost" data-value="4" aria-pressed="false">★</button>
+                <button type="button" class="ghost" data-value="5" aria-pressed="false">★</button>
+              </div>
+
+              <label class="small" style="margin-top:14px;display:block">Upload a photo (optional)</label>
+              <input id="rImage" type="file" accept="image/*" style="width:100%">
+
+              <div style="margin-top:14px;display:flex;gap:8px">
+                <button id="submitReview" class="btn">Submit review</button>
+                <button id="resetForm" class="ghost" type="button">Reset</button>
+                <div style="margin-left:auto" class="small-muted">Your email will not be published.</div>
+              </div>
+
+              <div id="formError" class="small" style="color:#b00020;display:none;margin-top:8px">Please complete required fields and select a rating.</div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <footer class="site-footer" role="contentinfo" aria-label="Site footer">
+      <div class="col-left">
+        <div class="brand-sm">
+          <img src="assets/logo.png" alt="Sir Mike AutoHire" onerror="this.style.display='none'">
+          <div>
+            <div class="brand-title">Sir Mike AutoHire</div>
+            <div class="brand-tag">Corporate & Fleet Solutions — Nairobi, Kenya</div>
+          </div>
+        </div>
+        <div class="legal">Phone: <a href="tel:+254707480602" style="color:var(--accent)">0707 480 602</a> · <a href="mailto:sirmike6072@gmail.com" style="color:var(--accent)">sirmike6072@gmail.com</a></div>
+      </div>
+
+      <div class="col-mid" aria-hidden="false">
+        <nav class="quick-links" aria-label="Quick links">
+          <a href="home.html">Home</a>
+          <a href="cars.html">Our cars</a>
+          <a href="booking.html">Book a car</a>
+          <a href="contact.html">Contact</a>
+          <a href="terms.html">Terms & Conditions</a>
+        </nav>
+
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="font-weight:800">Follow us</div>
+          <div class="social-links" aria-hidden="false">
+            <a class="facebook" href="https://www.facebook.com/SirMikeAutoHire" target="_blank" rel="noopener" title="Facebook" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 10-11.5 9.9v-7H8.1v-2.9h2.4V9.2c0-2.4 1.4-3.8 3.6-3.8 1 0 2 .08 2 .08v2.2h-1.1c-1.1 0-1.5.7-1.5 1.4v1.7h2.6l-.4 2.9h-2.2V22A10 10 0 0022 12z"/></svg>
+            </a>
+            <a class="x" href="https://x.com/SirMikeAutoHire" target="_blank" rel="noopener" title="X" aria-label="X">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 5.8c-.6.3-1.2.5-1.9.6.7-.4 1.2-1.1 1.4-1.9-.6.4-1.3.7-2.1.9C18.7 4.5 17.9 4 17 4c-1.7 0-3 1.4-3 3 0 .2 0 .5.1.7-2.6-.1-4.9-1.4-6.4-3.4-.3.6-.4 1.3-.4 2 0 1.4.7 2.6 1.9 3.3-.5 0-1-.2-1.4-.4v.1c0 1.9 1.3 3.5 3 3.8-.3.1-.6.2-1 .2-.2 0-.4 0-.6-.1.4 1.2 1.6 2.1 3 2.1-1.1.9-2.5 1.5-4 1.5H7c1.5.9 3.2 1.4 5.1 1.4 6 0 9.3-5 9.3-9.3v-.4c.7-.5 1.3-1.1 1.8-1.8-.6.3-1.2.6-1.9.7z"/></svg>
+            </a>
+            <a class="instagram" href="https://www.instagram.com/SirMikeAutoHire" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 6.2A3.8 3.8 0 1015.8 12 3.8 3.8 0 0012 8.2zm5.2-.9a1.1 1.1 0 11-1.1-1.1 1.1 1.1 0 011.1 1.1zM12 15.6A3.6 3.6 0 1115.6 12 3.6 3.6 0 0112 15.6z"/></svg>
+            </a>
+            <a class="linkedin" href="https://www.linkedin.com/company/sirmike-autohire" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 102.5 6a2.5 2.5 0 002.48-2.5zM3 8.9h3.96V21H3V8.9zM9.5 8.9h3.8v1.6h.1c.5-.9 1.8-1.9 3.7-1.9 4 0 4.8 2.6 4.8 6V21h-3.96v-5.2c0-1.2 0-2.7-1.7-2.7-1.7 0-2 1.4-2 2.6V21H9.5V8.9z"/></svg>
+            </a>
+            <a class="youtube" href="https://www.youtube.com/@SirMikeAutoHire" target="_blank" rel="noopener" title="YouTube" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 7.2s-.2-1.6-.8-2.2c-.7-.9-1.5-.9-1.9-1-2.6-.2-6.5-.2-6.5-.2h-.1s-3.9 0-6.5.2c-.4 0-1.2.1-1.9 1C.7 5.6.5 7.2.5 7.2S.2 9 .2 10.8v2.4c0 1.8.3 3.6.3 3.6s.2 1.6.8 2.2c.7.9 1.6.9 2 1 1.5.1 6.5.2 6.5.2h.1s3.9 0 6.5-.2c.4 0 1.2-.1 1.9-1 .6-.6.8-2.2.8-2.2s.3-1.8.3-3.6v-2.4c0-1.8-.3-3.6-.3-3.6zM9.7 14.6V9.2l5 2.7-5 2.7z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-right">
+        <div class="newsletter" aria-label="Subscribe to newsletter">
+          <div style="font-weight:800">Stay informed</div>
+          <small>Get offers, fleet updates and corporate news. No spam — unsubscribe any time.</small>
+          <form id="newsletterForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <input type="email" name="email" placeholder="Your email address" required aria-label="Email address">
+            <button type="submit">Subscribe</button>
+          </form>
+          <div class="legal">© <span id="footerYear"></span> Sir Mike AutoHire — All rights reserved</div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+    // small footer scripts: year + newsletter friendly UX
+    (function(){
+      const y = new Date().getFullYear();
+      const el = document.getElementById('footerYear');
+      if(el) el.textContent = y;
+
+      const form = document.getElementById('newsletterForm');
+      if(form){
+        form.addEventListener('submit', async (e)=>{
+          e.preventDefault();
+          const btn = form.querySelector('button');
+          const email = form.querySelector('input[name="email"]').value;
+          btn.disabled = true; btn.textContent = 'Sending...';
+          try{
+            // simple POST to Formspree; replace YOUR_FORM_ID in markup
+            await fetch(form.action, { method:'POST', headers:{ 'Accept':'application/json' }, body:new FormData(form) });
+            btn.textContent = 'Subscribed';
+          }catch(_){
+            btn.textContent = 'Subscribe';
+            alert('Subscription failed — try again or contact support.');
+          }finally{ setTimeout(()=> btn.disabled = false, 1200); }
+        });
+      }
+    })();
+    </script>
+  </div>
+
+  <script>
+    (function(){
+      // Basic app state and storage
+      const STORAGE_KEY = 'sirmike_reviews_v2';
+      const REVIEWS_PER_PAGE = 6;
+
+      const sample = [
+        { id:Date.now()-600000, name:'Jane M.', email:'', rating:5, text:'Smooth booking and great car. Recommend!', date:'2025-07-12', photos:[] },
+        { id:Date.now()-1200000, name:'SirMike', email:'', rating:4, text:'Good price and helpful staff.', date:'2025-06-22', photos:[] },
+        { id:Date.now()-2400000, name:'Sylvia O.', email:'', rating:5, text:'Car in excellent condition, timely pickup.', date:'2025-05-03', photos:[] }
+      ];
+
+      function readStored(){
+        try{
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if(!raw){ localStorage.setItem(STORAGE_KEY, JSON.stringify(sample)); return sample.slice(); }
+          return JSON.parse(raw);
+        }catch(e){ return sample.slice(); }
+      }
+      function writeStored(list){
+        try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); }catch(e){}
+      }
+
+      let reviews = readStored();
+      let page = 1;
+
+      // UI elements
+      const grid = document.getElementById('reviewGrid');
+      const avgRatingEl = document.getElementById('avgRating');
+      const totalCountEl = document.getElementById('totalCount');
+      const noReviewsEl = document.getElementById('noReviews');
+      const filterRating = document.getElementById('filterRating');
+      const sortBy = document.getElementById('sortBy');
+      const clearBtn = document.getElementById('clearBtn');
+      const openWrite = document.getElementById('openWrite');
+      const openWrite2 = document.getElementById('openWrite2');
+      const modal = document.getElementById('modal');
+      const modalClose = document.getElementById('modalClose');
+      const starButtons = document.querySelectorAll('#starGroup button');
+      const rName = document.getElementById('rName');
+      const rEmail = document.getElementById('rEmail');
+      const rText = document.getElementById('rText');
+      const rImage = document.getElementById('rImage');
+      const submitBtn = document.getElementById('submitReview');
+      const resetBtn = document.getElementById('resetForm');
+      const formError = document.getElementById('formError');
+      const verifiedCountEl = document.getElementById('verifiedCount');
+
+      // helpers
+      function formatDate(d){ try{ return new Date(d).toLocaleDateString(); }catch(e){ return d; } }
+      function escapeHtml(s){ return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;').replaceAll('\n','<br>'); }
+      function avgAndDistribution(list){
+        const total = list.length || 0;
+        const sum = list.reduce((s,r)=> s + (r.rating||0), 0);
+        const avg = total ? (sum/total) : 0;
+        const counts = [0,0,0,0,0,0]; // index by rating
+        list.forEach(r=> counts[r.rating||0]++);
+        return { avg, total, counts };
+      }
+
+      // render reviews (paged)
+      function render(list){
+        // apply paging
+        const start = (page-1)*REVIEWS_PER_PAGE;
+        const pageItems = list.slice(start, start + REVIEWS_PER_PAGE);
+
+        grid.innerHTML = '';
+        if(!list || list.length === 0){
+          noReviewsEl.style.display = 'block';
+          avgRatingEl.textContent = '0.0';
+          totalCountEl.textContent = '0 reviews';
+          document.getElementById('pagination').innerHTML = '';
+          return;
+        }
+        noReviewsEl.style.display = 'none';
+
+        const stats = avgAndDistribution(list);
+        avgRatingEl.textContent = stats.avg.toFixed(1);
+        totalCountEl.textContent = stats.total + (stats.total === 1 ? ' review' : ' reviews');
+        // update distribution bars
+        ['5','4','3','2','1'].forEach((r, idx) => {
+          const cnt = stats.counts[Number(r)] || 0;
+          const pct = stats.total ? Math.round(cnt / stats.total * 100) : 0;
+          document.getElementById('d'+r).textContent = cnt;
+          document.getElementById('bar'+r).style.width = pct + '%';
+        });
+        verifiedCountEl.textContent = reviews.filter(r=> r.email && r.email.trim()).length;
+
+        pageItems.forEach(r=>{
+          const a = document.createElement('article');
+          a.className = 'card fade-in';
+          // avatar: initials
+          const initials = (r.name || 'A').split(' ').map(s=>s[0]).slice(0,2).join('').toUpperCase();
+          const verified = r.email ? '<span title="Verified" style="color:var(--accent);font-weight:700;margin-left:6px">✔</span>' : '';
+          const photosHtml = (r.photos && r.photos.length) ? `<div class="review-image" aria-hidden="true"><img src="${r.photos[0]}" alt="Review photo"></div>` : '';
+          a.innerHTML = `
+            <div class="avatar" aria-hidden="true">${escapeHtml(initials)}</div>
+            <div class="r-body">
+              <div class="r-head">
+                <div>
+                  <div class="name">${escapeHtml(r.name || 'Anonymous')}${verified}</div>
+                  <div class="meta">${formatDate(r.date)}</div>
+                </div>
+                <div class="stars" aria-label="${r.rating} out of 5">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div>
+              </div>
+              <div class="text">${escapeHtml(r.text)}</div>
+              ${r.photos && r.photos.length ? `<div style="margin-top:8px;display:flex;gap:8px;align-items:center">${r.photos.map((p,i)=> `<button class="ghost" data-idx="${i}" data-id="${r.id}" style="padding:6px 8px;border-radius:8px">View photo ${i+1}</button>`).join('')}</div>` : ''}
+            </div>
+            ${photosHtml}
+          `;
+          grid.appendChild(a);
+          // reveal animation
+          requestAnimationFrame(()=> a.classList.add('visible'));
+        });
+
+        // wire photo view buttons
+        grid.querySelectorAll('.ghost[data-id]').forEach(b=>{
+          b.addEventListener('click', (e)=>{
+            const id = Number(b.dataset.id);
+            const idx = Number(b.dataset.idx);
+            const rv = reviews.find(x=> x.id === id);
+            if(!rv || !rv.photos || !rv.photos[idx]) return;
+            // show quickly in new window/tab (user can save)
+            const w = window.open(rv.photos[idx], '_blank');
+            if(w) w.focus();
+          });
+        });
+
+        // pagination
+        const pages = Math.max(1, Math.ceil(list.length / REVIEWS_PER_PAGE));
+        const pagEl = document.getElementById('pagination');
+        pagEl.innerHTML = '';
+        if(pages <= 1) return;
+        for(let i=1;i<=pages;i++){
+          const btn = document.createElement('button');
+          btn.className = i === page ? 'btn' : 'ghost';
+          btn.textContent = i;
+          btn.addEventListener('click', ()=> { page = i; applyFilters(); window.scrollTo({top:0,behavior:'smooth'}); });
+          pagEl.appendChild(btn);
+        }
+      }
+
+      // filtering & sorting
+      function applyFilters(){
+        let out = reviews.slice();
+        const f = filterRating.value;
+        if(f){ out = out.filter(r=> (r.rating||0) >= Number(f)); }
+        const s = sortBy.value;
+        if(s === 'newest') out.sort((a,b)=> new Date(b.date) - new Date(a.date));
+        else if(s === 'highest') out.sort((a,b)=> (b.rating - a.rating) || (new Date(b.date) - new Date(a.date)));
+        else if(s === 'lowest') out.sort((a,b)=> (a.rating - b.rating) || (new Date(b.date) - new Date(a.date)));
+        render(out);
+      }
+
+      filterRating.addEventListener('change', ()=> { page = 1; applyFilters(); });
+      sortBy.addEventListener('change', ()=> { page = 1; applyFilters(); });
+      clearBtn.addEventListener('click', ()=> { filterRating.value=''; sortBy.value='newest'; page=1; applyFilters(); });
+
+      // write modal handlers
+      function openModal(){
+        modal.classList.add('show');
+        modal.setAttribute('aria-hidden','false');
+        document.getElementById('reviewForm').classList.add('visible');
+        rName.focus();
+      }
+      function closeModal(){
+        modal.classList.remove('show');
+        modal.setAttribute('aria-hidden','true');
+      }
+      openWrite.addEventListener('click', openModal);
+      openWrite2.addEventListener('click', (e)=> { e.preventDefault(); openModal(); });
+      modalClose.addEventListener('click', closeModal);
+      window.addEventListener('keydown', (e)=> { if(e.key === 'Escape') closeModal(); });
+
+      // star selection
+      let selectedRating = 0;
+      starButtons.forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          selectedRating = Number(btn.dataset.value);
+          starButtons.forEach(b=>{
+            const v = Number(b.dataset.value);
+            b.style.background = v <= selectedRating ? 'linear-gradient(90deg,var(--accent),var(--accent-600))' : '';
+            b.style.color = v <= selectedRating ? '#fff' : '';
+            b.setAttribute('aria-pressed', v <= selectedRating ? 'true' : 'false');
+          });
+        });
+        btn.addEventListener('keydown', (e)=> { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); } });
+      });
+
+      function clearForm(){
+        rName.value=''; rEmail.value=''; rText.value=''; rImage.value=''; selectedRating=0;
+        starButtons.forEach(b=>{ b.style.background=''; b.style.color=''; b.setAttribute('aria-pressed','false'); });
+        formError.style.display='none';
+      }
+      resetBtn.addEventListener('click', clearForm);
+
+      // read image to dataURL (with client resize if large)
+      function toDataUrl(file){
+        return new Promise((res,rej)=>{
+          const fr = new FileReader();
+          fr.onload = ()=> res(fr.result);
+          fr.onerror = rej;
+          fr.readAsDataURL(file);
+        });
+      }
+      async function processImage(file){
+        try{
+          let d = await toDataUrl(file);
+          if(d.length > 3e6){
+            const img = new Image();
+            img.src = d;
+            await new Promise(r=> img.onload = r);
+            const maxW = 1200;
+            const scale = Math.min(1, maxW / img.width);
+            const c = document.createElement('canvas');
+            c.width = Math.round(img.width * scale);
+            c.height = Math.round(img.height * scale);
+            const cx = c.getContext('2d');
+            cx.drawImage(img,0,0,c.width,c.height);
+            d = c.toDataURL('image/jpeg', 0.78);
+          }
+          return d;
+        }catch(e){ return null; }
+      }
+
+      // submit review
+      submitBtn.addEventListener('click', async ()=>{
+        formError.style.display = 'none';
+        const name = (rName.value || 'Anonymous').trim();
+        const email = (rEmail.value || '').trim();
+        const text = (rText.value || '').trim();
+        if(!text || !selectedRating){ formError.style.display = 'block'; return; }
+
+        const newReview = {
+          id: Date.now(),
+          name, email, rating: selectedRating, text, date: new Date().toISOString(),
+          photos: []
+        };
+
+        // handle optional image
+        if(rImage.files && rImage.files[0]){
+          const file = rImage.files[0];
+          const data = await processImage(file);
+          if(data) newReview.photos.push(data);
+        }
+
+        reviews.unshift(newReview);
+        writeStored(reviews);
+        clearForm();
+        closeModal();
+        page = 1;
+        applyFilters();
+
+        // gentle highlight on new item
+        setTimeout(()=>{
+          const first = grid.firstElementChild;
+          if(first){ first.style.boxShadow = '0 14px 40px rgba(11,125,250,0.12)'; setTimeout(()=> first.style.boxShadow = '', 2000); }
+        }, 120);
+      });
+
+      // accessibility: focus trap minimal
+      modal.addEventListener('keydown', (e)=>{
+        if(e.key === 'Tab'){
+          const focusable = modal.querySelectorAll('button, [href], input, textarea, select');
+          if(focusable.length === 0) return;
+          const first = focusable[0], last = focusable[focusable.length -1];
+          if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+          else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+        }
+      });
+
+      // initial render and graceful reveal
+      document.querySelectorAll('.fade-in').forEach((el,i)=> setTimeout(()=> el.classList.add('visible'), 60 + i*80));
+      applyFilters();
+
+      // image fallback for any images
+      document.addEventListener('error', (e)=>{
+        const t = e.target;
+        if(t.tagName === 'IMG' && !t.dataset.fallback){
+          t.dataset.fallback = '1';
+          t.src = 'https://via.placeholder.com/400x240?text=Sir+Mike+AutoHire';
+        }
+      }, true);
+
+      // Optional: expose formspree submission (commented — enable with your form endpoint)
+      // When you have a Formspree endpoint, you can POST newReview there
+      // const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_ID';
+
+    })();
+  </script>
+</body>
+</html>

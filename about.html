@@ -1,0 +1,748 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About Us — Sir Mike AutoHire</title>
+  <meta name="description" content="Sir Mike AutoHire — trusted car rental in Nairobi. Reliable fleet, 24/7 support, transparent pricing and insured vehicles." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* changed code: enhanced background visuals and motion-safe handling */
+    :root{
+      --accent:#0b7dfa;
+      --accent-600:#0767c9;
+      --bg:#f4f8ff;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --dark:#0f1724;
+      --success:#0b7a3a;
+      --danger:#b00020;
+      --radius:14px;
+      --shadow-sm:0 8px 30px rgba(12,18,30,0.06);
+      --shadow-md:0 22px 48px rgba(12,18,30,0.08);
+      --glass: rgba(255,255,255,0.6);
+      --maxw:1120px;
+      /* background intensity tuned by JS (day/night) */
+      --bg-accent-opacity: 0.10;
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+      color-scheme:light;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      position:relative;
+      min-height:100%;
+      color:var(--dark);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      font-size:16px;
+      background:linear-gradient(180deg,var(--bg),#ffffff 70%);
+      /* ensure content sits above decorative layers */
+      isolation:isolate;
+    }
+
+    /* Decorative layered, animated background using pseudo-elements.
+       Pseudo-elements are fixed and use low opacity so they don't distract.
+       Use prefers-reduced-motion to disable animation for users who prefer it. */
+    body::before{
+      content:"";
+      position:fixed;
+      inset: -10% -20% -10% -20%;
+      z-index:-3;
+      pointer-events:none;
+      background:
+        radial-gradient(600px 420px at 8% 18%, rgba(11,125,250,var(--bg-accent-opacity)), transparent 20%),
+        radial-gradient(520px 380px at 92% 82%, rgba(3,185,150,calc(var(--bg-accent-opacity) * 0.6)), transparent 18%),
+        linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
+      filter: blur(48px) saturate(1.05);
+      transform: translateZ(0);
+    }
+
+    body::after{
+      content:"";
+      position:fixed;
+      inset: -20% -10% -20% -10%;
+      z-index:-4;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(11,125,250,calc(var(--bg-accent-opacity) * 0.08)), transparent 18%),
+        radial-gradient(circle at 70% 70%, rgba(7,103,201,calc(var(--bg-accent-opacity) * 0.06)), transparent 16%),
+        repeating-linear-gradient(135deg, rgba(255,255,255,0.01) 0 2px, transparent 2px 40px);
+      filter: blur(36px);
+      animation: bgFloat 20s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    @keyframes bgFloat {
+      0%   { transform: translateY(0) rotate(0deg) scale(1); }
+      50%  { transform: translateY(-28px) rotate(1.5deg) scale(1.02); }
+      100% { transform: translateY(0) rotate(0deg) scale(1); }
+    }
+
+    /* subtle grain overlay for depth */
+    .background-grain{
+      position:fixed;
+      inset:0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='1200' viewBox='0 0 1200 1200'%3E%3Cfilter id='g'%3E%3CfeTurbulence baseFrequency='0.8' numOctaves='1' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.02'/%3E%3C/svg%3E");
+      z-index:-2;
+      pointer-events:none;
+      mix-blend-mode: overlay;
+      opacity:0.6;
+    }
+
+    /* ensure main container is above background layers */
+    .container{
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:28px;
+      position:relative;
+      z-index:1;
+    }
+
+    /* reduce motion preference: stop bg animations and heavy transitions */
+    @media (prefers-reduced-motion: reduce) {
+      body::after{ animation: none; }
+      .hero-media img{ transition: none !important; transform: none !important; }
+    }
+
+    /* small responsiveness tweaks for backgrounds */
+    @media(max-width:980px){
+      body::before, body::after{ filter: blur(40px); }
+    }
+    @media(max-width:640px){
+      body::before, body::after{ display:block; opacity:0.9; transform: none; }
+    }
+
+    /* changed code: more attractive CSS with animations, reveals and improved responsiveness */
+    :root{
+      --accent:#0b7dfa;
+      --accent-600:#0767c9;
+      --bg:#f4f8ff;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --dark:#0f1724;
+      --success:#0b7a3a;
+      --danger:#b00020;
+      --radius:14px;
+      --shadow-sm:0 8px 30px rgba(12,18,30,0.06);
+      --shadow-md:0 22px 48px rgba(12,18,30,0.08);
+      --glass: rgba(255,255,255,0.6);
+      --maxw:1120px;
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+      color-scheme:light;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,var(--bg),#ffffff 70%);
+      color:var(--dark);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      font-size:16px;
+    }
+    .container{max-width:var(--maxw);margin:0 auto;padding:28px}
+
+    header{display:flex;align-items:center;justify-content:space-between;padding:12px 0;transition:transform .18s}
+    .brand{display:flex;gap:12px;align-items:center;font-weight:700}
+    .brand img{height:48px;border-radius:10px;transition:transform .18s}
+    nav a{margin-left:14px;text-decoration:none;color:var(--dark);font-weight:600;padding:8px;border-radius:8px;transition:all .12s}
+    nav a:hover{background:rgba(11,125,250,0.06);color:var(--accent-600);transform:translateY(-2px)}
+
+    /* Hero */
+    .hero{
+      display:grid;
+      grid-template-columns:1fr 420px;
+      gap:24px;
+      align-items:center;
+      margin-top:10px;
+    }
+    .hero-card{
+      background:linear-gradient(180deg,#fff,#fbfdff);
+      padding:28px;
+      border-radius:14px;
+      box-shadow:var(--shadow-md);
+      transform:translateZ(0);
+    }
+    .kicker{display:inline-block;padding:6px 10px;background:linear-gradient(90deg,rgba(11,125,250,0.08),rgba(11,125,250,0.02));color:var(--accent);font-weight:700;border-radius:999px;font-size:13px}
+    h1{margin:12px 0 6px;font-size:28px;letter-spacing:-0.4px}
+    p.lead{margin:0;color:var(--muted);font-size:15px}
+
+    .hero-media{
+      border-radius:14px;
+      overflow:hidden;
+      box-shadow:var(--shadow-sm);
+      position:relative;
+      background:linear-gradient(180deg,#eef6ff,#fff);
+      transition:transform .18s ease;
+    }
+    .hero-media img{
+      width:100%;
+      height:320px;
+      object-fit:cover;
+      display:block;
+      transform-origin:center;
+      transition:transform .6s cubic-bezier(.2,.9,.2,1);
+    }
+    .hero-media:hover img{ transform:scale(1.04) }
+
+    /* stats - animated counters */
+    .stats{display:flex;gap:14px;margin-top:18px;align-items:center}
+    .stat{background:linear-gradient(180deg,#fff,#fbfdff);padding:12px;border-radius:12px;box-shadow:var(--shadow-sm);flex:1;text-align:center}
+    .stat strong{display:block;font-size:20px;font-weight:800}
+    .stat .label{color:var(--muted);font-size:13px;margin-top:4px}
+
+    /* About sections */
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:var(--shadow-sm);opacity:0;transform:translateY(8px);transition:opacity .6s ease,transform .5s ease}
+    .card.in-view{opacity:1;transform:none}
+    .card h3{margin:0 0 8px}
+    .muted{color:var(--muted)}
+
+    /* Values */
+    .values{display:flex;gap:12px;margin-top:12px}
+    .value{flex:1;background:linear-gradient(180deg,#fff,#fbfdff);padding:14px;border-radius:10px;text-align:center;box-shadow:var(--shadow-sm);transition:transform .12s}
+    .value:hover{transform:translateY(-6px)}
+    .value h4{margin:6px 0;color:var(--accent)}
+
+    /* Timeline / milestones */
+    .milestones{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+    .milestone{display:flex;gap:12px;align-items:flex-start;opacity:0;transform:translateX(-10px);transition:opacity .5s ease,transform .5s ease}
+    .milestone.in-view{opacity:1;transform:none}
+    .milestone .dot{width:48px;height:48px;border-radius:12px;background:linear-gradient(180deg,var(--accent),var(--accent-600));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;box-shadow:0 8px 24px rgba(11,125,250,0.12);font-size:14px}
+
+    /* Team (enhanced: hover animation, icons, bios, reveal) */
+    .team{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-top:12px;
+      align-items:flex-start;
+    }
+    .member{
+      background:linear-gradient(180deg,#fff,#fbfdff);
+      padding:12px;
+      border-radius:12px;
+      flex:0 0 220px;
+      text-align:left;
+      box-shadow:var(--shadow-sm);
+      opacity:0;
+      transform:translateY(12px);
+      transition:opacity .6s ease,transform .45s cubic-bezier(.2,.9,.2,1),box-shadow .25s,transform .25s;
+      position:relative;
+      overflow:hidden;
+    }
+    .member.in-view{ opacity:1; transform:none; }
+    .member:hover{ transform:translateY(-10px) scale(1.02); box-shadow:0 28px 80px rgba(12,18,30,0.12); }
+    .member img{ width:100%; height:120px; object-fit:cover; border-radius:8px; display:block; }
+    .member .meta{ padding:10px 4px 0 4px; }
+    .member .name{ font-weight:800; display:flex; gap:8px; align-items:center; font-size:15px; }
+    .member .role{ font-size:13px; color:var(--muted); margin-top:4px; }
+    .member .bio{ font-size:13px; color:var(--muted); margin-top:8px; line-height:1.35; min-height:44px; }
+    .member .contact-row{ display:flex; gap:8px; margin-top:10px; align-items:center; justify-content:center; }
+    .member .social{ display:flex; gap:8px; align-items:center; }
+    .member .social a{ display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:8px; background:transparent; transition:background .18s, transform .18s; text-decoration:none; }
+    .member .social a svg{ width:18px; height:18px; display:block; transition:transform .18s, opacity .18s; opacity:0.96; }
+    .member .social a:hover{ transform:translateY(-4px); background:rgba(11,125,250,0.06); }
+    .member .badge{ position:absolute; right:10px; top:10px; background:linear-gradient(90deg,var(--accent),var(--accent-600)); color:#fff; padding:6px 8px; border-radius:999px; font-weight:700; font-size:12px; box-shadow:0 8px 22px rgba(11,125,250,0.12); }
+    @media(max-width:640px){ .member{ flex:1 1 48%; } .member .bio{ min-height:38px } }
+
+    /* CTA */
+    .cta{display:flex;gap:12px;align-items:center;margin-top:18px}
+    .btn{background:linear-gradient(90deg,var(--accent),var(--accent-600));color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:700;box-shadow:0 12px 30px rgba(11,125,250,0.14);transition:transform .12s}
+    .btn:hover{transform:translateY(-4px)}
+    .ghost{background:transparent;border:1px solid rgba(11,125,250,0.08);padding:9px 12px;border-radius:10px}
+
+    footer{margin-top:28px;padding:18px 0;color:var(--muted);font-size:14px;text-align:center}
+
+    /* utilities */
+    .fade-up{opacity:0;transform:translateY(8px);transition:opacity .6s ease,transform .5s ease}
+    .fade-up.in-view{opacity:1;transform:none}
+
+    /* Responsive */
+    @media(max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
+      .hero-media img{height:220px}
+    }
+    @media(max-width:640px){
+      nav a{display:none}
+      .team{justify-content:flex-start}
+      .member{flex:1 1 48%}
+      .hero-media img{height:180px}
+    }
+
+    /* accessible focus */
+    a:focus-visible, button:focus-visible, input:focus-visible { outline:3px solid rgba(11,125,250,0.12); outline-offset:3px; border-radius:8px; }
+
+    /* Scoped styles for "Why choose" panel */
+    .why-choose{padding:20px;overflow:visible}
+    .why-grid{display:grid;grid-template-columns:1fr 340px;gap:18px;align-items:start}
+    .benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+    .benefit{background:linear-gradient(180deg,#fff,#fbfdff);padding:14px;border-radius:12px;box-shadow:var(--shadow-sm);display:flex;gap:12px;align-items:flex-start;transition:transform .18s,box-shadow .18s}
+    .benefit:hover{transform:translateY(-6px);box-shadow:0 22px 60px rgba(12,18,30,0.10)}
+    .icon-circle{width:48px;height:48px;border-radius:10px;display:inline-grid;place-items:center;color:#fff;font-weight:700;flex-shrink:0}
+    .icon-safety{background:linear-gradient(90deg,#06b6a4,#0b7dfa)}
+    .icon-price{background:linear-gradient(90deg,#ffb020,#ff6b6b)}
+    .icon-support{background:linear-gradient(90deg,#7c3aed,#06b6a4)}
+    .benefit h4{margin:0;font-size:15px}
+    .benefit p{margin:6px 0 0;color:var(--muted);font-size:13px;line-height:1.35}
+    .why-side{background:linear-gradient(180deg,#fff,#fbfdff);padding:16px;border-radius:12px;box-shadow:var(--shadow-sm)}
+    .trust-stats{display:flex;gap:10px;justify-content:space-between;margin-top:12px}
+    .trust-item{flex:1;text-align:center;padding:10px;border-radius:10px;background:linear-gradient(180deg,#fbfdff,#fff);box-shadow:0 8px 22px rgba(12,18,30,0.04)}
+    .trust-item strong{display:block;font-size:20px;font-weight:800}
+    .why-cta{display:flex;gap:10px;margin-top:14px;align-items:center}
+    .partner-logos{display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap}
+    @media(max-width:980px){ .why-grid{grid-template-columns:1fr} .benefits{grid-template-columns:1fr} .why-side{order:2} }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <img src="images/logo.png" alt="Sir Mike AutoHire logo" onerror="this.style.display='none'">
+        <div>
+          <div style="font-weight:800">Sir Mike AutoHire</div>
+          <div class="muted" style="font-size:13px">Drive Your Dream Today</div>
+        </div>
+      </div>
+
+      <nav aria-label="Primary">
+        <a href="home.html">Home</a>
+        <a href="cars.html">Our Cars</a>
+        <a href="booking.html">Book Now</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-card" aria-labelledby="about-title">
+          <span class="kicker">About</span>
+          <h1 id="about-title">Trusted car rental — local, reliable, professional</h1>
+          <p class="lead">Since 2018 we've served thousands of customers across Nairobi and beyond. Our focus: clean vehicles, transparent pricing and friendly 24/7 support.</p>
+
+          <div style="display:flex;gap:12px;margin-top:16px;align-items:center">
+            <a class="btn" href="booking.html">Book a car</a>
+            <a class="ghost" href="contact.html">Contact sales</a>
+          </div>
+
+          <div class="stats" role="list" aria-hidden="false">
+            <div class="stat">
+              <strong data-target="4.8">0</strong>
+              <div class="label">Average rating</div>
+            </div>
+            <div class="stat">
+              <strong data-target="3200">0</strong>
+              <div class="label">Bookings</div>
+            </div>
+            <div class="stat">
+              <strong data-target="24">0</strong>
+              <div class="label">Support (hrs)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-media" id="heroMedia" aria-hidden="false">
+          <img src="images/1.jpeg" alt="Sir Mike AutoHire team and fleet" onerror="this.src='https://via.placeholder.com/720x420?text=Sir+Mike+AutoHire'">
+        </div>
+      </section>
+
+      <section class="grid-2">
+        <div class="card" data-reveal>
+          <h3>Our mission</h3>
+          <p class="muted">To provide safe, affordable and convenient car rental solutions that keep people moving — whether for business, travel or leisure.</p>
+
+          <h3 style="margin-top:16px">Core values</h3>
+          <div class="values" role="list">
+            <div class="value" role="listitem">
+              <h4>Safety</h4>
+              <div class="muted">Regular maintenance and verified roadworthiness.</div>
+            </div>
+            <div class="value" role="listitem">
+              <h4>Transparency</h4>
+              <div class="muted">Clear rates, no hidden fees.</div>
+            </div>
+            <div class="value" role="listitem">
+              <h4>Support</h4>
+              <div class="muted">24/7 assistance and friendly service.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" data-reveal>
+          <h3>Milestones</h3>
+          <div class="milestones" aria-hidden="false">
+            <div class="milestone" data-reveal>
+              <div class="dot">2018</div>
+              <div>
+                <strong>Founded</strong>
+                <div class="muted">Started with 5 vehicles serving Nairobi.</div>
+              </div>
+            </div>
+
+            <div class="milestone" data-reveal>
+              <div class="dot">2020</div>
+              <div>
+                <strong>Growth</strong>
+                <div class="muted">Expanded fleet and introduced airport pickup.</div>
+              </div>
+            </div>
+
+            <div class="milestone" data-reveal>
+              <div class="dot">2023</div>
+              <div>
+                <strong>3,000+ Bookings</strong>
+                <div class="muted">Established trusted reputation with repeat customers.</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px">
+            <a class="btn" href="contact.html">Partner with us</a>
+          </div>
+        </div>
+      </section>
+
+      <section style="margin-top:20px">
+        <h3>Meet the team</h3>
+        <p class="muted" style="margin-top:6px">A small, dedicated team focused on service and reliability.</p>
+
+        <div class="team" role="list">
+          <div class="member" role="listitem" data-reveal>
+            <span class="badge" aria-hidden="true">Founder</span>
+            <img src="images/1.jpeg" alt="Owner - Sir Mike" onerror="this.src='https://via.placeholder.com/300x180?text=Owner'">
+            <div class="meta">
+              <div class="name">
+                Sir Mike
+                <!-- simple role icon -->
+                <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="opacity:.9"><path fill="currentColor" d="M12 2a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm0 10c-4.42 0-8 2.24-8 5v2h16v-2c0-2.76-3.58-5-8-5z"/></svg>
+              </div>
+              <div class="role">Founder & CEO</div>
+              <div class="bio">Leads company vision with 7+ years in rentals and customer-first operations. Focused on fleet quality and trust.</div>
+
+              <div class="contact-row">
+                <div class="social" aria-label="Sir Mike social links">
+                  <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Sir Mike on Facebook">
+                    <svg viewBox="0 0 24 24" fill="#1877F2" xmlns="http://www.w3.org/2000/svg"><path d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07c0 4.99 3.66 9.12 8.44 9.93v-7.03H8.08v-2.9h2.36V9.41c0-2.33 1.39-3.62 3.52-3.62 1.02 0 2.08.18 2.08.18v2.28h-1.17c-1.16 0-1.52.72-1.52 1.46v1.75h2.59l-.41 2.9h-2.18V22C18.34 21.12 22 16.99 22 12.07z"/></svg>
+                  </a>
+                  <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Sir Mike on Instagram">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ig1" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#f58529"/><stop offset="0.5" stop-color="#dd2a7b"/><stop offset="1" stop-color="#8134af"/></linearGradient></defs><rect width="24" height="24" rx="5" fill="url(#ig1)"/><path d="M12 7.2a4.8 4.8 0 1 0 0 9.6 4.8 4.8 0 0 0 0-9.6z" fill="#fff" opacity="0.95"/><circle cx="17.7" cy="6.3" r="1.1" fill="#fff" opacity="0.95"/></svg>
+                  </a>
+                  <a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="Sir Mike on X">
+                    <svg viewBox="0 0 24 24" fill="#1DA1F2" xmlns="http://www.w3.org/2000/svg"><path d="M22 5.92c-.63.28-1.3.47-2 .56.72-.43 1.27-1.1 1.53-1.9-.67.4-1.42.68-2.22.83C18.06 4.6 17.12 4 16.06 4c-1.63 0-2.95 1.32-2.95 2.95 0 .23.03.46.08.68-2.45-.12-4.63-1.3-6.09-3.09-.25.43-.39.93-.39 1.46 0 1.01.51 1.9 1.29 2.42-.48-.02-.93-.15-1.32-.37v.04c0 1.41 1.01 2.59 2.35 2.86-.25.07-.51.11-.78.11-.19 0-.37-.02-.55-.05.37 1.17 1.45 2.02 2.73 2.04C8.2 17.94 6.9 18.5 5.5 18.5c-.36 0-.71-.02-1.05-.06 1.01.65 2.22 1.03 3.51 1.03 4.21 0 6.52-3.49 6.52-6.52v-.3c.45-.33.83-.74 1.14-1.2-.41.18-.85.29-1.31.34.47-.28.83-.73 1.01-1.27z"/></svg>
+                  </a>
+                  <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="Sir Mike on LinkedIn">
+                    <svg viewBox="0 0 24 24" fill="#0A66C2" xmlns="http://www.w3.org/2000/svg"><path d="M4.98 3.5C4.98 4.61 4.08 5.5 2.97 5.5 1.86 5.5 .97 4.61 .97 3.5 .97 2.39 1.86 1.5 2.97 1.5 4.08 1.5 4.98 2.39 4.98 3.5zM0.5 8.5h4.9v12H0.5v-12zM8.5 8.5h4.7v1.7h.1c.7-1.3 2.4-2.7 4.9-2.7 5.2 0 6.1 3.4 6.1 7.9v8.1h-4.9v-7.2c0-1.7 0-3.9-2.4-3.9-2.4 0-2.7 1.8-2.7 3.8v7.3h-4.9v-12z"/></svg>
+                  </a>
+                  <a href="https://wa.me/254707480602?text=Hi%20Sir%20Mike" target="_blank" rel="noopener noreferrer" aria-label="Message Sir Mike on WhatsApp">
+                    <svg viewBox="0 0 24 24" fill="#25D366" xmlns="http://www.w3.org/2000/svg"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 .5C5.65.5.98 5.18.98 11.53c0 2.02.53 3.94 1.53 5.64L.5 23.5l6.63-1.73c1.64.69 3.47 1.06 5.35 1.06 6.35 0 11.03-4.68 11.03-11.03 0-2.95-1.16-5.7-3. - . ."/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="member" role="listitem" data-reveal>
+            <img src="images/4.jpeg" alt="Operations manager" onerror="this.src='https://via.placeholder.com/300x180?text=Operations'">
+            <div class="meta">
+              <div class="name">Anne M.
+                <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="opacity:.9"><path fill="currentColor" d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"/></svg>
+              </div>
+              <div class="role">Operations Manager</div>
+              <div class="bio">Manages logistics and airport pickups — ensures timely handovers and vehicle readiness for every booking.</div>
+
+              <div class="contact-row">
+                <div class="social" aria-label="Anne social links">
+                  <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Anne on Facebook"> <!-- FB svg as above --> 
+                    <svg viewBox="0 0 24 24" fill="#1877F2" xmlns="http://www.w3.org/2000/svg"><path d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07c0 4.99 3.66 9.12 8.44 9.93v-7.03H8.08v-2.9h2.36V9.41c0-2.33 1.39-3.62 3.52-3.62 1.02 0 2.08.18 2.08.18v2.28h-1.17c-1.16 0-1.52.72-1.52 1.46v1.75h2.59l-.41 2.9h-2.18V22C18.34 21.12 22 16.99 22 12.07z"/></svg>
+                  </a>
+                  <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Anne on Instagram">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ig2" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#f58529"/><stop offset="0.5" stop-color="#dd2a7b"/><stop offset="1" stop-color="#8134af"/></linearGradient></defs><rect width="24" height="24" rx="5" fill="url(#ig2)"/><path d="M12 7.2a4.8 4.8 0 1 0 0 9.6 4.8 4.8 0 0 0 0-9.6z" fill="#fff" opacity="0.95"/><circle cx="17.7" cy="6.3" r="1.1" fill="#fff" opacity="0.95"/></svg>
+                  </a>
+                  <a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="Anne on X">
+                    <svg viewBox="0 0 24 24" fill="#1DA1F2" xmlns="http://www.w3.org/2000/svg"><path d="M22 5.92c-.63.28-1.3.47-2 .56.72-.43 1.27-1.1 1.53-1.9-.67.4-1.42.68-2.22.83C18.06 4.6 17.12 4 16.06 4c-1.63 0-2.95 1.32-2.95 2.95 0 .23.03.46.08.68-2.45-.12-4.63-1.3-6.09-3.09-.25.43-.39.93-.39 1.46 0 1.01.51 1.9 1.29 2.42-.48-.02-.93-.15-1.32-.37v.04c0 1.41 1.01 2.59 2.35 2.86-.25.07-.51.11-.78.11-.19 0-.37-.02-.55-.05.37 1.17 1.45 2.02 2.73 2.04C8.2 17.94 6.9 18.5 5.5 18.5c-.36 0-.71-.02-1.05-.06 1.01.65 2.22 1.03 3.51 1.03 4.21 0 6.52-3.49 6.52-6.52v-.3c.45-.33.83-.74 1.14-1.2-.41.18-.85.29-1.31.34.47-.28.83-.73 1.01-1.27z"/></svg>
+                  </a>
+                  <a href="https://wa.me/254707480602?text=Hi%20Anne" target="_blank" rel="noopener noreferrer" aria-label="Message Anne on WhatsApp">
+                    <svg viewBox="0 0 24 24" fill="#25D366" xmlns="http://www.w3.org/2000/svg"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 .5C5.65.5.98 5.18.98 11.53c0 2.02.53 3.94 1.53 5.64L.5 23.5l6.63-1.73c1.64.69 3.47 1.06 5.35 1.06 6.35 0 11.03-4.68 11.03-11.03 0-2.95-1.16-5.7-3. - . ."/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="member" role="listitem" data-reveal>
+            <img src="images/3.png" alt="Customer support" onerror="this.src='https://via.placeholder.com/300x180?text=Support'">
+            <div class="meta">
+              <div class="name">SirMike
+                <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="opacity:.9"><path fill="currentColor" d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-4.33 0-8 2.17-8 4v2h16v-2c0-1.83-3.67-4-8-4z"/></svg>
+              </div>
+              <div class="role">Customer Support</div>
+              <div class="bio">First point of contact for customers — quick responses, booking help and issue resolution.</div>
+
+              <div class="contact-row">
+                <div class="social" aria-label="Support social links">
+                  <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Support on Facebook"><svg viewBox="0 0 24 24" fill="#1877F2" xmlns="http://www.w3.org/2000/svg"><path d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07c0 4.99 3.66 9.12 8.44 9.93v-7.03H8.08v-2.9h2.36V9.41c0-2.33 1.39-3.62 3.52-3.62 1.02 0 2.08.18 2.08.18v2.28h-1.17c-1.16 0-1.52.72-1.52 1.46v1.75h2.59l-.41 2.9h-2.18V22C18.34 21.12 22 16.99 22 12.07z"/></a>
+                  <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Support on Instagram"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ig3" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#f58529"/><stop offset="0.5" stop-color="#dd2a7b"/><stop offset="1" stop-color="#8134af"/></linearGradient></defs><rect width="24" height="24" rx="5" fill="url(#ig3)"/><path d="M12 7.2a4.8 4.8 0 1 0 0 9.6 4.8 4.8 0 0 0 0-9.6z" fill="#fff" opacity="0.95"/><circle cx="17.7" cy="6.3" r="1.1" fill="#fff" opacity="0.95"/></svg></a>
+                  <a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="Support on X"><svg viewBox="0 0 24 24" fill="#1DA1F2" xmlns="http://www.w3.org/2000/svg"><path d="M22 5.92c-.63.28-1.3.47-2 .56.72-.43 1.27-1.1 1.53-1.9-.67.4-1.42.68-2.22.83C18.06 4.6 17.12 4 16.06 4c-1.63 0-2.95 1.32-2.95 2.95 0 .23.03.46.08.68-2.45-.12-4.63-1.3-6.09-3.09-.25.43-.39.93-.39 1.46 0 1.01.51 1.9 1.29 2.42-.48-.02-.93-.15-1.32-.37v.04c0 1.41 1.01 2.59 2.35 2.86-.25.07-.51.11-.78.11-.19 0-.37-.02-.55-.05.37 1.17 1.45 2.02 2.73 2.04C8.2 17.94 6.9 18.5 5.5 18.5c-.36 0-.71-.02-1.05-.06 1.01.65 2.22 1.03 3.51 1.03 4.21 0 6.52-3.49 6.52-6.52v-.3c.45-.33.83-.74 1.14-1.2-.41.18-.85.29-1.31.34.47-.28.83-.73 1.01-1.27z"/></svg></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="member" role="listitem" data-reveal>
+            <img src="images/3.png" alt="Fleet manager" onerror="this.src='https://via.placeholder.com/300x180?text=Fleet'">
+            <div class="meta">
+              <div class="name">
+                Sylvia.
+                <div class="badge">Manager</div>
+              </div>
+              <div class="role">Fleet Manager</div>
+              <div class="bio">Overseeing fleet maintenance and logistics.</div>
+            </div>
+            <div class="contact-row">
+              <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Sylvia on Facebook" class="social-link">🔵</a>
+              <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Sylvia on Instagram" class="social-link">📸</a>
+              <a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="Sylvia on X (Twitter)" class="social-link">🐦</a>
+              <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="Sylvia on LinkedIn" class="social-link">🔗</a>
+              <a href="https://wa.me/254707480602?text=Hi%20Sylvia" target="_blank" rel="noopener noreferrer" aria-label="Message Sylvia on WhatsApp" class="social-link">💬</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style="margin-top:22px" class="card why-choose" data-reveal>
+        <style>
+          /* Scoped styles for "Why choose" panel */
+          .why-choose{padding:20px;overflow:visible}
+          .why-grid{display:grid;grid-template-columns:1fr 340px;gap:18px;align-items:start}
+          .benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+          .benefit{background:linear-gradient(180deg,#fff,#fbfdff);padding:14px;border-radius:12px;box-shadow:var(--shadow-sm);display:flex;gap:12px;align-items:flex-start;transition:transform .18s,box-shadow .18s}
+          .benefit:hover{transform:translateY(-6px);box-shadow:0 22px 60px rgba(12,18,30,0.10)}
+          .icon-circle{width:48px;height:48px;border-radius:10px;display:inline-grid;place-items:center;color:#fff;font-weight:700;flex-shrink:0}
+          .icon-safety{background:linear-gradient(90deg,#06b6a4,#0b7dfa)}
+          .icon-price{background:linear-gradient(90deg,#ffb020,#ff6b6b)}
+          .icon-support{background:linear-gradient(90deg,#7c3aed,#06b6a4)}
+          .benefit h4{margin:0;font-size:15px}
+          .benefit p{margin:6px 0 0;color:var(--muted);font-size:13px;line-height:1.35}
+          .why-side{background:linear-gradient(180deg,#fff,#fbfdff);padding:16px;border-radius:12px;box-shadow:var(--shadow-sm)}
+          .trust-stats{display:flex;gap:10px;justify-content:space-between;margin-top:12px}
+          .trust-item{flex:1;text-align:center;padding:10px;border-radius:10px;background:linear-gradient(180deg,#fbfdff,#fff);box-shadow:0 8px 22px rgba(12,18,30,0.04)}
+          .trust-item strong{display:block;font-size:20px;font-weight:800}
+          .why-cta{display:flex;gap:10px;margin-top:14px;align-items:center}
+          .partner-logos{display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap}
+          @media(max-width:980px){ .why-grid{grid-template-columns:1fr} .benefits{grid-template-columns:1fr} .why-side{order:2} }
+        </style>
+
+        <div class="why-grid">
+          <div>
+            <h3>Why choose Sir Mike AutoHire?</h3>
+            <p class="muted" style="margin-top:6px">
+              We combine professional fleet management, transparent pricing and 24/7 support to deliver dependable mobility for business and leisure. Our processes prioritise safety, accountability and easy service delivery.
+            </p>
+
+            <div class="benefits" role="list" aria-label="Key benefits">
+              <div class="benefit" role="listitem">
+                <div class="icon-circle icon-safety" aria-hidden="true">
+                  <!-- shield icon -->
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l7 3v5c0 5.25-3.75 9.74-7 11-3.25-1.26-7-5.75-7-11V5l7-3z" fill="#fff"/></svg>
+                </div>
+                <div>
+                  <h4>Safety first</h4>
+                  <p>All vehicles insured, regularly inspected and serviced by certified technicians.</p>
+                </div>
+              </div>
+
+              <div class="benefit" role="listitem">
+                <div class="icon-circle icon-price" aria-hidden="true">
+                  <!-- price tag icon -->
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 10v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 .293-.707l8-8L16 3l5 7z" fill="#fff"/></svg>
+                </div>
+                <div>
+                  <h4>Transparent pricing</h4>
+                  <p>Clear daily rates, optional add-ons and no hidden fees — invoices available for corporate clients.</p>
+                </div>
+              </div>
+
+              <div class="benefit" role="listitem">
+                <div class="icon-circle icon-support" aria-hidden="true">
+                  <!-- support icon -->
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a7 7 0 0 1 7 7v3a7 7 0 0 1-7 7 7 7 0 0 1-7-7V9a7 7 0 0 1 7-7z" fill="#fff"/></svg>
+                </div>
+                <div>
+                  <h4>24/7 support</h4>
+                  <p>Dedicated support team, roadside assistance and rapid responses — worldwide standards with local care.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="why-side" aria-labelledby="why-trust">
+            <h4 id="why-trust" style="margin:0 0 6px">Trusted, measurable results</h4>
+            <p class="muted" style="margin:0 0 12px;font-size:13px">Verified performance metrics from real customers and business partners.</p>
+
+            <div class="trust-stats" role="list" aria-hidden="false">
+              <div class="trust-item" role="listitem">
+                <strong data-target="4.8">0</strong>
+                <div class="label">Avg. rating</div>
+              </div>
+              <div class="trust-item" role="listitem">
+                <strong data-target="3200">0</strong>
+                <div class="label">Total bookings</div>
+              </div>
+              <div class="trust-item" role="listitem">
+                <strong data-target="98">0</strong>
+                <div class="label">Satisfaction %</div>
+              </div>
+            </div>
+
+            <div class="why-cta">
+              <a class="btn" href="cars.html">Browse our fleet</a>
+              <a class="ghost" href="contact.html">Request corporate quote</a>
+            </div>
+
+            <div class="partner-logos" aria-hidden="true">
+              <img src="images/partner-insurance.png" alt="Insurance partner" style="height:34px" onerror="this.style.display='none'">
+              <img src="images/partner-maintenance.png" alt="Maintenance partner" style="height:34px" onerror="this.style.display='none'">
+              <img src="images/partner-tech.png" alt="Technology partner" style="height:34px" onerror="this.style.display='none'">
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding-top:18px">
+        <div class="muted">&copy; Sir Mike AutoHire 2025</div>
+        <div class="muted">Phone: 0707480602 • Email: sirmike6072@gmail.com</div>
+        <div style="margin-top:8px;font-size:13px;color:var(--muted)">Office: Nairobi, Kenya • Mon–Sun: 08:00–20:00</div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    /* changed code: interactive JS - counters, reveal on scroll, hero parallax & improved fallback */
+    (function(){
+      // Counter animation
+      const counters = document.querySelectorAll('.stat strong[data-target]');
+      function animateCounter(el, target, duration = 1400){
+        const start = 0;
+        const end = Number(target);
+        const startTime = performance.now();
+        function step(now){
+          const progress = Math.min((now - startTime) / duration, 1);
+          const value = start + Math.round((end - start) * progress);
+          // For rating with decimal (4.8) show one decimal
+          if(target.toString().includes('.')) el.textContent = (value/10).toFixed(1);
+          else el.textContent = value.toLocaleString();
+          if(progress < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+
+      // Start counters when in view
+      const statsSection = document.querySelector('.stats');
+      if(statsSection){
+        const obs = new IntersectionObserver((entries, o)=>{
+          entries.forEach(entry=>{
+            if(entry.isIntersecting){
+              counters.forEach(c=>{
+                const t = c.getAttribute('data-target');
+                // if rating like 4.8, use multiplied by 10 for smoother animation
+                if(t.includes('.')) animateCounter(c, String(t).replace('.',''), 1200);
+                else animateCounter(c, t, 1200);
+              });
+              o.disconnect();
+            }
+          });
+        }, {threshold:0.4});
+        obs.observe(statsSection);
+      }
+
+      // Reveal on scroll for cards, milestones, members
+      const revealables = document.querySelectorAll('[data-reveal]');
+      const revealObs = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting) { e.target.classList.add('in-view'); revealObs.unobserve(e.target); }
+        });
+      }, {threshold:0.15});
+      revealables.forEach(n=>revealObs.observe(n));
+
+      // Parallax / subtle tilt on hero image for desktop
+      const heroMedia = document.getElementById('heroMedia');
+      if(heroMedia && window.matchMedia('(min-width:641px)').matches){
+        heroMedia.addEventListener('mousemove', e=>{
+          const rect = heroMedia.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          const img = heroMedia.querySelector('img');
+          img.style.transform = `translate3d(${x * 6}px, ${y * 6}px, 0) scale(1.03)`;
+        });
+        heroMedia.addEventListener('mouseleave', ()=>{
+          const img = heroMedia.querySelector('img');
+          img.style.transform = '';
+        });
+      }
+
+      // Smooth scroll for internal links
+      document.querySelectorAll('a[href^="#"]').forEach(a=>{
+        a.addEventListener('click', (e)=>{
+          const id = a.getAttribute('href').slice(1);
+          const el = document.getElementById(id);
+          if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'center'}); }
+        });
+      });
+
+      // Better image fallback (avoid infinite loop)
+      document.querySelectorAll('img').forEach(img=>{
+        img.addEventListener('error', function onErr(){
+          if(img.dataset.fallbackUsed) return;
+          img.dataset.fallbackUsed = '1';
+          const w = img.naturalWidth || 720;
+          const h = img.naturalHeight || 420;
+          img.src = `https://via.placeholder.com/${Math.min(800,w)}x${Math.min(600,h)}?text=Sir+Mike+AutoHire`;
+        }, {once:true});
+      });
+
+      // Accessibility: reduce motion preference
+      if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+        document.documentElement.style.scrollBehavior = 'auto';
+        document.querySelectorAll('.hero-media img').forEach(i=> i.style.transition = 'none');
+        document.querySelectorAll('.fade-up').forEach(i=> i.style.transition = 'none');
+      }
+    })();
+
+    // changed code: set background intensity based on local time and respect reduced motion
+    (function(){
+      try{
+        if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+          document.documentElement.style.setProperty('--bg-accent-opacity','0.04');
+          return;
+        }
+        const h = new Date().getHours();
+        // warmer, softer at night; brighter during day
+        if(h >= 20 || h < 6){
+          document.documentElement.style.setProperty('--bg-accent-opacity','0.05');
+        } else if(h >= 16 && h < 20){
+          document.documentElement.style.setProperty('--bg-accent-opacity','0.08');
+        } else {
+          document.documentElement.style.setProperty('--bg-accent-opacity','0.12');
+        }
+      }catch(e){}
+    })();
+
+    // create a lightweight grain overlay element (insert once)
+    (function(){
+      if(!document.querySelector('.background-grain')){
+        const g = document.createElement('div');
+        g.className = 'background-grain';
+        document.body.appendChild(g);
+      }
+    })();
+  </script>
+</body>
+</html>

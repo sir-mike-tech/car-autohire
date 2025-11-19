@@ -1,0 +1,1300 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Our Cars — Sir Mike AutoHire</title>
+  <meta name="description" content="Browse Sir Mike AutoHire's modern fleet — SUVs, Sedans, Vans and pickups. Transparent pricing, clear availability." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+  /* (optional) keep only small page-specific rules here */
+    :root{
+      --accent:#0b7dfa; --accent-600:#0767c9; --bg:#f6f8fb; --dark:#0f1724;
+      --muted:#6b7280; --card:#fff; --radius:12px; --shadow:0 10px 30px rgba(15,23,36,.06);
+      --maxw:1200px; font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    }
+    /* Partners (professional grid + subtle hover color) */
+    .partners-wrap{display:grid;grid-template-columns:1fr 2fr;gap:18px;align-items:center;margin-top:18px}
+    .partners-intro h3{margin:0 0 6px;font-size:18px}
+    .partners-intro p{margin:0;color:var(--muted)}
+    .partners-grid{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+    .partner{
+      background:#fff;border-radius:10px;padding:10px 12px;box-shadow:0 8px 24px rgba(12,18,30,0.04);display:flex;align-items:center;justify-content:center;
+      min-width:120px;max-width:180px;flex:0 0 auto;transition:transform .18s ease,box-shadow .18s ease,filter .18s ease;
+    }
+    .partner a{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
+    .partner img{height:36px;max-width:140px;object-fit:contain;filter:grayscale(100%) contrast(.9);opacity:.9;transition:filter .18s ease,opacity .18s ease,transform .18s ease}
+    .partner:hover, .partner:focus-within{transform:translateY(-6px);box-shadow:0 18px 40px rgba(11,125,250,0.08)}
+    .partner:hover img, .partner:focus-within img{filter:none;opacity:1;transform:translateY(-2px)}
+    .partners-cta{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+    .partners-cta .btn{padding:8px 12px;border-radius:10px}
+    @media(max-width:880px){ .partners-wrap{grid-template-columns:1fr;gap:12px} .partner{min-width:140px} }
+
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,var(--bg),#fff);color:var(--dark);-webkit-font-smoothing:antialiased}
+    .container{max-width:var(--maxw);margin:0 auto;padding:26px}
+
+    /* Header */
+    header{background:#fff;position:sticky;top:0;z-index:50;box-shadow:0 4px 12px rgba(10,15,25,.04)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 26px}
+    .brand{display:flex;gap:12px;align-items:center;font-weight:700}
+    .brand img{height:44px;border-radius:8px}
+    nav a{margin:0 8px;color:var(--dark);text-decoration:none;font-weight:600;padding:8px;border-radius:8px}
+    nav a:hover{background:rgba(11,125,250,.06);color:var(--accent-600)}
+    .nav-actions{display:flex;gap:10px;align-items:center}
+
+    /* Hero */
+    .hero{display:flex;gap:18px;align-items:center;padding:22px 0}
+    .hero-left h1{margin:0;font-size:28px}
+    .hero-left p{margin:6px 0;color:var(--muted)}
+    /* Pricing plans styles */
+    .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px;align-items:start}
+    .plan{background:linear-gradient(180deg,#fff,#fbfdff);border-radius:12px;padding:16px;border:1px solid rgba(11,125,250,0.04);box-shadow:0 12px 36px rgba(12,18,30,0.06);display:flex;flex-direction:column;gap:12px;transition:transform .16s ease,box-shadow .16s ease}
+    .plan:hover{transform:translateY(-8px);box-shadow:0 28px 80px rgba(12,18,30,0.10)}
+    .plan .icon{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#eef6ff,#fff);flex-shrink:0}
+    .plan h4{margin:0;font-size:18px}
+    .plan .price{font-weight:800;color:var(--accent);font-size:18px}
+    .plan ul{margin:0;padding-left:18px;color:var(--muted)}
+    .plan .cta{margin-top:auto;display:flex;gap:8px}
+    .plan .btn{flex:1}
+    @media(max-width:880px){ .plans{grid-template-columns:1fr} }
+    .hero-right img{height:88px;border-radius:10px;object-fit:cover;box-shadow:var(--shadow)}
+
+    /* Filters */
+    .filters{display:flex;gap:12px;align-items:center;padding:14px;background:linear-gradient(180deg,#fff,#fbfdff);border-radius:14px;box-shadow:var(--shadow)}
+    .filters .field{display:flex;flex-direction:column}
+    .filters input,.filters select{padding:10px;border-radius:10px;border:1px solid #e6eef9;min-width:160px}
+    .filters .actions{margin-left:auto;display:flex;gap:10px;align-items:center}
+    .btn{background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:700;border:0;cursor:pointer}
+    .ghost{background:transparent;border:1px solid rgba(11,125,250,.12);padding:9px 12px;border-radius:10px}
+
+  /* Button animations: glow, smooth color, icon rotation */
+  .btn, .ghost, .page-btn, .read-btn{transition:transform .18s cubic-bezier(.2,.9,.2,1),box-shadow .18s ease,background .18s ease,color .18s ease;border-radius:10px}
+  .btn{box-shadow:0 8px 22px rgba(11,125,250,0.12)}
+  .btn:hover{transform:translateY(-4px);box-shadow:0 18px 48px rgba(11,125,250,0.18);background:linear-gradient(90deg,var(--accent),var(--accent-600))}
+  .btn:active{transform:translateY(-2px) scale(.996)}
+  .btn:focus-visible{box-shadow:0 22px 60px rgba(11,125,250,0.18);outline:none}
+
+  .ghost{transition:background .18s,transform .12s,box-shadow .12s}
+  .ghost:hover{background:rgba(11,125,250,0.06);transform:translateY(-3px);box-shadow:0 10px 26px rgba(11,125,250,0.06)}
+
+  .page-btn{transition:transform .14s,box-shadow .14s,background .14s}
+  .page-btn:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(11,125,250,0.06)}
+
+  /* Read button arrow micro-animation */
+  .read-btn{position:relative;padding-right:6px}
+  .read-btn::after{content:'→';display:inline-block;margin-left:8px;transition:transform .22s cubic-bezier(.2,.9,.2,1)}
+  .read-btn:hover::after{transform:translateX(6px) rotate(8deg)}
+
+  /* Rotate any inline icon/svg inside buttons on hover */
+  .btn .icon, .btn svg, .ghost .icon, .ghost svg{display:inline-block;transition:transform .32s cubic-bezier(.2,.9,.2,1)}
+  .btn:hover .icon, .btn:hover svg{transform:rotate(20deg)}
+
+    /* Sorting & helpers */
+    .controls-inline{display:flex;gap:12px;align-items:center}
+    .sort-select{padding:8px;border-radius:10px;border:1px solid #e6eef9;background:#fff}
+
+    /* Grid */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+    .card{background:var(--card);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .12s}
+    .card:hover{transform:translateY(-6px)}
+  .card .media{height:200px;position:relative;background:#eef5ff;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .card .media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.9,.2,1)}
+  .card:hover .media img{transform:scale(1.06)}
+  .price-badge{position:absolute;right:12px;top:12px;background:linear-gradient(90deg,var(--accent),var(--accent-600));color:#fff;padding:8px 12px;border-radius:999px;font-weight:800;box-shadow:0 12px 30px rgba(11,125,250,0.12);z-index:3;font-size:13px}
+  .status-pill{position:absolute;left:12px;top:12px;z-index:3}
+  .card .media::after{content:"";position:absolute;left:0;right:0;bottom:0;height:50%;background:linear-gradient(180deg,rgba(0,0,0,0) 0%, rgba(0,0,0,0.45) 100%);pointer-events:none}
+  .card:focus-within{transform:translateY(-6px);box-shadow:0 22px 60px rgba(11,125,250,0.10)}
+  .card-body{padding:16px;flex:1;display:flex;flex-direction:column;gap:8px}
+    .meta{display:flex;justify-content:space-between;align-items:center}
+    .specs{color:var(--muted);font-size:13px}
+    .price{font-weight:800;color:var(--accent)}
+    .badge{padding:6px 8px;border-radius:999px;font-weight:700;font-size:12px}
+    .available{background:#eefdf3;color:#0b6b2b}
+    .limited{background:#fff7e6;color:#a65a00}
+  .book-row{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-top:auto}
+  .book-row .btn{padding:8px 12px;font-size:14px}
+  .book-row .ghost{padding:8px 10px;border-radius:8px}
+
+    /* Card footer small icons */
+    .car-features{display:flex;gap:8px;flex-wrap:wrap}
+    .feature{background:rgba(11,125,250,0.04);padding:6px 8px;border-radius:8px;font-size:13px;color:var(--muted)}
+
+  /* small UI micro-interactions */
+  .book-row label:hover{transform:translateY(-2px)}
+  .badge{transition:transform .18s,box-shadow .18s}
+  .badge:hover{transform:translateY(-3px);box-shadow:0 8px 26px rgba(11,125,250,0.06)}
+
+    /* Modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(10,15,25,0.5);display:none;align-items:center;justify-content:center;z-index:120}
+    .modal{background:#fff;border-radius:12px;max-width:920px;width:calc(100% - 36px);box-shadow:0 30px 70px rgba(10,15,25,0.35);display:flex;gap:18px;overflow:hidden}
+    .modal .col{flex:1;padding:18px}
+    .modal .media{height:320px;background:#eef5ff}
+    .close-btn{background:transparent;border:0;font-size:18px;cursor:pointer;color:var(--muted)}
+
+    /* Compare bar */
+    .compare-bar{position:sticky;bottom:16px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,#fff,#fbfdff);padding:10px 14px;border-radius:999px;box-shadow:0 14px 40px rgba(11,125,250,0.08);display:flex;gap:10px;align-items:center;z-index:60}
+
+    /* Pagination */
+    .pagination{display:flex;gap:8px;align-items:center;justify-content:center;margin-top:18px}
+    .page-btn{padding:8px 12px;border-radius:8px;border:1px solid #e6eef9;background:#fff;cursor:pointer}
+    .page-btn.active{background:linear-gradient(90deg,var(--accent),var(--accent-600));color:#fff;border-color:transparent}
+
+    /* Empty / no results */
+    .empty{padding:28px;background:#fff;border-radius:12px;text-align:center;color:var(--muted);box-shadow:var(--shadow)}
+
+    /* Footer */
+  footer{margin-top:28px;padding:22px 0;color:#6f8aa6}
+  /* Social links in footer */
+  .social-links{display:flex;gap:8px;align-items:center;margin-top:8px}
+  .social-link{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:rgba(11,125,250,0.06);color:var(--accent-600);text-decoration:none;font-weight:700;font-size:13px;border:1px solid rgba(11,125,250,0.04);transition:transform .14s,background .14s,color .14s}
+  .social-link:hover{background:linear-gradient(90deg,var(--accent),var(--accent-600));color:#fff;transform:translateY(-3px)}
+    footer .inner{display:flex;justify-content:space-between;align-items:center}
+
+    /* Responsive */
+    @media(max-width:980px){.grid{grid-template-columns:repeat(2,1fr)} .filters{flex-wrap:wrap}.card .media{height:140px}}
+    @media(max-width:640px){.grid{grid-template-columns:1fr}.nav a{display:none}.hero-right{display:none}.modal{flex-direction:column}.modal .media{height:240px}}
+    /* Added sections: offers, how-it-works, testimonials, faq, newsletter, team, reveal */
+    .offers{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+    .offer-tile{background:linear-gradient(180deg,#fff,#fbfdff);padding:16px;border-radius:12px;box-shadow:var(--shadow);text-align:center}
+    .how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+    .how-step{background:#fff;padding:16px;border-radius:12px;box-shadow:var(--shadow);text-align:center}
+    .testimonials{margin-top:18px;display:flex;gap:12px;overflow:hidden;position:relative;padding:12px;border-radius:12px;background:linear-gradient(180deg,#fff,#fbfdff);box-shadow:var(--shadow)}
+    .t-carousel{display:flex;gap:12px;transition:transform .6s ease}
+    .t-card{min-width:300px;background:#fff;padding:14px;border-radius:10px;box-shadow:var(--shadow);flex:0 0 auto}
+    .faq{margin-top:18px;display:grid;gap:10px}
+    .newsletter{margin-top:18px;padding:18px;border-radius:12px;background:linear-gradient(90deg,#eef8ff,#fff);display:flex;gap:12px;align-items:center}
+    .newsletter input{flex:1;padding:10px;border-radius:10px;border:1px solid #e6eef9}
+    .team{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+    .member{background:#fff;padding:12px;border-radius:12px;box-shadow:var(--shadow);text-align:center}
+    .badge-row{display:flex;gap:8px;align-items:center;margin-top:8px;flex-wrap:wrap}
+    .trust-badge{background:rgba(11,125,250,0.06);padding:8px 10px;border-radius:8px;font-weight:700;color:var(--accent);font-size:13px}
+
+    /* reveal-on-scroll */
+    .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.in-view{opacity:1;transform:none}
+
+    @media(max-width:980px){ .offers,.how-grid,.team{grid-template-columns:repeat(2,1fr)} .t-card{min-width:240px} }
+    @media(max-width:640px){ .offers,.how-grid,.team{grid-template-columns:1fr} .newsletter{flex-direction:column;align-items:stretch} }
+
+    /* extra UI: partners, pricing, routes, back-to-top, progress */
+    .top-progress{position:fixed;left:0;top:0;height:4px;background:linear-gradient(90deg,var(--accent),var(--accent-600));width:0;z-index:999}
+    .partners{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center;margin-top:18px}
+    .partner{height:48px;padding:8px;border-radius:8px;background:#fff;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center}
+    .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+    .plan{background:linear-gradient(180deg,#fff,#fbfdff);padding:18px;border-radius:12px;box-shadow:var(--shadow);text-align:center}
+    .routes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+    .route{background:#fff;padding:14px;border-radius:12px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px}
+    .news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+  /* News cards: richer layout, image, excerpt and hover polish */
+  .news-card{background:#fff;padding:0;border-radius:12px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+  .news-card .media{height:140px;overflow:hidden;position:relative}
+  .news-card .media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.9,.2,1)}
+  .news-card .content{padding:12px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .news-card h4{margin:0;font-size:16px}
+  .news-card .meta{color:var(--muted);font-size:13px}
+  .news-card .excerpt{color:var(--muted);font-size:14px;line-height:1.4;max-height:3.2em;overflow:hidden;transition:max-height .28s ease}
+  .news-card .read-row{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
+  .news-card .read-btn{background:transparent;border:0;color:var(--accent);font-weight:700;cursor:pointer;padding:6px;border-radius:8px}
+  .news-card:hover .media img{transform:scale(1.08)}
+  .news-card:hover{transform:translateY(-6px);box-shadow:0 26px 64px rgba(11,125,250,0.08)}
+  .news-card.expanded .excerpt{max-height:1000px}
+
+  /* News modal */
+  .news-modal-backdrop{position:fixed;inset:0;background:rgba(6,10,20,0.6);display:none;align-items:center;justify-content:center;padding:18px;z-index:140}
+  .news-modal{background:#fff;border-radius:12px;max-width:820px;width:100%;max-height:86vh;overflow:auto;padding:18px;box-shadow:0 30px 80px rgba(2,6,23,0.45)}
+  .news-modal .head{display:flex;gap:12px;align-items:center}
+  .news-modal .hero{height:200px;border-radius:8px;overflow:hidden;margin-top:10px}
+
+    .back-to-top{position:fixed;right:18px;bottom:18px;background:var(--accent);color:#fff;padding:10px;border-radius:12px;border:0;cursor:pointer;box-shadow:0 14px 40px rgba(11,125,250,.12);display:none;z-index:999}
+    @media(max-width:980px){ .pricing,.routes,.news-grid{grid-template-columns:repeat(2,1fr)} }
+    @media(max-width:640px){ .pricing,.routes,.news-grid{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+  <div class="top-progress" id="topProgress" aria-hidden="true"></div>
+  <header>
+    <div class="nav container" role="navigation" aria-label="Main navigation">
+      <div class="brand">
+        <img src="images/m1.jpeg" alt="Sir Mike AutoHire logo" onerror="this.style.display='none'">
+        <div>
+          <div>Sir Mike AutoHire</div>
+          <small style="color:var(--muted);font-weight:600">Drive Your Dream Today</small>
+        </div>
+      </div>
+
+      <nav aria-label="Primary">
+        <a href="home.html">Home</a>
+        <a href="cars.html" aria-current="page">Our Cars</a>
+        <a href="booking.html">Book Now</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="ghost" href="login.php">Login</a>
+        <a class="btn" href="booking.html">Book Now</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" role="main">
+    <section class="hero">
+      <div class="hero-left">
+        <h1>Our Fleet — Clean, insured & well maintained</h1>
+        <p>Choose from compact city cars, family sedans, SUVs, pickups and vans. Transparent pricing and clear availability so you can book with confidence.</p>
+      </div>
+      <div class="hero-right">
+        <img src="images/nissan.jpeg" alt="Selection of cars" onerror="this.src='https://via.placeholder.com/360x120?text=Fleet'">
+      </div>
+    </section>
+
+    <section aria-labelledby="search-heading" style="margin-top:12px">
+      <h2 id="search-heading" style="margin:0 0 10px">Search & Filter</h2>
+
+      <form id="filterForm" class="filters" onsubmit="return false" aria-label="Filter cars">
+        <div class="field">
+          <label for="q" style="font-size:13px;color:var(--muted);margin-bottom:6px">Search</label>
+          <input id="q" name="q" type="search" placeholder="Model, make or keyword" />
+        </div>
+
+        <div class="field">
+          <label for="type" style="font-size:13px;color:var(--muted);margin-bottom:6px">Type</label>
+          <select id="type" name="type">
+            <option value="">All types</option>
+            <option>Sedan</option>
+            <option>SUV</option>
+            <option>Van</option>
+            <option>Pickup</option>
+            <option>Compact</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="trans" style="font-size:13px;color:var(--muted);margin-bottom:6px">Transmission</label>
+          <select id="trans" name="trans">
+            <option value="">Any</option>
+            <option>Auto</option>
+            <option>Manual</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="fuel" style="font-size:13px;color:var(--muted);margin-bottom:6px">Fuel</label>
+          <select id="fuel" name="fuel">
+            <option value="">Any</option>
+            <option>Petrol</option>
+            <option>Diesel</option>
+            <option>Hybrid</option>
+          </select>
+        </div>
+
+        <div class="field actions" aria-hidden="false">
+          <div class="controls-inline" style="align-items:center">
+            <label for="sort" style="font-size:13px;color:var(--muted);margin-right:6px">Sort</label>
+            <select id="sort" class="sort-select" aria-label="Sort cars">
+              <option value="newest">Newest</option>
+              <option value="price-low">Price: Low → High</option>
+              <option value="price-high">Price: High → Low</option>
+              <option value="rating">Top rated</option>
+            </select>
+          </div>
+
+          <div style="display:flex;gap:8px;align-items:center;margin-left:10px">
+            <button class="btn" id="applyBtn" type="button">Apply</button>
+            <button class="ghost" id="resetBtn" type="button">Reset</button>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <section aria-labelledby="fleet-heading" style="margin-top:20px">
+      <h2 id="fleet-heading" style="margin:0 0 8px">Available Cars</h2>
+      <p style="margin:0 0 12px;color:var(--muted)">Showing the latest availability. Click Details to view more or Book to start your reservation.</p>
+
+      <div id="grid" class="grid" aria-live="polite">
+        <!-- Cards populated by inline data below -->
+      </div>
+
+      <div id="noResults" class="empty" style="display:none;margin-top:12px">
+        No cars match your filters. Try adjusting your search.
+      </div>
+
+      <div class="pagination" id="pagination" aria-hidden="false"></div>
+    </section>
+
+    <!-- SPECIAL OFFERS (updated with icons, CTAs and microcopy) -->
+    <section aria-labelledby="offers-heading" class="container" style="margin-top:28px">
+      <h2 id="offers-heading" style="margin:0 0 12px">Special Offers</h2>
+
+      <div class="offers reveal" data-reveal aria-live="polite">
+        <div class="offer-tile" style="--i:0" role="article" aria-label="Weekend Saver offer">
+          <div class="offer-top">
+            <div class="offer-icon" aria-hidden="true">
+              <!-- calendar + percent SVG -->
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 2v2M17 2v2M3 8h18" stroke="#0b7dfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="8" width="18" height="13" rx="2" stroke="#0b7dfa" stroke-width="1.6"/><path d="M9.5 13.5l1 1 2-2" stroke="#0b7dfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <h3 class="offer-title">Weekend Saver</h3>
+              <div class="offer-desc">Save 10% on bookings that include Friday–Sunday. Use code <strong>WEEKEND10</strong>.</div>
+            </div>
+          </div>
+
+          <div class="offer-meta">
+            <div class="offer-note">Valid on new bookings only • T&Cs apply</div>
+            <div class="offer-cta">
+              <a class="btn" href="booking.html?promo=WEEKEND10" title="Book with WEEKEND10">Book & save</a>
+              <div class="offer-badge">10% off</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="offer-tile" style="--i:1" role="article" aria-label="Airport Delivery offer">
+          <div class="offer-top">
+            <div class="offer-icon" aria-hidden="true">
+              <!-- plane SVG -->
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 16 22 8l-5 6-3 8-1.5-5L6 14l-4 2z" stroke="#0966c9" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <h3 class="offer-title">Airport Delivery</h3>
+              <div class="offer-desc">Free delivery for 2+ day bookings to JKIA and Wilson. Choose 'Airport' at checkout.</div>
+            </div>
+          </div>
+
+          <div class="offer-meta">
+            <div class="offer-note">Select delivery option at booking • Subject to flight schedules</div>
+            <div class="offer-cta">
+              <a class="btn" href="booking.html?delivery=airport" title="Request airport delivery">Request delivery</a>
+              <div class="offer-badge" style="background:linear-gradient(90deg,#22c55e,#16a34a)">Free</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="offer-tile" style="--i:2" role="article" aria-label="Corporate Rates offer">
+          <div class="offer-top">
+            <div class="offer-icon" aria-hidden="true">
+              <!-- briefcase SVG -->
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="2" stroke="#0b7dfa" stroke-width="1.6"/><path d="M8 7V5a4 4 0 0 1 8 0v2" stroke="#0b7dfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <h3 class="offer-title">Corporate Rates</h3>
+              <div class="offer-desc">Volume discounts, consolidated billing and a dedicated account manager for monthly contracts.</div>
+            </div>
+          </div>
+
+          <div class="offer-meta">
+            <div class="offer-note">Tailored plans for fleets — enquire for a bespoke quote</div>
+            <div class="offer-cta">
+              <a class="btn" href="corporate.html" title="Learn about corporate plans">Contact sales</a>
+              <div class="offer-badge">Custom</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section aria-labelledby="how-heading" class="container" style="margin-top:26px">
+      <h2 id="how-heading" style="margin:0 0 12px">How it works</h2>
+      <div class="how-grid reveal" data-reveal>
+        <div class="how-step">
+          <div class="icon" aria-hidden="true">🔍</div>
+          <strong>1. Search & select</strong>
+          <div class="muted">Find a car by type, price or feature — filter to refine results.</div>
+          <span class="sr-only">Step 1: Search and select</span>
+        </div>
+        <div class="how-step">
+          <div class="icon" aria-hidden="true">🗓️</div>
+          <strong>2. Book & confirm</strong>
+          <div class="muted">Secure booking with card, M-Pesa or pay-on-pickup. Instant confirmation.</div>
+          <span class="sr-only">Step 2: Book and confirm</span>
+        </div>
+        <div class="how-step">
+          <div class="icon" aria-hidden="true">🚗</div>
+          <strong>3. Pickup or delivery</strong>
+          <div class="muted">Pickup at our Nairobi branch or request airport delivery.</div>
+          <span class="sr-only">Step 3: Pickup or request delivery</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS (upgraded) -->
+    <section aria-labelledby="testimonials-heading" class="container" style="margin-top:26px">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+        <div>
+          <h2 id="testimonials-heading" style="margin:0 0 6px">What our customers say</h2>
+          <div class="muted-small">Hand-picked reviews from real customers — updated regularly.</div>
+        </div>
+        <div class="t-controls" aria-hidden="false">
+          <button class="t-btn" id="tPrev" aria-label="Previous testimonial">‹</button>
+          <button class="t-btn" id="tNext" aria-label="Next testimonial">›</button>
+        </div>
+      </div>
+
+      <div class="testimonials reveal" data-reveal>
+        <div class="t-carousel" id="tCarousel" role="list" aria-live="polite" tabindex="0">
+          <!-- slides populated by JS -->
+        </div>
+        <div class="t-indicators" id="tIndicators" aria-hidden="false" style="margin-top:12px"></div>
+      </div>
+
+      <div style="margin-top:10px;display:flex;gap:10px;align-items:center">
+        <a class="ghost" href="reviews.html">Read all reviews</a>
+        <a class="btn" href="contact.html">Share your experience</a>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section aria-labelledby="faq-heading" class="container" style="margin-top:26px">
+      <h2 id="faq-heading" style="margin:0 0 12px">Frequently asked questions</h2>
+      <div class="faq reveal" data-reveal>
+        <details><summary>What is the cancellation policy?</summary><div class="muted" style="margin-top:8px">Free cancellation up to 24 hours prior. Late changes may incur charges.</div></details>
+        <details><summary>How do I pay?</summary><div class="muted" style="margin-top:8px">We accept card payments, M-Pesa and cash at pickup.</div></details>
+        <details><summary>Is insurance included?</summary><div class="muted" style="margin-top:8px">Yes — standard insurance is included. Optional add-ons available.</div></details>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section aria-labelledby="team-heading" class="container" style="margin-top:26px">
+      <h2 id="team-heading" style="margin:0 0 12px">Meet the team</h2>
+      <div class="team reveal" data-reveal>
+        <div class="member">
+          <img src="images/ceo.jpeg" alt="Manager" style="width:100%;height:140px;object-fit:cover;border-radius:8px" onerror="this.src='https://via.placeholder.com/300x140?text=Team'">
+          <div style="margin-top:8px;font-weight:700">Mike.</div>
+          <div class="muted" style="font-size:13px">Founder & GM</div>
+          <div class="social" style="margin-top:8px;display:flex;gap:8px;justify-content:center">
+            <a href="https://www.facebook.com/share/1FKiRXJ5Mn/" target="_blank" rel="noopener noreferrer" aria-label="Mike on Facebook"><span class="s-icon facebook">facebook</span></a>
+            <a href="https://www.instagram.com/sir_mikeh?igsh=NzdlMXN2MXJ2eHJz" target="_blank" rel="noopener noreferrer" aria-label="Mike on Instagram"><span class="s-icon instagram">instagram</span></a>
+            <a href="https://x.com/sirmike6072?t=EpwjVWqPtTNdnCF6NkXEaA&s=09" target="_blank" rel="noopener noreferrer" aria-label="Mike on X (Twitter)"><span class="s-icon x">x</span></a>
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="Mike on LinkedIn"><span class="s-icon linkedin">linkedin</span></a>
+            <a href="https://wa.me/254707480602?text=Hi%20Mike" target="_blank" rel="noopener noreferrer" aria-label="Message Mike on WhatsApp"><span class="s-icon whatsapp">whatsapp</span></a>
+           </div>
+         </div>
+         <div class="member">
+           <img src="images/2.jpeg" alt="Operations" style="width:100%;height:140px;object-fit:cover;border-radius:8px" onerror="this.src='https://via.placeholder.com/300x140?text=Team'">
+           <div style="margin-top:8px;font-weight:700">sir.</div>
+           <div class="muted" style="font-size:13px">Operations</div>
+           <div class="social" style="margin-top:8px;display:flex;gap:8px;justify-content:center">
+             <a href="https://www.facebook.com/share/1FKiRXJ5Mn/" target="_blank" rel="noopener noreferrer" aria-label="Operations on Facebook"><span class="s-icon facebook">facebook</span></a>
+             <a href="https://www.instagram.com/sir_mikeh?igsh=NzdlMXN2MXJ2eHJz" target="_blank" rel="noopener noreferrer" aria-label="Operations on Instagram"><span class="s-icon instagram">instagram</span></a>
+             <a href="https://x.com/sirmike6072?t=EpwjVWqPtTNdnCF6NkXEaA&s=09" target="_blank" rel="noopener noreferrer" aria-label="Operations on X (Twitter)"><span class="s-icon x">x</span></a>
+             <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="Operations on LinkedIn"><span class="s-icon linkedin">linkedin</span></a>
+           </div>
+         </div>
+         <div class="member">
+           <img src="images/sir9.jpeg" alt="Support" style="width:100%;height:140px;object-fit:cover;border-radius:8px" onerror="this.src='https://via.placeholder.com/300x140?text=Team'">
+           <div style="margin-top:8px;font-weight:700">SirMike.</div>
+           <div class="muted" style="font-size:13px">Customer Support</div>
+           <div class="social" style="margin-top:8px;display:flex;gap:8px;justify-content:center">
+             <a href="https://www.facebook.com/share/1FKiRXJ5Mn/" target="_blank" rel="noopener noreferrer" aria-label="Support on Facebook"><span class="s-icon facebook">facebook</span></a>
+             <a href="https://www.instagram.com/sir_mikeh?igsh=NzdlMXN2MXJ2eHJz" target="_blank" rel="noopener noreferrer" aria-label="Support on Instagram"><span class="s-icon instagram">instagram</span></a>
+             <a href="https://x.com/sirmike6072?t=EpwjVWqPtTNdnCF6NkXEaA&s=09" target="_blank" rel="noopener noreferrer" aria-label="Support on X (Twitter)"><span class="s-icon x">x</span></a>
+             <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="Support on LinkedIn"><span class="s-icon linkedin">linkedin</span></a>
+             <a href="https://wa.me/254707480602?text=Hi%20Support" target="_blank" rel="noopener noreferrer" aria-label="Message support on WhatsApp"><span class="s-icon whatsapp">whatsapp</span></a>
+           </div>
+         </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER CTA -->
+    <section aria-labelledby="news-heading" class="container" style="margin-top:26px">
+      <h2 id="news-heading" style="margin:0 0 12px">Stay updated</h2>
+      <div class="newsletter reveal" data-reveal>
+        <div>
+          <strong>Get exclusive deals</strong>
+          <div class="muted" style="margin-top:6px">Subscribe for fleet updates and promotional codes.</div>
+        </div>
+        <!-- Replace YOUR_FORM_ID below with your Formspree form ID (e.g. https://formspree.io/f/xxxxxxx) -->
+        <form id="newsletterForm" action="https://formspree.io/f/xqawbagq" method="POST" style="display:flex;gap:8px;margin-left:auto;max-width:520px;width:100%">
+          <input id="newsEmail" name="email" type="email" placeholder="you@example.com" required aria-label="Email for newsletter">
+          <input type="hidden" name="_subject" value="New newsletter signup">
+          <input type="hidden" name="_language" value="en">
+          <button class="btn" id="newsSubmit" type="submit">Subscribe</button>
+        </form>
+        <div id="newsMsg" class="muted" style="margin-left:12px;align-self:center"></div>
+      </div>
+    </section>
+
+    <!-- TRUST BADGES -->
+    <section aria-labelledby="trust-heading" class="container" style="margin-top:26px">
+      <div class="badge-row reveal" data-reveal>
+        <div class="trust-badge">Insured Vehicles</div>
+        <div class="trust-badge">24/7 Support</div>
+        <div class="trust-badge">Verified Cleanliness</div>
+        <div class="trust-badge">Flexible Payment</div>
+      </div>
+    </section>
+
+    <!-- PARTNERS -->
+    <section aria-labelledby="partners-heading" class="container" style="margin-top:28px">
+      <div class="partners-wrap reveal" data-reveal>
+        <div class="partners-intro">
+          <h3 id="partners-heading" style="margin:0 0 6px">Trusted partners & suppliers</h3>
+          <p style="margin:0 0 10px;color:var(--muted)">We work with reputable service providers to ensure reliable vehicles, seamless logistics and excellent customer support.</p>
+          <div class="partners-cta">
+            <a class="btn" href="partners.html">Explore partner benefits</a>
+            <a class="ghost" href="mailto:sirmike6072@gmail.com">Become a partner</a>
+          </div>
+        </div>
+
+        <div class="partners-grid" aria-hidden="false" role="list" aria-label="Partner logos">
+          <div class="partner" role="listitem">
+            <a href="https://example-insurance.co.ke" target="_blank" rel="noopener noreferrer" aria-label="Insurance partner">
+              <img src="images/partner-insurance.svg" alt="Insurance Partner" onerror="this.src='https://via.placeholder.com/160x36?text=Insurance'">
+            </a>
+          </div>
+          <div class="partner" role="listitem">
+            <a href="https://example-maintenance.co.ke" target="_blank" rel="noopener noreferrer" aria-label="Maintenance partner">
+              <img src="images/partner-maintenance.svg" alt="Maintenance Partner" onerror="this.src='https://via.placeholder.com/160x36?text=Maintenance'">
+            </a>
+          </div>
+          <div class="partner" role="listitem">
+            <a href="https://example-payments.co.ke" target="_blank" rel="noopener noreferrer" aria-label="Payments partner">
+              <img src="images/partner-payments.svg" alt="Payments Partner" onerror="this.src='https://via.placeholder.com/160x36?text=Payments'">
+            </a>
+          </div>
+          <div class="partner" role="listitem">
+            <a href="https://example-logistics.co.ke" target="_blank" rel="noopener noreferrer" aria-label="Logistics partner">
+              <img src="images/partner-logistics.svg" alt="Logistics Partner" onerror="this.src='https://via.placeholder.com/160x36?text=Logistics'">
+            </a>
+          </div>
+          <div class="partner" role="listitem">
+            <a href="https://example-carwash.co.ke" target="_blank" rel="noopener noreferrer" aria-label="Cleaning partner">
+              <img src="images/partner-cleaning.svg" alt="Cleaning Partner" onerror="this.src='https://via.placeholder.com/160x36?text=Cleaning'">
+            </a>
+          </div>
+          <div class="partner" role="listitem">
+            <a href="https://example-technology.co.ke" target="_blank" rel="noopener noreferrer" aria-label="Tech partner">
+              <img src="images/partner-tech.svg" alt="Technology Partner" onerror="this.src='https://via.placeholder.com/160x36?text=Tech'">
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING / PLANS -->
+    <section aria-labelledby="pricing-heading" class="container" style="margin-top:28px">
+      <h3 id="pricing-heading" style="margin:0 0 12px">Pricing plans</h3>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div style="display:flex;gap:8px;align-items:center">
+          <label style="font-size:13px;color:var(--muted);margin-right:8px">Billing</label>
+          <div role="radiogroup" aria-label="Billing period" style="display:flex;gap:8px">
+            <button id="billingDaily" class="ghost" aria-pressed="true">Daily</button>
+            <button id="billingWeekly" class="ghost" aria-pressed="false">Weekly</button>
+          </div>
+        </div>
+        <div style="color:var(--muted);font-size:13px">Pay securely online or on pickup</div>
+      </div>
+
+      <div class="plans reveal" data-reveal>
+        <div class="plan" data-plan="basic" tabindex="0" role="article" aria-label="Basic plan">
+          <div style="display:flex;gap:12px;align-items:center">
+            <div class="icon" aria-hidden="true">🚗</div>
+            <div>
+              <h4>Basic</h4>
+              <div class="muted" style="font-size:13px">City trips & budget travelers</div>
+            </div>
+          </div>
+          <div class="price" data-price-daily="2800" data-price-weekly="16000">KES 2,800</div>
+          <ul>
+            <li>Basic insurance included</li>
+            <li>Standard cleaning & roadside</li>
+            <li>Flexible pickup</li>
+          </ul>
+          <div class="cta">
+            <button class="btn select-plan" data-plan="basic">Select</button>
+            <button class="ghost compare-plan" type="button" data-plan="basic">Compare</button>
+          </div>
+        </div>
+
+        <div class="plan" data-plan="standard" tabindex="0" role="article" aria-label="Standard plan">
+          <div style="display:flex;gap:12px;align-items:center">
+            <div class="icon" aria-hidden="true">🚙</div>
+            <div>
+              <h4>Standard</h4>
+              <div class="muted" style="font-size:13px">Most popular — family trips</div>
+            </div>
+          </div>
+          <div class="price" data-price-daily="4200" data-price-weekly="24000">KES 4,200</div>
+          <ul>
+            <li>Full insurance</li>
+            <li>Priority pickup & support</li>
+            <li>Free additional driver</li>
+          </ul>
+          <div class="cta">
+            <button class="btn select-plan" data-plan="standard">Select</button>
+            <button class="ghost compare-plan" type="button" data-plan="standard">Compare</button>
+          </div>
+        </div>
+
+        <div class="plan" data-plan="premium" tabindex="0" role="article" aria-label="Premium plan">
+          <div style="display:flex;gap:12px;align-items:center">
+            <div class="icon" aria-hidden="true">💼</div>
+            <div>
+              <h4>Premium</h4>
+              <div class="muted" style="font-size:13px">Business & long trips</div>
+            </div>
+          </div>
+          <div class="price" data-price-daily="7200" data-price-weekly="42000">KES 7,200</div>
+          <ul>
+            <li>Comprehensive insurance</li>
+            <li>Airport delivery & priority service</li>
+            <li>Corporate invoicing options</li>
+          </ul>
+          <div class="cta">
+            <button class="btn select-plan" data-plan="premium">Select</button>
+            <button class="ghost compare-plan" type="button" data-plan="premium">Compare</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- POPULAR ROUTES -->
+    <section aria-labelledby="routes-heading" class="container" style="margin-top:28px">
+      <h3 id="routes-heading" style="margin:0 0 12px">Popular routes</h3>
+      <div class="routes reveal" data-reveal>
+        <div class="route">
+          <strong>Nairobi → Naivasha</strong>
+          <div class="muted">Perfect for weekend escapes — ~1.5hrs</div>
+          <div style="margin-top:auto;font-weight:700;color:var(--accent)">From KES 4,000</div>
+        </div>
+        <div class="route">
+          <strong>Nairobi → Mombasa</strong>
+          <div class="muted">Multi-day trips with flexible returns</div>
+          <div style="margin-top:auto;font-weight:700;color:var(--accent)">From KES 18,000</div>
+        </div>
+        <div class="route">
+          <strong>Airport transfers</strong>
+          <div class="muted">JKIA & Wilson delivery available</div>
+          <div style="margin-top:auto;font-weight:700;color:var(--accent)">From KES 1,200</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LATEST NEWS -->
+    <section aria-labelledby="news-heading-2" class="container" style="margin-top:28px">
+      <h3 id="news-heading-2" style="margin:0 0 12px">Latest news</h3>
+      <div class="news-grid reveal" data-reveal>
+        <article class="news-card" data-id="n1">
+          <div class="media"><img src="images/m1.jpeg" alt="New SUV" onerror="this.src='https://via.placeholder.com/640x360?text=News'"/></div>
+          <div class="content">
+            <h4>New SUV added to fleet</h4>
+            <div class="meta">March 2025 • Family-friendly</div>
+            <div class="excerpt">We’ve expanded our fleet with a modern SUV offering more comfort, space for luggage, and improved fuel efficiency — ideal for family trips and longer journeys.</div>
+            <div class="read-row"><button class="read-btn" data-id="n1">Read more</button><div class="muted">2 min read</div></div>
+          </div>
+        </article>
+
+        <article class="news-card" data-id="n2">
+          <div class="media"><img src="images/m2.jpeg" alt="Roadside assistance" onerror="this.src='https://via.placeholder.com/640x360?text=News'"/></div>
+          <div class="content">
+            <h4>Improved roadside assistance</h4>
+            <div class="meta">Feb 2025 • Safety</div>
+            <div class="excerpt">We’ve partnered with local providers to shorten response times for roadside support across Nairobi and major highways — faster help when you need it most.</div>
+            <div class="read-row"><button class="read-btn" data-id="n2">Read more</button><div class="muted">1 min read</div></div>
+          </div>
+        </article>
+
+        <article class="news-card" data-id="n3">
+          <div class="media"><img src="images/axio.jpeg" alt="Contactless pickup" onerror="this.src='https://via.placeholder.com/640x360?text=News'"/></div>
+          <div class="content">
+            <h4>Contactless pickup option</h4>
+            <div class="meta">Jan 2025 • Health & safety</div>
+            <div class="excerpt">Choose contactless pickup for a faster, safer handover. Complete digital paperwork and collect your keys without close contact — ideal during busy travel periods.</div>
+            <div class="read-row"><button class="read-btn" data-id="n3">Read more</button><div class="muted">1 min read</div></div>
+          </div>
+        </article>
+      </div>
+
+      <!-- News modal backdrop -->
+      <div class="news-modal-backdrop" id="newsModal" role="dialog" aria-hidden="true">
+        <div class="news-modal" role="document" aria-labelledby="newsTitle">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <h3 id="newsTitle" style="margin:0">Article</h3>
+            <button class="close-btn" id="newsClose">✕</button>
+          </div>
+          <div id="newsBody" style="margin-top:12px;color:var(--muted)"></div>
+        </div>
+      </div>
+    </section>
+
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">↑ Top</button>
+
+    <footer>
+      <div class="inner container">
+        <div>
+          <strong>Sir Mike AutoHire</strong>
+          <div style="font-size:13px;color:var(--muted)">Phone: 0707480602 • Email: sirmike6072@gmail.com</div>
+          <div class="social-links" aria-label="Follow us on social media">
+            <a class="social-link" href="https://www.facebook.com/share/1FKiRXJ5Mn/" target="_blank" rel="noopener" aria-label="Facebook">Facebook</a>
+            <a class="social-link" href="https://www.instagram.com/sir_mikeh?igsh=NzdlMXN2MXJ2eHJz" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
+            <a class="social-link" href="https://x.com/sirmike6072?t=EpwjVWqPtTNdnCF6NkXEaA&s=09" target="_blank" rel="noopener" aria-label="X (Twitter)">X</a>
+            <a class="social-link" href="https://wa.me/254707480602?text=Hi%20Sir%20Mike" target="_blank" rel="noopener" aria-label="WhatsApp">WhatsApp</a>
+            <a class="social-link" href="https://linkedin.com/in/sir-mike-38918937a" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
+          </div>
+        </div>
+        <div style="text-align:right">
+          <small style="color:var(--muted)">Office: Nairobi, Kenya • Mon–Sun: 08:00–20:00</small>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Modal for car details -->
+  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" role="document" aria-labelledby="modalTitle">
+      <div class="col media" id="modalMedia"><!-- image inserted --></div>
+      <div class="col" style="min-width:320px">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <h3 id="modalTitle" style="margin:0">Car name</h3>
+          <button class="close-btn" id="modalClose" aria-label="Close">✕</button>
+        </div>
+        <div id="modalDetails" style="margin-top:10px;color:var(--muted)"></div>
+        <div style="margin-top:14px" id="modalSpecs" class="car-features"></div>
+        <div style="margin-top:18px;display:flex;gap:10px">
+          <a id="modalBook" class="btn" href="#">Book now</a>
+          <button id="modalCompare" class="ghost">Add to compare</button>
+        </div>
+        <div style="margin-top:12px;color:var(--muted);font-size:13px">Insurance, roadside assistance & cleaning included.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Compare bar (sticky) -->
+  <div id="compareBar" class="compare-bar" style="display:none" role="region" aria-live="polite">
+    <div id="compareCount" style="font-weight:700">0 selected</div>
+    <div style="width:1px;height:28px;background:#eef5ff"></div>
+    <button id="viewCompare" class="ghost">View compare</button>
+    <button id="clearCompare" class="ghost">Clear</button>
+  </div>
+
+  <script>
+    // fleet data (images stored in images/ folder)
+    const fleet = [
+      { id:1, name:"Toyota Axio 2020", type:"Sedan", trans:"Auto", fuel:"Petrol", price:3500, img:"images/axio.jpeg", status:"Available", seats:5, doors:4, ac:true },
+      { id:2, name:"Nissan Kicks 2019", type:"SUV", trans:"Auto", fuel:"Petrol", price:4200, img:"images/nissan.jpeg", status:"Limited", seats:5, doors:5, ac:true },
+  { id:3, name:"Isuzu D-Max 2018", type:"Pickup", trans:"Manual", fuel:"Diesel", price:5000, img:"images/isuzu.jpeg", status:"Available", seats:2, doors:2, ac:false },
+  { id:4, name:"Toyota Hiace 2017", type:"Van", trans:"Manual", fuel:"Diesel", price:6000, img:"images/hiace.jpeg", status:"Available", seats:12, doors:3, ac:true },
+      { id:5, name:"Honda Fit 2021", type:"Sedan", trans:"Auto", fuel:"Hybrid", price:3200, img:"images/isuzu.jpeg", status:"Booked", seats:5, doors:4, ac:true },
+      { id:6, name:"Mitsubishi Outlander 2020", type:"SUV", trans:"Auto", fuel:"Petrol", price:4800, img:"images/axio.jpeg", status:"Available", seats:5, doors:5, ac:true },
+      { id:7, name:"Toyota Rav4 2021", type:"SUV", trans:"Auto", fuel:"Hybrid", price:5200, img:"images/nissan.jpeg", status:"Available", seats:5, doors:5, ac:true },
+      { id:8, name:"Mazda CX-5 2019", type:"SUV", trans:"Auto", fuel:"Petrol", price:4500, img:"images/isuzu.jpeg", status:"Available", seats:5, doors:5, ac:true },
+      { id:9, name:"Kia Picanto 2022", type:"Compact", trans:"Auto", fuel:"Petrol", price:2800, img:"images/axio.jpeg", status:"Available", seats:4, doors:4, ac:true },
+      { id:10, name:"Ford Ranger 2019", type:"Pickup", trans:"Manual", fuel:"Diesel", price:5400, img:"images/axio.jpeg", status:"Available", seats:5, doors:4, ac:true },
+  { id:11, name:"Subaru Forester 2020", type:"SUV", trans:"Auto", fuel:"Petrol", price:4700, img:"images/subaru.jpeg", status:"Available", seats:5, doors:5, ac:true },
+      { id:12, name:"Hyundai H1 2018", type:"Van", trans:"Manual", fuel:"Diesel", price:6200, img:"images/axio.jpeg", status:"Available", seats:14, doors:4, ac:true }
+    ];
+
+    // state
+    const grid = document.getElementById('grid');
+    const noResults = document.getElementById('noResults');
+    const paginationEl = document.getElementById('pagination');
+    const perPage = 6;
+    let currentPage = 1;
+    let currentList = fleet.slice();
+    let compareSet = new Set();
+
+    // helpers
+    function statusBadge(s){
+      if(s==='Available') return '<span class="badge available">Available</span>';
+      if(s==='Limited') return '<span class="badge limited">Limited</span>';
+      return `<span class="badge" style="background:#f8f8f8;color:#55616a">${s}</span>`;
+    }
+
+    function formatPrice(v){ return 'KES ' + Number(v).toLocaleString() + '/day'; }
+
+    // robust image loader element to avoid inline onerror loops
+    function createImage(srcLocal, alt, placeholderText){
+      const img = document.createElement('img');
+      img.alt = alt;
+      img.loading = 'lazy';
+      img.src = srcLocal;
+      img.style.width = '100%';
+      img.addEventListener('error', function onErr(){
+        // try unsplash with model keyword
+        if(!img.dataset.triedUnsplash){
+          img.dataset.triedUnsplash = '1';
+          const keyword = encodeURIComponent(alt.split(' ')[0]);
+          img.src = `https://source.unsplash.com/800x450/?${keyword},car`;
+          return;
+        }
+        // fallback placeholder
+        img.removeEventListener('error', onErr);
+        img.src = `https://via.placeholder.com/640x360?text=${encodeURIComponent(placeholderText)}`;
+      });
+      return img;
+    }
+
+    function renderCarsPage(list, page = 1){
+      grid.innerHTML = '';
+      if(!list.length){ noResults.style.display='block'; paginationEl.innerHTML=''; return; } else { noResults.style.display='none'; }
+      const start = (page - 1) * perPage;
+      const pageItems = list.slice(start, start + perPage);
+      pageItems.forEach(car=>{
+        const div = document.createElement('article');
+        div.className = 'card';
+        const media = document.createElement('div');
+        media.className = 'media';
+        // price badge
+        const pb = document.createElement('div'); pb.className = 'price-badge'; pb.textContent = formatPrice(car.price);
+        // status pill
+        const sp = document.createElement('div'); sp.className = 'status-pill'; sp.innerHTML = statusBadge(car.status);
+        const img = createImage(car.img, car.name, car.name);
+        media.appendChild(img);
+        media.appendChild(pb);
+        media.appendChild(sp);
+
+        const body = document.createElement('div');
+        body.className = 'card-body';
+        body.innerHTML = `
+          <div class="meta">
+            <div>
+              <strong>${car.name}</strong>
+              <div class="specs">${car.type} • ${car.trans} • ${car.fuel}</div>
+            </div>
+            <div style="font-size:13px;color:var(--muted)">
+              ${car.seats} seats • ${car.doors} doors
+            </div>
+          </div>
+          <div class="specs" style="margin-top:6px">${car.ac ? 'Air conditioning included' : 'No A/C'}</div>
+        `;
+
+        // features
+        const features = document.createElement('div');
+        features.className = 'car-features';
+        features.innerHTML = `
+          <div class="feature">${car.seats} seats</div>
+          <div class="feature">${car.doors} doors</div>
+          <div class="feature">${car.ac ? 'A/C' : 'No A/C'}</div>
+        `;
+
+        const bookRow = document.createElement('div');
+        bookRow.className = 'book-row';
+        bookRow.innerHTML = `
+          <a class="ghost" href="#" data-id="${car.id}" onclick="openDetails(event, ${car.id})" style="text-decoration:none;padding:8px 12px">Details</a>
+          <div style="display:flex;gap:8px;align-items:center">
+            <button class="btn" ${car.status==='Booked' ? 'disabled style="opacity:.6;cursor:not-allowed"' : ''} onclick="startBooking(${car.id})">Book</button>
+            <label style="display:inline-flex;align-items:center;gap:6px;font-size:13px">
+              <input type="checkbox" data-id="${car.id}" onchange="toggleCompare(event, ${car.id})"> Compare
+            </label>
+          </div>
+        `;
+
+        body.appendChild(features);
+        body.appendChild(bookRow);
+        div.appendChild(media);
+        div.appendChild(body);
+        grid.appendChild(div);
+      });
+
+      // pagination
+      const totalPages = Math.ceil(list.length / perPage) || 1;
+      paginationEl.innerHTML = '';
+      if(totalPages > 1){
+        for(let i=1;i<=totalPages;i++){
+          const b = document.createElement('button');
+          b.className = 'page-btn' + (i===page ? ' active' : '');
+          b.textContent = i;
+          b.addEventListener('click', ()=>{ currentPage = i; renderCarsPage(list, i); });
+          paginationEl.appendChild(b);
+        }
+      }
+    }
+
+    // filters & sorting
+    function applyFilters(){
+      const qv = document.getElementById('q').value.trim().toLowerCase();
+      const typev = document.getElementById('type').value;
+      const transv = document.getElementById('trans').value;
+      const fuelv = document.getElementById('fuel').value;
+      const sortv = document.getElementById('sort').value;
+
+      let out = fleet.filter(car => {
+        if(qv && !(car.name.toLowerCase().includes(qv) || car.type.toLowerCase().includes(qv))) return false;
+        if(typev && car.type !== typev) return false;
+        if(transv && car.trans !== transv) return false;
+        if(fuelv && car.fuel !== fuelv) return false;
+        return true;
+      });
+
+      if(sortv === 'price-low') out.sort((a,b)=> a.price - b.price);
+      if(sortv === 'price-high') out.sort((a,b)=> b.price - a.price);
+      if(sortv === 'newest') out.sort((a,b)=> b.id - a.id);
+      // rating sort placeholder: keep as-is (no rating stored)
+      currentList = out;
+      currentPage = 1;
+      renderCarsPage(currentList, currentPage);
+    }
+
+    // booking redirect helper
+    function startBooking(id){
+      const car = fleet.find(c=>c.id===id);
+      if(!car) return;
+      const params = new URLSearchParams({ car: car.name });
+      window.location.href = 'booking.html?' + params.toString();
+    }
+
+
+
+    // modal details
+    const modalBackdrop = document.getElementById('modalBackdrop');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDetails = document.getElementById('modalDetails');
+    const modalMedia = document.getElementById('modalMedia');
+    const modalSpecs = document.getElementById('modalSpecs');
+    const modalBook = document.getElementById('modalBook');
+    const modalCompare = document.getElementById('modalCompare');
+    const modalClose = document.getElementById('modalClose');
+
+    function openDetails(ev, id){
+      if(ev) ev.preventDefault();
+      const car = fleet.find(c=>c.id===id);
+      if(!car) return;
+      modalTitle.textContent = car.name;
+      modalDetails.innerHTML = `
+        <div style="color:var(--muted)">${car.type} • ${car.trans} • ${car.fuel}</div>
+        <div style="margin-top:8px;font-weight:800;color:var(--accent)">${formatPrice(car.price)}</div>
+        <p style="margin-top:10px;color:var(--muted)">Comfortable and well-maintained. Includes insurance, cleaning and roadside assistance. Fuel policy: return with same fuel level.</p>
+      `;
+      modalSpecs.innerHTML = `
+        <div class="feature">${car.seats} seats</div>
+        <div class="feature">${car.doors} doors</div>
+        <div class="feature">${car.ac ? 'Air conditioning' : 'No A/C'}</div>
+        <div class="feature">Free cancellation 24h</div>
+      `;
+      modalMedia.innerHTML = '';
+      const img = createImage(car.img, car.name, car.name);
+      img.style.height = '100%';
+      img.style.objectFit = 'cover';
+      modalMedia.appendChild(img);
+      modalBook.href = 'booking.html?car=' + encodeURIComponent(car.name);
+      modalCompare.onclick = ()=> { compareSet.add(car.id); updateCompareUI(); };
+      showModal();
+    }
+
+    function showModal(){ modalBackdrop.style.display = 'flex'; modalBackdrop.setAttribute('aria-hidden','false'); }
+    function closeModal(){ modalBackdrop.style.display = 'none'; modalBackdrop.setAttribute('aria-hidden','true'); }
+
+    modalClose.addEventListener('click', closeModal);
+    modalBackdrop.addEventListener('click', (e)=> { if(e.target === modalBackdrop) closeModal(); });
+    window.addEventListener('keydown', (e)=> { if(e.key === 'Escape') closeModal(); });
+
+    // compare logic
+    const compareBar = document.getElementById('compareBar');
+    const compareCount = document.getElementById('compareCount');
+    const viewCompare = document.getElementById('viewCompare');
+    const clearCompare = document.getElementById('clearCompare');
+
+    function toggleCompare(e, id){
+      const checked = e.target.checked;
+      if(checked) compareSet.add(id); else compareSet.delete(id);
+      updateCompareUI();
+    }
+
+    function updateCompareUI(){
+      const n = compareSet.size;
+      if(n > 0){
+        compareBar.style.display = 'flex';
+        compareCount.textContent = `${n} selected`;
+      } else {
+        compareBar.style.display = 'none';
+      }
+    }
+
+    viewCompare.addEventListener('click', ()=>{
+      // simple compare view: open modal listing selected cars
+      const ids = Array.from(compareSet);
+      if(!ids.length) return;
+      const rows = ids.map(id=>{
+        const c = fleet.find(x=>x.id===id);
+        return `<div style="display:flex;gap:12px;align-items:center;margin-bottom:8px">
+          <img src="${(fleet.find(x=>x.id===id).img)}" style="width:100px;height:60px;object-fit:cover;border-radius:8px" onerror="this.src='https://via.placeholder.com/100x60?text=${encodeURIComponent(c.name)}'">
+          <div>
+            <div style="font-weight:700">${c.name}</div>
+            <div style="color:var(--muted)">${c.type} • ${c.trans}</div>
+          </div>
+          <div style="margin-left:auto;font-weight:800;color:var(--accent)">${formatPrice(c.price)}</div>
+        </div>`; }).join('');
+      modalTitle.textContent = 'Compare';
+      modalDetails.innerHTML = rows;
+      modalSpecs.innerHTML = '';
+      modalMedia.innerHTML = '';
+      modalBook.href = '#';
+      showModal();
+    });
+
+    clearCompare.addEventListener('click', ()=>{
+      compareSet.clear();
+      updateCompareUI();
+      // uncheck checkboxes
+      document.querySelectorAll('#grid input[type="checkbox"]').forEach(i=> i.checked = false);
+    });
+
+    // init
+    document.getElementById('applyBtn').addEventListener('click', applyFilters);
+    document.getElementById('resetBtn').addEventListener('click', ()=>{
+      document.getElementById('q').value=''; document.getElementById('type').value=''; document.getElementById('trans').value=''; document.getElementById('fuel').value=''; document.getElementById('sort').value='newest';
+      currentList = fleet.slice();
+      currentPage = 1;
+      renderCarsPage(currentList, currentPage);
+    });
+
+    // keyboard: Enter in filter applies
+    document.getElementById('filterForm').addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter'){ e.preventDefault(); applyFilters(); }
+    });
+
+    // initial render
+    currentList = fleet.slice();
+    renderCarsPage(currentList, 1);
+
+    // expose small helpers used in inline attributes
+    window.startBooking = startBooking;
+    window.openDetails = openDetails;
+    window.toggleCompare = toggleCompare;
+
+    // Additional UI: testimonials carousel, reveal-on-scroll, newsletter handler
+    (function(){
+      const testimonials = [
+        {name:'Jane M.', rating:5, text:'Smooth booking and great car. Recommend!'},
+        {name:'SirMike', rating:4, text:'Good price and helpful staff.'},
+        {name:'Sylvia O.', rating:5, text:'Car in excellent condition, timely pickup.'},
+        {name:'Peter A.', rating:5, text:'Professional team and clean vehicles.'}
+      ];
+
+      // render testimonials
+      const tCarousel = document.getElementById('tCarousel');
+      if(tCarousel){
+        tCarousel.innerHTML = testimonials.map(t=>`
+          <div class="t-card">
+            <div style="font-weight:700">${t.name}</div>
+            <div class="muted" style="margin-top:6px">${'★'.repeat(t.rating)}${'☆'.repeat(5-t.rating)}</div>
+            <p style="margin-top:8px;color:var(--muted)">${t.text}</p>
+          </div>
+        `).join('');
+
+        // autoplay
+        let tIndex = 0;
+        setInterval(()=> {
+          const card = tCarousel.firstElementChild;
+          if(!card) return;
+          const gap = 12;
+          const cardW = card.getBoundingClientRect().width + gap;
+          tIndex = (tIndex + 1) % testimonials.length;
+          tCarousel.style.transform = `translateX(-${tIndex * cardW}px)`;
+        }, 4200);
+      }
+
+      // reveal on scroll
+      const reveals = document.querySelectorAll('[data-reveal]');
+      const obs = new IntersectionObserver(entries=>{
+        entries.forEach(en=>{
+          if(en.isIntersecting){
+            en.target.classList.add('in-view');
+            en.target.classList.add('reveal');
+            obs.unobserve(en.target);
+          }
+        });
+      }, {threshold:0.12});
+      reveals.forEach(r=> obs.observe(r));
+
+      // News articles data and modal wiring
+      const newsArticles = {
+        n1: { title:'New SUV added to fleet', date:'March 2025', body:'We’ve expanded our fleet with a modern SUV offering more comfort, space for luggage, and improved fuel efficiency. The SUV is ideal for family trips and longer journeys. Book now to enjoy introductory rates and flexible pickup options.' },
+        n2: { title:'Improved roadside assistance', date:'Feb 2025', body:'We’ve partnered with trusted local providers to shorten response times across Nairobi and major highways. This upgrade ensures faster support for minor repairs, towing and emergency help.' },
+        n3: { title:'Contactless pickup option', date:'Jan 2025', body:'Choose contactless pickup for a faster, safer handover. Complete digital paperwork and collect your keys without close contact — ideal during busy travel periods and for health-conscious customers.' }
+      };
+
+      const newsModal = document.getElementById('newsModal');
+      const newsTitle = document.getElementById('newsTitle');
+      const newsBody = document.getElementById('newsBody');
+      const newsClose = document.getElementById('newsClose');
+      document.querySelectorAll('.read-btn').forEach(b=>{
+        b.addEventListener('click', (e)=>{
+          const id = b.getAttribute('data-id');
+          const art = newsArticles[id];
+          if(!art) return;
+          newsTitle.textContent = art.title + ' • ' + art.date;
+          newsBody.textContent = art.body;
+          newsModal.style.display = 'flex';
+          newsModal.setAttribute('aria-hidden','false');
+        });
+      });
+      if(newsClose){ newsClose.addEventListener('click', ()=>{ newsModal.style.display='none'; newsModal.setAttribute('aria-hidden','true'); }); }
+
+      // Newsletter -> submit to Formspree (progressive enhancement)
+      (function(){
+        const nf = document.getElementById('newsletterForm');
+        const msg = document.getElementById('newsMsg');
+        const btn = document.getElementById('newsSubmit');
+        if(!nf) return;
+        nf.addEventListener('submit', async (e)=>{
+          e.preventDefault();
+          msg.textContent = '';
+          const email = (document.getElementById('newsEmail') || {}).value || '';
+          if(!email || !/^\S+@\S+\.\S+$/.test(email)){ msg.textContent = 'Please enter a valid email'; return; }
+          // disable button while submitting
+          btn.disabled = true;
+          const formAction = nf.getAttribute('action') || '';
+          // fallback: show message if action not configured
+          if(!formAction || formAction.includes('YOUR_FORM_ID')){
+            msg.textContent = 'Subscription endpoint not configured. Replace YOUR_FORM_ID in the form action.';
+            btn.disabled = false;
+            return;
+          }
+
+          try{
+            const fd = new FormData(nf);
+            const res = await fetch(formAction, {
+              method: 'POST',
+              headers: { 'Accept': 'application/json' },
+              body: fd
+            });
+            if(res.ok){
+              // Formspree returns JSON with "ok" or 200 status
+              msg.textContent = 'Thanks — check your inbox for confirmation.';
+              nf.reset();
+            } else {
+              const json = await res.json().catch(()=>null);
+              msg.textContent = (json && json.error) ? json.error : 'Submission failed — please try again later.';
+            }
+          }catch(err){
+            msg.textContent = 'Network error — please try again.';
+          } finally {
+            btn.disabled = false;
+          }
+        });
+
+      })();
+    })();
+
+    // UI: back-to-top, scroll progress, small accessibility tweaks
+    (function(){
+      const back = document.getElementById('backToTop');
+      const progress = document.getElementById('topProgress');
+      const showAfter = 300;
+      function onScroll(){
+        const s = window.scrollY || document.documentElement.scrollTop;
+        const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const pct = h > 0 ? Math.min(100, Math.round((s / h) * 100)) : 0;
+        progress.style.width = pct + '%';
+        if(s > showAfter) back.style.display = 'block'; else back.style.display = 'none';
+      }
+      window.addEventListener('scroll', onScroll, {passive:true});
+      back.addEventListener('click', ()=> window.scrollTo({top:0,behavior:'smooth'}));
+      // small ARIA: allow keyboard to close modal via Escape already present
+      // ensure images lazy load (already used) and reveal observer runs (already present)
+    })();
+    // end additions
+
+    // partners: simple keyboard focus and lazy logo loading
+    (function(){
+      const partnersGrid = document.querySelector('.partners-grid');
+      if(!partnersGrid) return;
+      // ensure logos are loaded lazily and are focusable
+      partnersGrid.querySelectorAll('a').forEach(a=>{
+        a.setAttribute('tabindex','0');
+        const img = a.querySelector('img');
+        if(img && img.dataset && !img.loading) img.loading = 'lazy';
+      });
+      // optional: keyboard arrow scroll within grid for accessibility
+      partnersGrid.addEventListener('keydown', (e)=>{
+        if(e.key === 'ArrowRight'){ partnersGrid.scrollBy({left:160,behavior:'smooth'}); }
+        if(e.key === 'ArrowLeft'){ partnersGrid.scrollBy({left:-160,behavior:'smooth'}); }
+      });
+    })();
+
+    // Pricing plans interactions: billing toggle and select plan
+    (function(){
+      const dailyBtn = document.getElementById('billingDaily');
+      const weeklyBtn = document.getElementById('billingWeekly');
+      const planEls = document.querySelectorAll('.plans .plan');
+
+      function setBilling(mode){
+        planEls.forEach(p=>{
+          const priceEl = p.querySelector('.price');
+          const daily = Number(priceEl.dataset.priceDaily || priceEl.getAttribute('data-price-daily'));
+          const weekly = Number(priceEl.dataset.priceWeekly || priceEl.getAttribute('data-price-weekly'));
+          if(mode === 'weekly'){
+            priceEl.textContent = 'KES ' + (weekly ? weekly.toLocaleString() : 'Contact us');
+            p.setAttribute('data-billing','weekly');
+          } else {
+            priceEl.textContent = 'KES ' + (daily ? daily.toLocaleString() : 'Contact us');
+            p.setAttribute('data-billing','daily');
+          }
+        });
+        // update aria-pressed
+        dailyBtn.setAttribute('aria-pressed', mode === 'daily');
+        weeklyBtn.setAttribute('aria-pressed', mode === 'weekly');
+      }
+
+      dailyBtn.addEventListener('click', ()=> setBilling('daily'));
+      weeklyBtn.addEventListener('click', ()=> setBilling('weekly'));
+
+      // default
+      setBilling('daily');
+
+      // plan selection: open booking form with prefilled plan
+      document.querySelectorAll('.select-plan').forEach(btn=>{
+        btn.addEventListener('click', (e)=>{
+          const plan = btn.getAttribute('data-plan');
+          const planCard = document.querySelector(`.plan[data-plan="${plan}"]`);
+          if(!planCard) return;
+          const billing = planCard.getAttribute('data-billing') || 'daily';
+          const priceEl = planCard.querySelector('.price');
+          const priceText = priceEl ? priceEl.textContent.replace(/\s+/g,' ') : '';
+          // redirect to booking form with plan details
+          const params = new URLSearchParams({ plan, billing, price: priceText });
+          window.location.href = 'booking.html?' + params.toString();
+        });
+      });
+    })();
+
+    // Plan compare: toggle selection and show comparison modal when 2+ selected
+    (function(){
+      try{
+        const comparePlans = new Set();
+        // helper to update button label state
+        function setBtnState(btn, added){
+          btn.textContent = added ? 'Added ✓' : 'Compare';
+          btn.classList.toggle('selected', added);
+        }
+
+        document.querySelectorAll('.compare-plan').forEach(btn=>{
+          btn.addEventListener('click', ()=> {
+            const plan = btn.getAttribute('data-plan');
+            if(!plan) return;
+            if(comparePlans.has(plan)){ comparePlans.delete(plan); setBtnState(btn, false); }
+            else { comparePlans.add(plan); setBtnState(btn, true); }
+
+            // if two or more plans selected, show comparison in existing modal
+            if(comparePlans.size >= 2){
+              const ids = Array.from(comparePlans);
+              const cols = ids.map(id=>{
+                const card = document.querySelector(`.plan[data-plan="${id}"]`);
+                if(!card) return '';
+                const title = (card.querySelector('h4') || {}).textContent || id;
+                const price = (card.querySelector('.price') || {}).textContent || '';
+                const items = Array.from(card.querySelectorAll('ul li')).map(li=> li.textContent ).join('<br>');
+                return `<div style="flex:1;min-width:200px;padding:12px;border-left:1px solid rgba(0,0,0,0.04)">
+                          <div style="font-weight:800">${title}</div>
+                          <div style="color:var(--accent);margin-top:6px;font-weight:800">${price}</div>
+                          <div style="margin-top:8px;color:var(--muted)">${items}</div>
+                        </div>`;
+              }).join('');
+
+              modalTitle.textContent = 'Compare plans';
+              modalDetails.innerHTML = `<div style="display:flex;gap:12px;align-items:flex-start">${cols}</div>`;
+              modalSpecs.innerHTML = '';
+              modalMedia.innerHTML = '';
+              modalBook.href = '#';
+              showModal();
+            }
+          });
+        });
+      }catch(e){}
+    })();
+  </script>
+</body>
+</html>
